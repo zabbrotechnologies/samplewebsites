@@ -198,7 +198,7 @@ button {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
-  padding: 1.1rem 4rem;
+  padding: 0.8rem 4rem;
 }
 
 .category-filter-inner {
@@ -227,10 +227,10 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.4rem;
+  padding: 0.4rem 1.1rem;
   border-radius: 9999px;
   font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
