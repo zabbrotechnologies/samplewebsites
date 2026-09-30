@@ -13,8 +13,8 @@ export default function Hero() {
       <div className="hero-resolution-matrix">SELECTED DIGITAL WORKS ARCHIVE</div>
 
       <h1 className="hero-headline">
-        Digital Experiences <br />
-        <span className="italic-serif">Built to Move.</span>
+        <span>Digital Experiences</span>{' '}
+        <span className="italic-serif hero-subtitle-span">Built to Move.</span>
       </h1>
 
       <div className="hero-bottom-bar">
