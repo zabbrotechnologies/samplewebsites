@@ -2,42 +2,53 @@ import React from 'react';
 import ProjectIframe from './ProjectIframe';
 
 export default function ProjectPiece({ project, index, viewMode, onSelectProject }) {
-  const isDarkTheme = index % 2 === 1;
+  // 2xN grid theme set logic:
+  // 1: white, 2: black
+  // 3: black, 4: white
+  // 5: white, 6: black
+  // 7: black, 8: white
+  const isDarkTheme = viewMode === 'grid'
+    ? (Math.floor(index / 2) + (index % 2)) % 2 === 1
+    : index % 2 === 1;
+
   const themeClass = isDarkTheme ? 'theme-dark' : 'theme-light';
   const isContentLeft = index % 2 === 0;
 
   if (viewMode === 'grid') {
     return (
-      <article className={`project-piece project-piece-grid ${themeClass}`}>
+      <article 
+        className={`project-piece project-piece-grid ${themeClass}`}
+        style={{ animationDelay: `${(index % 6) * 0.08}s` }}
+      >
         <div className="grid-card-inner">
           <div className="preview-col">
             <div className="preview-card">
               <ProjectIframe
-              demoUrl={project.demoUrl}
-              title={project.title}
-              onOpenViewer={() => onSelectProject(project)}
-            />
+                demoUrl={project.demoUrl}
+                title={project.title}
+                onOpenViewer={() => onSelectProject(project)}
+              />
+            </div>
           </div>
-        </div>
-        <div className="content-col">
-          <div className="project-category-tag">
-            <span className="category-glow-dot"></span>
-            <span>{project.categoryLabel}</span>
+          <div className="content-col">
+            <div className="project-category-tag">
+              <span className="category-glow-dot"></span>
+              <span>{project.categoryLabel}</span>
+            </div>
+            <h2 className="project-title">{project.title}</h2>
+            <p className="project-desc">{project.description}</p>
+            <div className="action-row" style={{ marginTop: 'auto' }}>
+              <button
+                type="button"
+                className="view-project-btn"
+                onClick={() => onSelectProject(project)}
+                aria-label={`View ${project.title}`}
+              >
+                <span>View Project</span>
+                <span className="arrow-icon">↗</span>
+              </button>
+            </div>
           </div>
-          <h2 className="project-title">{project.title}</h2>
-          <p className="project-desc">{project.description}</p>
-          <div className="action-row" style={{ marginTop: 'auto' }}>
-            <button
-              type="button"
-              className="view-project-btn"
-              onClick={() => onSelectProject(project)}
-              aria-label={`View ${project.title}`}
-            >
-              <span>View Project</span>
-              <span className="arrow-icon">↗</span>
-            </button>
-          </div>
-        </div>
         </div>
       </article>
     );
@@ -46,7 +57,10 @@ export default function ProjectPiece({ project, index, viewMode, onSelectProject
   // Alternate: Even index -> Content on Left, Preview on Right
   if (isContentLeft) {
     return (
-      <article className={`project-piece layout-preview-right ${themeClass}`}>
+      <article 
+        className={`project-piece layout-preview-right ${themeClass}`}
+        style={{ animationDelay: `${(index % 6) * 0.1}s` }}
+      >
         <div className="content-col">
           <div>
             <div className="project-category-tag">
@@ -93,7 +107,10 @@ export default function ProjectPiece({ project, index, viewMode, onSelectProject
 
   // Alternate: Odd index -> Preview on Left, Content on Right
   return (
-    <article className={`project-piece layout-preview-left ${themeClass}`}>
+    <article 
+      className={`project-piece layout-preview-left ${themeClass}`}
+      style={{ animationDelay: `${(index % 6) * 0.1}s` }}
+    >
       <div className="preview-col">
         <div className="preview-card">
           <ProjectIframe

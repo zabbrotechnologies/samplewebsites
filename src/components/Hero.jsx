@@ -10,6 +10,10 @@ export default function Hero() {
 
   return (
     <section className="standalone-hero-section" aria-label="Digital Works Showcase Header">
+      <div className="hero-brand-bar">
+        <img src="/verhost-logo.png" alt="VERHOST Logo" className="hero-brand-logo" />
+      </div>
+
       <div className="hero-resolution-matrix">PROBLEM RESOLUTION MATRIX</div>
 
       <h1 className="hero-headline">
