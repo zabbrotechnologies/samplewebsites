@@ -5,7 +5,7 @@ export default function StartProject() {
     <section className="start-project-section" aria-label="Start a Project">
       <div className="start-project-container">
         <div className="start-project-brand">
-          <img src="/verhost-logo.png" alt="VERHOST Logo" className="start-brand-logo" />
+          <img src="/verhost-logo.jpg" alt="VERHOST Logo" className="start-brand-logo" />
         </div>
         <h2 className="start-project-title">
           Ready to build something <br />

@@ -53,8 +53,8 @@ export const projects = [
   {
     id: 'w2',
     title: 'Kinetic Architecture',
-    category: 'ecommerce',
-    categoryLabel: 'E-Commerce',
+    category: 'portfolio',
+    categoryLabel: 'Portfolio',
     client: 'Kinetic Structural Practice',
     year: '2026',
     description: 'Monolithic digital showcase for a European structural architecture bureau, pairing brutalist grids with precise dimensional transitions and project case studies.',
