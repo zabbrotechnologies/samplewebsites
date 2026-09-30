@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectIframe from './ProjectIframe';
 
 export default function ProjectPiece({ project, index, viewMode, onSelectProject }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const isGridStyle = viewMode === 'grid' || isMobile;
+
   // 2xN grid theme set logic:
   // 1: white, 2: black
   // 3: black, 4: white
   // 5: white, 6: black
   // 7: black, 8: white
-  const isDarkTheme = viewMode === 'grid'
+  const isDarkTheme = isGridStyle
     ? (Math.floor(index / 2) + (index % 2)) % 2 === 1
     : index % 2 === 1;
 
   const themeClass = isDarkTheme ? 'theme-dark' : 'theme-light';
   const isContentLeft = index % 2 === 0;
 
-  if (viewMode === 'grid') {
+  if (isGridStyle) {
     return (
       <article 
         className={`project-piece project-piece-grid ${themeClass}`}

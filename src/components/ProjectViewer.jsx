@@ -6,23 +6,41 @@ export default function ProjectViewer({ project, onClose }) {
   const stageRef = useRef(null);
 
   useEffect(() => {
+    // Push history state so browser/phone back button closes modal instead of leaving page
+    window.history.pushState({ projectViewerOpen: true }, '');
+
+    const handlePopState = () => {
+      onClose();
+    };
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(() => {});
         } else {
-          onClose();
+          handleManualClose();
         }
       }
     };
+
+    window.addEventListener('popstate', handlePopState);
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
 
     return () => {
+      window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
   }, [onClose]);
+
+  const handleManualClose = () => {
+    if (window.history.state?.projectViewerOpen) {
+      window.history.back();
+    } else {
+      onClose();
+    }
+  };
 
   const toggleFullscreen = () => {
     if (!stageRef.current) return;
@@ -130,10 +148,14 @@ export default function ProjectViewer({ project, onClose }) {
           <button
             type="button"
             className="viewer-close-btn"
-            onClick={onClose}
+            onClick={handleManualClose}
             aria-label="Close Viewer"
+            title="Close Viewer"
           >
-            &times;
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
           </button>
         </div>
       </header>
