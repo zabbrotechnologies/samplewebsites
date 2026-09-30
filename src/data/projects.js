@@ -131,6 +131,19 @@ export const projects = [
   },
   // BUSINESS
   {
+    id: 'primeturf',
+    title: 'PrimeTurf Arena',
+    category: 'business',
+    categoryLabel: 'Business',
+    client: 'PrimeTurf Sports Group',
+    year: '2026',
+    description: 'Premier floodlit football & box cricket turf booking platform. Features real-time slot availability, transparent pricing matrix, and instant court reservation.',
+    demoUrl: '/demos/primeturf-arena/index.html',
+    featured: true,
+    layoutStyle: 'preview-left',
+    deliverables: ['Turf Booking System', 'Real-Time Availability', 'Sports UX/UI'],
+  },
+  {
     id: 'd1',
     title: 'Valence Capital',
     category: 'business',
