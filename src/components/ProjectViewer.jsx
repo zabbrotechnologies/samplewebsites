@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function ProjectViewer({ project, onClose }) {
-  const [deviceMode, setDeviceMode] = useState('desktop'); // 'desktop' | 'tablet' | 'mobile'
+  const [deviceMode, setDeviceMode] = useState(() => {
+    return typeof window !== 'undefined' && window.innerWidth <= 768 ? 'mobile' : 'desktop';
+  });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const stageRef = useRef(null);
 

@@ -1059,51 +1059,62 @@ button {
 }
 
 @media (max-width: 768px) {
+  html, body, #root, .standalone-showcase-root {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
   .standalone-hero-section {
-    padding: 3rem 1.25rem 2.25rem;
+    padding: 2.5rem 1rem 1.75rem;
   }
 
   .hero-headline {
-    font-size: clamp(28px, 8vw, 44px);
-    margin-bottom: 1.75rem;
+    font-size: clamp(24px, 7vw, 40px);
+    margin-bottom: 1.25rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-bottom-bar {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.5rem;
-    padding-top: 1.5rem;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
   }
 
   .hero-support-text {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
 
   .hero-scroll-cue {
     width: 100%;
     justify-content: space-between;
-    padding: 0.75rem 1.25rem;
+    padding: 0.65rem 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: 9999px;
     background: var(--bg-card);
   }
 
   .category-filter-wrapper {
-    padding: 0.65rem 1rem;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   .category-filter-inner {
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .category-pill-btn {
-    padding: 0.35rem 0.85rem;
-    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.7rem;
   }
 
   .category-actions-right {
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .category-meta-badge,
@@ -1111,52 +1122,75 @@ button {
     display: none !important;
   }
 
-  /* 2-Column Grid on Mobile Phones (2xN Grid Layout) */
+  /* 2-Column Grid on Mobile Phones with strict overflow protection */
   .showcase-container,
   .showcase-container.view-grid,
   .showcase-container.view-zigzag {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 1.25rem 0.65rem !important;
-    gap: 0.75rem !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    padding: 0.85rem 0.4rem !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
+  .project-piece,
   .project-piece-grid {
-    padding: 0.75rem 0.65rem;
-    border-radius: 16px;
+    padding: 0.6rem 0.45rem;
+    border-radius: 14px;
     height: 100%;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .project-piece-grid .grid-card-inner {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .project-piece-grid .preview-col,
+  .project-piece-grid .content-col {
+    min-width: 0;
+    width: 100%;
   }
 
   .project-piece-grid .preview-card {
-    height: 175px;
-    border-radius: 12px;
+    height: clamp(140px, 36vw, 190px);
+    border-radius: 10px;
+    width: 100%;
   }
 
   .project-piece-grid .preview-top-bar {
-    height: 28px;
-    padding: 0 0.5rem;
+    height: 26px;
+    padding: 0 0.4rem;
   }
 
-  .project-piece-grid .content-col {
-    padding: 0.25rem 0.15rem;
+  .project-piece-grid .preview-domain {
+    font-size: 0.62rem;
   }
 
   .project-piece-grid .project-category-tag {
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.35rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
   }
 
   .project-piece-grid .project-title {
-    font-size: 1.05rem;
+    font-size: clamp(0.88rem, 3.2vw, 1.05rem);
     line-height: 1.15;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.25rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .project-piece-grid .project-desc {
-    font-size: 0.78rem;
-    line-height: 1.45;
-    margin-bottom: 0.75rem;
+    font-size: clamp(0.68rem, 2.3vw, 0.76rem);
+    line-height: 1.38;
+    margin-bottom: 0.6rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -1166,44 +1200,51 @@ button {
   .project-piece-grid .view-project-btn {
     width: 100%;
     justify-content: center;
-    padding: 0.45rem 0.65rem;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
+    padding: 0.45rem 0.5rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
   }
 
   .start-project-section {
-    padding: 4.5rem 1.25rem;
+    padding: 3.5rem 1rem;
   }
 
   .start-project-title {
-    font-size: clamp(2.1rem, 7vw, 3.2rem);
-    margin-bottom: 1.25rem;
+    font-size: clamp(1.8rem, 6.5vw, 2.8rem);
+    margin-bottom: 1rem;
   }
 
   .start-project-desc {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
   }
 
   .start-project-btn {
     width: 100%;
     justify-content: center;
-    padding: 0.95rem 1.75rem;
+    padding: 0.85rem 1.5rem;
   }
 
   /* Modal Viewer Mobile Optimizations */
+  .viewer-backdrop {
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+
   .viewer-chrome {
-    padding: 0.75rem 1rem;
-    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    gap: 0.5rem;
+    width: 100%;
   }
 
   .viewer-meta-left {
-    max-width: 70%;
+    max-width: 65%;
     overflow: hidden;
   }
 
   .viewer-project-title {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1218,59 +1259,70 @@ button {
   }
 
   .viewer-stage {
-    padding: 0.35rem;
+    padding: 0.25rem;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow: hidden;
   }
 
+  .viewer-frame-wrapper,
   .viewer-frame-wrapper.mode-desktop,
   .viewer-frame-wrapper.mode-tablet,
   .viewer-frame-wrapper.mode-mobile {
     width: 100% !important;
     max-width: 100% !important;
-    border-radius: 12px;
+    height: 100% !important;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .viewer-live-iframe {
+    width: 100% !important;
+    height: 100% !important;
   }
 }
 
 @media (max-width: 480px) {
   .hero-headline {
-    font-size: 26px;
+    font-size: 24px;
     letter-spacing: -0.02em;
   }
 
   .showcase-container,
   .showcase-container.view-grid {
-    gap: 0.6rem !important;
-    padding: 0.85rem 0.4rem !important;
+    gap: 0.45rem !important;
+    padding: 0.65rem 0.35rem !important;
   }
 
   .project-piece-grid {
-    padding: 0.6rem 0.5rem;
-    border-radius: 14px;
+    padding: 0.5rem 0.4rem;
+    border-radius: 12px;
   }
 
   .project-piece-grid .preview-card {
-    height: 145px;
+    height: 135px;
   }
 
   .project-piece-grid .project-title {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
   }
 
   .project-piece-grid .project-desc {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     -webkit-line-clamp: 2;
   }
 
   .project-piece-grid .view-project-btn {
-    padding: 0.4rem 0.5rem;
-    font-size: 0.62rem;
+    padding: 0.4rem 0.45rem;
+    font-size: 0.6rem;
   }
 
   .empty-filter-state {
-    padding: 4rem 1.25rem;
+    padding: 3.5rem 1rem;
   }
 
   .empty-filter-title {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
 }
 
