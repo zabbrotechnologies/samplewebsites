@@ -18,7 +18,7 @@ export default function Home() {
       {/* 05 — Core Canvas Scroll Sequence with Parallax Storytelling Overlay */}
       <ScrollyCanvas
         totalFrames={192}
-        framePrefix="/sequence/frame_"
+        framePrefix="/demos/t2/out/sequence/frame_"
         frameExtension=".webp"
         padLength={3}
       >
