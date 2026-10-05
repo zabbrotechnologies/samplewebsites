@@ -85,7 +85,7 @@ export const projects = [
     client: 'Zabbro Testing',
     year: '2026',
     description: 'A dedicated testing project T2 page.',
-    demoUrl: '/t2-live',
+    demoUrl: '/demos/t2/out/index.html',
     featured: true,
     layoutStyle: 'preview-right',
     deliverables: ['Landing Page', 'Testing'],
