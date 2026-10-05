@@ -14,6 +14,10 @@ export default defineConfig({
       '/_next': {
         target: 'http://localhost:3001',
         changeOrigin: true
+      },
+      '/sequence': {
+        target: 'http://localhost:3001',
+        changeOrigin: true
       }
     }
   }
