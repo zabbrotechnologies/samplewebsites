@@ -59,18 +59,12 @@ export default function ProjectIframe({ demoUrl, title, onOpenViewer, className 
       <div className="preview-frame-container">
         {isInView ? (
           <>
-            {!isLoaded && (
-              <div className="preview-placeholder">
-                <div className="placeholder-spinner"></div>
-                <span className="placeholder-text">Initializing {title}</span>
-              </div>
-            )}
             <iframe
               src={demoUrl}
               title={title}
               loading="lazy"
               className="live-iframe"
-              style={{ opacity: isLoaded ? 1 : 0 }}
+              style={{ opacity: 1 }}
               onLoad={() => setIsLoaded(true)}
             />
           </>
