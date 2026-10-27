@@ -9,7 +9,6 @@ import { projects } from './data/projects';
 export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [viewerProject, setViewerProject] = useState(null);
-  const [viewMode, setViewMode] = useState('zigzag'); // 'zigzag' or 'grid'
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'all') {
@@ -32,15 +31,12 @@ export default function App() {
         activeCategory={activeCategory}
         onSelectCategory={handleSelectCategory}
         totalCount={filteredProjects.length}
-        viewMode={viewMode}
-        onViewModeChange={setViewMode}
       />
 
-      {/* Demo Showcase Cards */}
+      {/* Cinematic Showcase: Horizontal Project Selector */}
       <main id="works-showcase-main">
         <ProjectShowcase
           projects={filteredProjects}
-          viewMode={viewMode}
           onSelectProject={(project) => setViewerProject(project)}
           onResetFilter={() => setActiveCategory('all')}
         />
@@ -53,7 +49,9 @@ export default function App() {
       {viewerProject && (
         <ProjectViewer
           project={viewerProject}
+          projects={filteredProjects}
           onClose={() => setViewerProject(null)}
+          onNavigateProject={(newProject) => setViewerProject(newProject)}
         />
       )}
     </div>

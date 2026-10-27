@@ -1,14 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function ProjectViewer({ project, onClose }) {
+export default function ProjectViewer({ project, projects = [], onClose, onNavigateProject }) {
   const [deviceMode, setDeviceMode] = useState(() => {
     return typeof window !== 'undefined' && window.innerWidth <= 768 ? 'mobile' : 'desktop';
   });
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const stageRef = useRef(null);
 
+  // Find index for Prev / Next navigation
+  const currentIndex = projects.findIndex((p) => p.id === project?.id);
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex >= 0 && currentIndex < projects.length - 1;
+
+  const handlePrev = () => {
+    if (hasPrev && onNavigateProject) {
+      setIsLoading(true);
+      onNavigateProject(projects[currentIndex - 1]);
+    }
+  };
+
+  const handleNext = () => {
+    if (hasNext && onNavigateProject) {
+      setIsLoading(true);
+      onNavigateProject(projects[currentIndex + 1]);
+    }
+  };
+
   useEffect(() => {
-    // Push history state so browser/phone back button closes modal instead of leaving page
+    setIsLoading(true);
+  }, [project?.id]);
+
+  useEffect(() => {
     window.history.pushState({ projectViewerOpen: true }, '');
 
     const handlePopState = () => {
@@ -22,6 +45,10 @@ export default function ProjectViewer({ project, onClose }) {
         } else {
           handleManualClose();
         }
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev();
+      } else if (e.key === 'ArrowRight') {
+        handleNext();
       }
     };
 
@@ -34,7 +61,7 @@ export default function ProjectViewer({ project, onClose }) {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [onClose]);
+  }, [onClose, currentIndex]);
 
   const handleManualClose = () => {
     if (window.history.state?.projectViewerOpen) {
@@ -75,8 +102,35 @@ export default function ProjectViewer({ project, onClose }) {
       {/* Visually quiet top chrome */}
       <header className="viewer-chrome">
         <div className="viewer-meta-left">
-          <span className="viewer-project-title">{project.title}</span>
-          <span className="viewer-project-cat">{project.categoryLabel}</span>
+          {projects.length > 1 && onNavigateProject && (
+            <div className="viewer-nav-arrows">
+              <button
+                type="button"
+                className="viewer-nav-btn"
+                onClick={handlePrev}
+                disabled={!hasPrev}
+                title="Previous project (←)"
+                aria-label="Previous project"
+              >
+                &larr;
+              </button>
+              <button
+                type="button"
+                className="viewer-nav-btn"
+                onClick={handleNext}
+                disabled={!hasNext}
+                title="Next project (→)"
+                aria-label="Next project"
+              >
+                &rarr;
+              </button>
+            </div>
+          )}
+
+          <div className="viewer-title-group">
+            <span className="viewer-project-title">{project.title}</span>
+            <span className="viewer-project-cat">{project.categoryLabel}</span>
+          </div>
         </div>
 
         {/* Viewport switchers */}
@@ -141,7 +195,7 @@ export default function ProjectViewer({ project, onClose }) {
             target="_blank"
             rel="noopener noreferrer"
             className="viewer-action-btn"
-            title="Open in new window"
+            title="Open live site in new window"
           >
             <span>Open in Tab</span>
             <span>↗</span>
@@ -165,10 +219,18 @@ export default function ProjectViewer({ project, onClose }) {
       {/* Main stage with live website */}
       <div className="viewer-stage" ref={stageRef}>
         <div className={`viewer-frame-wrapper mode-${deviceMode}`}>
+          {isLoading && (
+            <div className="viewer-loading-overlay">
+              <div className="viewer-spinner"></div>
+              <span className="viewer-loading-text">Connecting to {project.title}...</span>
+            </div>
+          )}
           <iframe
+            key={project.id}
             src={project.demoUrl}
             title={`${project.title} Live Preview`}
             className="viewer-live-iframe"
+            onLoad={() => setIsLoading(false)}
           />
         </div>
       </div>
