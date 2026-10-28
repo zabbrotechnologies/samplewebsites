@@ -401,12 +401,16 @@ body {
 /* ----------------------------------------------------------------------------
  * 4-CARD HORIZONTAL ROW WITH RIGHT-EXPANDING HOVER
  * ------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------
+ * 4-CARD HORIZONTAL ROW WITH RIGHT-EXPANDING HOVER
+ * ------------------------------------------------------------------------- */
 .horizontal-projects-row {
   display: flex;
   width: 100%;
   gap: 1.25rem;
   align-items: stretch;
-  min-height: 380px;
+  min-height: 400px;
 }
 
 .showcase-project-card {
@@ -417,65 +421,59 @@ body {
   overflow: hidden;
   cursor: pointer;
   outline: none;
+  display: flex;
+  flex: 1 1 0px;
+  min-width: 0;
 
   /* Smooth flex-expand transition toward the right */
-  flex: 1;
-  transition: flex var(--transition-speed) var(--transition-bezier),
+  transition: flex-grow var(--transition-speed) var(--transition-bezier),
               border-color 300ms ease,
               box-shadow 300ms ease;
 }
 
-.showcase-project-card:hover,
-.showcase-project-card:focus-visible {
-  border-color: rgba(22, 155, 80, 0.4);
+/* Row hover dynamics: unhovered cards shrink slightly */
+.horizontal-projects-row:hover .showcase-project-card {
+  flex-grow: 0.8;
 }
 
-/* When expanded, receive greater flex share */
+/* Hovered or active card expands smoothly toward the right */
+.horizontal-projects-row .showcase-project-card:hover,
 .showcase-project-card.is-expanded {
-  flex: 2.75;
+  flex-grow: 2.85 !important;
   border-color: var(--green-primary);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.09);
 }
 
 .card-inner-surface {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: row;
   overflow: hidden;
   position: relative;
-}
-
-/* In compact state, vertical stack */
-.showcase-project-card.is-compact .card-inner-surface {
-  flex-direction: column;
-}
-
-/* In expanded state, side-by-side horizontal split */
-.showcase-project-card.is-expanded .card-inner-surface {
-  flex-direction: row;
 }
 
 .card-mockup-wrapper {
   position: relative;
   overflow: hidden;
-  flex: 1;
-  min-width: 240px;
+  flex: 1 1 0px;
+  min-width: 220px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.showcase-project-card.is-compact .card-mockup-wrapper {
-  height: 300px;
-}
-
-/* Compact Footer */
+/* Compact Footer inside mockup wrapper */
 .card-compact-footer {
-  padding: 1rem 1.25rem;
+  padding: 0.85rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid var(--border-color);
   background-color: var(--bg-card);
-  height: 70px;
+  height: 60px;
+  margin-top: auto;
+  transition: opacity 250ms ease;
 }
 
 .compact-title-group {
@@ -525,30 +523,38 @@ body {
 }
 
 /* ----------------------------------------------------------------------------
- * EXPANDED DRAWER DETAILS (Side Panel)
+ * EXPANDED DRAWER DETAILS (Side Panel) - Retained in DOM with width transition
  * ------------------------------------------------------------------------- */
 .card-expanded-drawer {
-  width: 320px;
-  min-width: 300px;
+  width: 0;
+  min-width: 0;
+  opacity: 0;
+  pointer-events: none;
   background-color: var(--bg-card);
-  border-left: 1px solid var(--border-color);
-  padding: 2rem 2rem 1.75rem;
+  border-left: 1px solid transparent;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  animation: fadeInDrawer 350ms var(--transition-bezier) forwards;
+  overflow: hidden;
+  white-space: normal;
+  transition: width var(--transition-speed) var(--transition-bezier),
+              opacity 300ms ease,
+              padding var(--transition-speed) var(--transition-bezier),
+              border-color 300ms ease;
 }
 
-@keyframes fadeInDrawer {
-  from {
-    opacity: 0;
-    transform: translateX(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* When parent card is hovered or expanded */
+.horizontal-projects-row .showcase-project-card:hover .card-expanded-drawer,
+.showcase-project-card.is-expanded .card-expanded-drawer {
+  width: 320px;
+  min-width: 320px;
+  opacity: 1;
+  pointer-events: auto;
+  border-left-color: var(--border-color);
+  padding: 1.75rem 1.75rem 1.5rem;
 }
+
 
 .drawer-header {
   display: flex;

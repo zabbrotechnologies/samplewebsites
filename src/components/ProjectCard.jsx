@@ -33,13 +33,11 @@ export default function ProjectCard({
       aria-label={`Project ${number}: ${title}, ${category}`}
     >
       <div className="card-inner-surface">
-        {/* Left / Dominant Side: Miniature Website Preview */}
+        {/* Left / Primary Area: Miniature Website Preview */}
         <div className="card-mockup-wrapper">
           <ProjectMockup project={project} isExpanded={isExpanded} />
-        </div>
 
-        {/* Compact Metadata Footer (Visible when compact) */}
-        {!isExpanded && (
+          {/* Compact bottom metadata strip */}
           <div className="card-compact-footer">
             <div className="compact-title-group">
               <span className="compact-number">[{number}]</span>
@@ -50,47 +48,45 @@ export default function ProjectCard({
               <span className="compact-arrow">↗</span>
             </div>
           </div>
-        )}
+        </div>
 
-        {/* Expanded Editorial Details (Revealed smoothly to the right when hovered) */}
-        {isExpanded && (
-          <div className="card-expanded-drawer">
-            <div className="drawer-header">
-              <div className="drawer-tags">
-                <span className="drawer-category-pill">{category}</span>
-                <span className="drawer-year-pill">{year}</span>
-              </div>
-              <span className="drawer-index-badge">[{number} / 20]</span>
+        {/* Right / Expanding Drawer: Retained in DOM for ultra-smooth 60fps CSS animation */}
+        <div className="card-expanded-drawer">
+          <div className="drawer-header">
+            <div className="drawer-tags">
+              <span className="drawer-category-pill">{category}</span>
+              <span className="drawer-year-pill">{year}</span>
             </div>
-
-            <div className="drawer-body">
-              <h3 className="drawer-project-title">{title}</h3>
-              <p className="drawer-description">{description}</p>
-
-              {deliverables && deliverables.length > 0 && (
-                <div className="drawer-deliverables-list">
-                  {deliverables.map((item, idx) => (
-                    <span key={idx} className="drawer-deliverable-item">
-                      <span className="deliverable-bullet">•</span> {item}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="drawer-footer">
-              <button
-                type="button"
-                className="drawer-launch-btn"
-                onClick={handleClick}
-                aria-label={`View project ${title}`}
-              >
-                <span>VIEW PROJECT</span>
-                <span className="btn-arrow">↗</span>
-              </button>
-            </div>
+            <span className="drawer-index-badge">[{number} / 20]</span>
           </div>
-        )}
+
+          <div className="drawer-body">
+            <h3 className="drawer-project-title">{title}</h3>
+            <p className="drawer-description">{description}</p>
+
+            {deliverables && deliverables.length > 0 && (
+              <div className="drawer-deliverables-list">
+                {deliverables.map((item, idx) => (
+                  <span key={idx} className="drawer-deliverable-item">
+                    <span className="deliverable-bullet">•</span> {item}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="drawer-footer">
+            <button
+              type="button"
+              className="drawer-launch-btn"
+              onClick={handleClick}
+              aria-label={`View project ${title}`}
+            >
+              <span>VIEW PROJECT</span>
+              <span className="btn-arrow">↗</span>
+            </button>
+          </div>
+        </div>
       </div>
     </article>
   );

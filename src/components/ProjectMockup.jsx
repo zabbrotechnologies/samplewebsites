@@ -87,6 +87,7 @@ export default function ProjectMockup({ project, isExpanded = false }) {
 
 // Generates bespoke stylized vector elements for each project type
 function renderArtifactGraphic(type, accent, isLight) {
+  const textColor = isLight ? '#111111' : '#FFFFFF';
   const strokeColor = isLight ? '#222222' : '#E0E0E0';
   const gridColor = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)';
 
