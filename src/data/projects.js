@@ -4,38 +4,33 @@
 export const SECTIONS = [
   {
     number: '01',
-    category: 'E-Commerce',
+    category: 'E-COMMERCE',
     slug: 'ecommerce',
     count: '04 PROJECTS',
-    description: 'High-conversion commerce experiences, bespoke online stores, and product showcases.'
   },
   {
     number: '02',
-    category: 'Business Websites',
+    category: 'BUSINESS',
     slug: 'business',
     count: '04 PROJECTS',
-    description: 'Corporate flagships, architecture practices, consultancies, and digital studio platforms.'
   },
   {
     number: '03',
-    category: 'Landing Pages',
+    category: 'LANDING',
     slug: 'landing',
     count: '04 PROJECTS',
-    description: 'High-impact conversion funnels, automotive detailing, artisanal culinary labs, and AI runtimes.'
   },
   {
     number: '04',
-    category: 'Portfolio Websites',
+    category: 'PORTFOLIO',
     slug: 'portfolio',
     count: '04 PROJECTS',
-    description: 'Editorial archives, personal designer identities, documentary photography, and curated indices.'
   },
   {
     number: '05',
-    category: 'Creative & Web Experiences',
+    category: 'CREATIVE',
     slug: 'creative',
     count: '04 PROJECTS',
-    description: 'Spatial UI concepts, kinetic typography experiments, motion studios, and interactive arenas.'
   }
 ];
 
@@ -45,428 +40,408 @@ export const projects = [
     id: 'maxywalk',
     number: '01',
     title: 'MAXYWALK',
-    category: 'E-Commerce',
+    category: 'E-COMMERCE',
     sectionSlug: 'ecommerce',
     year: '2026',
     client: 'MAXYWALK Leather Craft',
-    description: 'Premium handcrafted leather footwear and bespoke accessories with minimalist retail layout.',
-    deliverables: ['Custom Commerce', 'Product Photography', 'Checkout Flow'],
+    description: 'High-performance footwear flagship with interactive leather grain inspection and fluid cart.',
     demoUrl: 'https://maxywalk.vercel.app/',
-    featured: true,
-    visualTheme: {
-      type: 'maxywalk',
-      accent: '#C5A059',
-      surface: '#141414',
-      badge: 'FOOTWEAR ARCHIVE',
-      headline: 'HANDCRAFTED LEATHERWORKS',
-      tagline: 'Artisanal footwear tailored for timeless endurance.'
+    theme: {
+      mode: 'dark',
+      bg: '#0F1012',
+      accent: '#3B82F6',
+      brand: 'MAXYWALK',
+      headline: 'RUN YOUR STORY',
+      sub: 'Engineered for relentless endurance.',
+      mockupType: 'sneaker'
     }
   },
   {
-    id: 'mithu-dairy',
+    id: 'livora',
     number: '02',
-    title: 'Mithu Dairy',
-    category: 'E-Commerce',
+    title: 'LIVORA',
+    category: 'E-COMMERCE',
     sectionSlug: 'ecommerce',
     year: '2026',
-    client: 'Mithu Organic Farms',
-    description: 'Cream and mint palette e-commerce showcase featuring fresh farm dairy products and clean ordering.',
-    deliverables: ['Farm-to-Door UI', 'Subscription Flow', 'Clean Architecture'],
+    client: 'Livora Living Studio',
+    description: 'Minimal e-commerce experience for modern living and home aesthetics with tactile catalog navigation.',
     demoUrl: null,
-    featured: false,
-    visualTheme: {
-      type: 'mithu',
-      accent: '#2E8B57',
-      surface: '#F4F9F5',
-      badge: 'ORGANIC CERTIFIED',
-      headline: 'PURE FARM FRESH DAIRY',
-      tagline: 'Farm-fresh milk, cultured ghee, and artisanal butter.'
-    }
-  },
-  {
-    id: 'jkr-resin',
-    number: '03',
-    title: 'JKR Resin Arts',
-    category: 'E-Commerce',
-    sectionSlug: 'ecommerce',
-    year: '2026',
-    client: 'JKR Studio',
-    description: 'Luxury resin art studio featuring customized bridal bouquet preservation, baby keepsakes & gifts.',
-    deliverables: ['Editorial Store', 'Custom Inquiries', 'Bespoke Keepsakes'],
-    demoUrl: 'https://jkr-resin-arts.vercel.app/',
-    featured: true,
-    visualTheme: {
-      type: 'resin',
-      accent: '#D4AF37',
-      surface: '#18181A',
-      badge: 'BESPOKE BOTANICALS',
-      headline: 'TIMELESS RESIN CRAFT',
-      tagline: 'Preserving emotional moments through crystal-clear epoxy craft.'
-    }
-  },
-  {
-    id: 'fresh-market',
-    number: '04',
-    title: 'Fresh Market',
-    category: 'E-Commerce',
-    sectionSlug: 'ecommerce',
-    year: '2026',
-    client: 'Fresh Market Collective',
-    description: 'Warm white backdrop with natural green accents celebrating locally harvested organic produce.',
-    deliverables: ['Daily Harvest UI', 'Express Cart', 'Producer Stories'],
-    demoUrl: null,
-    featured: false,
-    visualTheme: {
-      type: 'market',
+    theme: {
+      mode: 'light',
+      bg: '#F5F3EF',
       accent: '#169B50',
-      surface: '#FAF8F5',
-      badge: 'DAILY HARVEST',
-      headline: 'PRODUCE WITH PROVENANCE',
-      tagline: 'Crisp field greens and heirloom orchard fruits delivered daily.'
+      brand: 'LIVORA',
+      headline: 'Modern Living Spaces',
+      sub: 'Curated artisanal furniture and organic textiles.',
+      mockupType: 'chair'
+    }
+  },
+  {
+    id: 'chronx',
+    number: '03',
+    title: 'CHRONX',
+    category: 'E-COMMERCE',
+    sectionSlug: 'ecommerce',
+    year: '2026',
+    client: 'Chronx Horology',
+    description: 'Luxury horology digital flagship featuring precision caliber archives and bespoke customization.',
+    demoUrl: 'https://jkr-resin-arts.vercel.app/',
+    theme: {
+      mode: 'dark',
+      bg: '#0A0A0C',
+      accent: '#E5A93C',
+      brand: 'CHRONX',
+      headline: 'CRAFTED FOR TIMELESS MOMENTS',
+      sub: 'Automatic mechanical movements assembled in Geneva.',
+      mockupType: 'watch'
+    }
+  },
+  {
+    id: 'glowe',
+    number: '04',
+    title: 'GLOWE',
+    category: 'E-COMMERCE',
+    sectionSlug: 'ecommerce',
+    year: '2026',
+    client: 'Glowe Dermatics',
+    description: 'Natural skincare boutique platform highlighting clinical efficacy, clean formulas, and express checkout.',
+    demoUrl: null,
+    theme: {
+      mode: 'light',
+      bg: '#F7F4F0',
+      accent: '#A07155',
+      brand: 'GLOWE',
+      headline: 'Pure Care Real Results',
+      sub: 'Cold-pressed botanical serums and barrier repair creams.',
+      mockupType: 'cosmetic'
     }
   },
 
-  // SECTION 02: BUSINESS WEBSITES
+  // SECTION 02: BUSINESS
   {
     id: 'kinetic-arch',
     number: '05',
-    title: 'Kinetic Architecture',
-    category: 'Business Websites',
+    title: 'KINETIC ARCHITECTURE',
+    category: 'BUSINESS',
     sectionSlug: 'business',
     year: '2026',
     client: 'Kinetic Structural Practice',
-    description: 'Monolithic digital portfolio for a European structural practice pairing brutalist grids with case studies.',
-    deliverables: ['Spatial Grid', 'Blueprint Archive', 'Interactive Scale'],
+    description: 'Monolithic digital portfolio pairing brutalist spatial grids with architectural project archives.',
     demoUrl: '/demos/kinetic-arch/index.html',
-    featured: true,
-    visualTheme: {
-      type: 'kinetic',
+    theme: {
+      mode: 'light',
+      bg: '#EBEBE6',
       accent: '#111111',
-      surface: '#EAEAE6',
-      badge: 'STRUCTURAL MONOGRAPH',
-      headline: 'FORM, VOID & GRAVITY',
-      tagline: 'Precision engineered civic architectures across Northern Europe.'
+      brand: 'KINETIC',
+      headline: 'Kinetic Architecture',
+      sub: 'Civic masterplans and sustainable structural timber.',
+      mockupType: 'architecture'
     }
   },
   {
     id: 'greentech',
     number: '06',
-    title: 'GreenTech',
-    category: 'Business Websites',
+    title: 'GREENTECH',
+    category: 'BUSINESS',
     sectionSlug: 'business',
     year: '2026',
-    client: 'GreenTech Energy Systems',
-    description: 'Industrial technology platform with dark imagery, live telemetry graphs, and modern corporate layout.',
-    deliverables: ['Industrial UX', 'Telemetry Visuals', 'ESG Disclosure'],
+    client: 'GreenTech Energy',
+    description: 'Industrial clean energy platform with live hydrogen telemetry, turbine monitoring, and ESG reports.',
     demoUrl: null,
-    featured: false,
-    visualTheme: {
-      type: 'greentech',
+    theme: {
+      mode: 'dark',
+      bg: '#0D131A',
       accent: '#22C55E',
-      surface: '#0B1118',
-      badge: 'CLEANTECH INFRASTRUCTURE',
-      headline: 'ZERO-EMISSION POWER',
-      tagline: 'Turbine control telemetry and grid-scale hydrogen storage.'
+      brand: 'GREENTECH',
+      headline: 'Engineering a Cleaner Tomorrow.',
+      sub: 'Grid-scale offshore wind and zero-carbon battery storage.',
+      mockupType: 'turbine'
     }
   },
   {
-    id: 'verhost-studio',
+    id: 'nexora',
     number: '07',
-    title: 'Verhost Studio',
-    category: 'Business Websites',
+    title: 'NEXORA',
+    category: 'BUSINESS',
     sectionSlug: 'business',
     year: '2026',
-    client: 'VERHOST Systems',
-    description: 'Creative digital studio flagship with strong monochrome typography and interactive case archive.',
-    deliverables: ['Digital Flagship', 'Interaction Systems', 'Case Studies'],
+    client: 'Nexora Strategy Group',
+    description: 'Strategic business advisory platform for modern enterprise growth, digital restructuring, and capital.',
     demoUrl: null,
-    featured: true,
-    visualTheme: {
-      type: 'verhost',
+    theme: {
+      mode: 'light',
+      bg: '#F8F9F8',
       accent: '#169B50',
-      surface: '#0F0F10',
-      badge: 'CREATIVE ENGINEERING',
-      headline: 'EXCEPTIONAL DIGITAL WORKS',
-      tagline: 'Crafting unforgettable web interfaces for visionary brands.'
+      brand: 'NEXORA',
+      headline: 'Your Growth Our Strategy',
+      sub: 'Data-driven advisory for market expansion and transformation.',
+      mockupType: 'growth'
     }
   },
   {
     id: 'solvix',
     number: '08',
-    title: 'Solvix',
-    category: 'Business Websites',
+    title: 'SOLVIX',
+    category: 'BUSINESS',
     sectionSlug: 'business',
     year: '2026',
-    client: 'Solvix Strategy Partners',
-    description: 'Modern advisory firm website with sharp black-and-white editorial composition and executive insights.',
-    deliverables: ['Corporate Strategy', 'Executive Briefings', 'Swiss Grid'],
+    client: 'Solvix Advisory',
+    description: 'Executive advisory firm platform with sharp monochrome composition and transatlantic case studies.',
     demoUrl: '/demos/valence-capital/index.html',
-    featured: false,
-    visualTheme: {
-      type: 'solvix',
-      accent: '#777777',
-      surface: '#FFFFFF',
-      badge: 'STRATEGIC ADVISORY',
-      headline: 'CAPITAL & RESTRUCTURING',
-      tagline: 'Institutional clarity for complex transatlantic mergers.'
+    theme: {
+      mode: 'dark',
+      bg: '#111317',
+      accent: '#64748B',
+      brand: 'SOLVIX',
+      headline: 'Digital Solutions For Tomorrow',
+      sub: 'Private equity guidance and infrastructure investments.',
+      mockupType: 'geometric'
     }
   },
 
-  // SECTION 03: LANDING PAGES
+  // SECTION 03: LANDING
   {
-    id: 'ngt-tuning',
+    id: 'creativio',
     number: '09',
-    title: 'New Generation Tuner',
-    category: 'Landing Pages',
+    title: 'CREATIVIO',
+    category: 'LANDING',
     sectionSlug: 'landing',
     year: '2026',
-    client: 'NGT Motorsport Labs',
-    description: 'High-octane automotive detailing and performance tuning showcase with dark visuals and race red accents.',
-    deliverables: ['Performance Portal', 'Dyno Diagnostics', 'Booking System'],
+    client: 'Creativio Collective',
+    description: 'High-conversion agency landing page with dynamic pastel gradients and fluid typography choreography.',
     demoUrl: null,
-    featured: true,
-    visualTheme: {
-      type: 'ngt',
-      accent: '#E53E3E',
-      surface: '#121214',
-      badge: 'MOTORSPORT CALIBRATION',
-      headline: 'UNRESTRICTED POWER',
-      tagline: 'Precision ECU tuning and trackside aero calibration.'
+    theme: {
+      mode: 'light',
+      bg: '#FAF6FE',
+      accent: '#8B5CF6',
+      brand: 'CREATIVIO',
+      headline: 'Turn Ideas Into Reality',
+      sub: 'Bespoke branding campaigns and creative engineering.',
+      mockupType: 'gradient'
     }
   },
   {
-    id: 'cakexperiment',
+    id: 'synthora',
     number: '10',
-    title: 'Cakexperiment',
-    category: 'Landing Pages',
-    sectionSlug: 'landing',
-    year: '2026',
-    client: 'Cakexperiment Academy',
-    description: 'Premium baking education lab presented with warm pastry cream tones and editorial serif typography.',
-    deliverables: ['Masterclass Funnel', 'Recipe Archives', 'Interactive Timers'],
-    demoUrl: null,
-    featured: false,
-    visualTheme: {
-      type: 'cake',
-      accent: '#D97706',
-      surface: '#FAF7F2',
-      badge: 'PATISSERIE ACADEMY',
-      headline: 'THE SCIENCE OF PASTRY',
-      tagline: 'Mastering viennoiserie, laminated doughs, and entremets.'
-    }
-  },
-  {
-    id: 'neural-synthetics',
-    number: '11',
-    title: 'Neural Synthetics',
-    category: 'Landing Pages',
+    title: 'SYNTHORA',
+    category: 'LANDING',
     sectionSlug: 'landing',
     year: '2026',
     client: 'Neural Synthetics Corp',
-    description: 'Futuristic AI model runtime platform with dark background, neural topology, and controlled green highlights.',
-    deliverables: ['Model Documentation', 'Real-time Latency UI', 'SDK Playgrounds'],
+    description: 'AI product landing experience for next-generation intelligence, model runtimes, and sub-millisecond inference.',
     demoUrl: '/demos/synapse-engine/index.html',
-    featured: true,
-    visualTheme: {
-      type: 'neural',
+    theme: {
+      mode: 'dark',
+      bg: '#0A0E0C',
       accent: '#169B50',
-      surface: '#090D0B',
-      badge: 'AUTONOMOUS RUNTIME',
-      headline: 'SYNTHETIC COGNITION',
-      tagline: 'Sub-millisecond inference across distributed tensor clusters.'
+      brand: 'SYNTHORA',
+      headline: 'Neural Synthetics',
+      sub: 'Autonomous cognitive runtimes across distributed clusters.',
+      mockupType: 'cyberpunk'
     }
   },
   {
-    id: 'creativeflow',
-    number: '12',
-    title: 'CreativeFlow',
-    category: 'Landing Pages',
+    id: 'devflow',
+    number: '11',
+    title: 'DEVFLOW',
+    category: 'LANDING',
     sectionSlug: 'landing',
     year: '2026',
-    client: 'Flow Creative Studio',
-    description: 'Design agency conversion page celebrating expressive typography, fluid layout shifts, and pastel accents.',
-    deliverables: ['Agency Funnel', 'Interactive Motion', 'Client Onboarding'],
+    client: 'DevFlow Systems',
+    description: 'Developer workspace and cloud pipeline conversion portal celebrating zero-friction deployment.',
     demoUrl: null,
-    featured: false,
-    visualTheme: {
-      type: 'creativeflow',
-      accent: '#8B5CF6',
-      surface: '#FDFBFE',
-      badge: 'DESIGN COLLECTIVE',
-      headline: 'UNBOUND CREATIVE DIRECTION',
-      tagline: 'Crafting brand campaigns that define modern cultural moments.'
+    theme: {
+      mode: 'light',
+      bg: '#F5F8F6',
+      accent: '#10B981',
+      brand: 'DEVFLOW',
+      headline: 'Build Without Limits',
+      sub: 'Instant serverless infrastructure and automated edge testing.',
+      mockupType: 'cubes'
+    }
+  },
+  {
+    id: 'spacen',
+    number: '12',
+    title: 'SPACEN',
+    category: 'LANDING',
+    sectionSlug: 'landing',
+    year: '2026',
+    client: 'Spacen Interactive',
+    description: 'Creative network platform where designers and technical creators collaborate on experimental software.',
+    demoUrl: null,
+    theme: {
+      mode: 'dark',
+      bg: '#0B0B0E',
+      accent: '#A855F7',
+      brand: 'SPACEN',
+      headline: 'Where Creators Connect',
+      sub: 'Curated peer networks, live crits, and creative grants.',
+      mockupType: 'sphere'
     }
   },
 
-  // SECTION 04: PORTFOLIO WEBSITES
+  // SECTION 04: PORTFOLIO
   {
-    id: 'listit-app',
+    id: 'listit',
     number: '13',
-    title: 'ListIt',
-    category: 'Portfolio Websites',
+    title: 'LISTIT ARCHIVE',
+    category: 'PORTFOLIO',
     sectionSlug: 'portfolio',
     year: '2026',
     client: 'ListIt Concept Works',
-    description: 'Structured editorial portfolio and media cataloging concept featuring anime tracking and Japanese typography.',
-    deliverables: ['Media Catalog', 'Editorial Index', 'Scoring Matrix'],
+    description: 'Structured editorial media catalog featuring contemporary anime monographs and visual indices.',
     demoUrl: null,
-    featured: false,
-    visualTheme: {
-      type: 'listit',
+    theme: {
+      mode: 'dark',
+      bg: '#14161E',
       accent: '#EC4899',
-      surface: '#15171E',
-      badge: 'MEDIA CURATION',
-      headline: 'ARCHIVE OF CONTEMPORARY ANIME',
-      tagline: 'Cinematic logs, production credits, and seasonal retrospectives.'
+      brand: 'LISTIT',
+      headline: 'Contemporary Anime Log',
+      sub: 'Cinematic retrospectives and production design archives.',
+      mockupType: 'catalog'
     }
   },
   {
-    id: 'designer-portfolio',
+    id: 'designer-port',
     number: '14',
-    title: 'Designer Portfolio',
-    category: 'Portfolio Websites',
+    title: 'ELENA ROSTOVA',
+    category: 'PORTFOLIO',
     sectionSlug: 'portfolio',
     year: '2026',
     client: 'Elena Rostova Studio',
     description: 'Minimal personal design monograph featuring oversized serif headlines and tactile project previews.',
-    deliverables: ['Monograph UI', 'Exhibition List', 'Spatial Sound'],
     demoUrl: '/demos/elena-rostova/index.html',
-    featured: true,
-    visualTheme: {
-      type: 'designer',
+    theme: {
+      mode: 'light',
+      bg: '#F3F3EE',
       accent: '#111111',
-      surface: '#F5F5F0',
-      badge: 'PRINCIPAL DESIGNER',
-      headline: 'SYSTEMS, SPACES & ARTIFACTS',
-      tagline: 'Ten years of architectural brand systems and generative tools.'
+      brand: 'ROSTOVA',
+      headline: 'Systems, Spaces & Artifacts',
+      sub: 'Ten years of architectural brand systems and generative tools.',
+      mockupType: 'monograph'
     }
   },
   {
-    id: 'photographer-journal',
+    id: 'photo-journal',
     number: '15',
-    title: "Photographer's Journal",
-    category: 'Portfolio Websites',
+    title: 'MARCUS VANCE',
+    category: 'PORTFOLIO',
     sectionSlug: 'portfolio',
     year: '2026',
     client: 'Marcus Vance Gallery',
-    description: 'Photography-first editorial portfolio with full-bleed aspect ratios, camera telemetry, and exhibition dates.',
-    deliverables: ['Full-Bleed Media', 'EXIF Telemetry', 'Print Inquiries'],
+    description: 'Full-bleed photography monograph with camera telemetry, negative scans, and exhibition coordinates.',
     demoUrl: '/demos/chrono-studio/index.html',
-    featured: false,
-    visualTheme: {
-      type: 'photo',
-      accent: '#E6E6E2',
-      surface: '#0A0A0A',
-      badge: 'DOCUMENTARY MONOGRAPH',
-      headline: 'SHADOWS OF THE HIGH ARCTIC',
-      tagline: 'Medium format analog silver gelatin studies from Svalbard.'
+    theme: {
+      mode: 'dark',
+      bg: '#0A0A0A',
+      accent: '#E2E8F0',
+      brand: 'VANCE',
+      headline: 'Shadows of the High Arctic',
+      sub: 'Analog silver gelatin studies from Svalbard and Greenland.',
+      mockupType: 'photo'
     }
   },
   {
-    id: 'architecture-archive',
+    id: 'arch-archive',
     number: '16',
-    title: 'Architecture Archive',
-    category: 'Portfolio Websites',
+    title: 'NORDIC TIMBER',
+    category: 'PORTFOLIO',
     sectionSlug: 'portfolio',
     year: '2026',
-    client: 'Nordic Heritage Foundation',
-    description: 'Restrained Swiss layout and chronological index documenting 20th-century Scandinavian timber structures.',
-    deliverables: ['Heritage Registry', 'Floorplan CAD', 'Geographic Coordinates'],
+    client: 'Nordic Heritage Registry',
+    description: 'Swiss editorial archive documenting historic Scandinavian timber structures and coastal boathouses.',
     demoUrl: null,
-    featured: false,
-    visualTheme: {
-      type: 'archarchive',
+    theme: {
+      mode: 'light',
+      bg: '#EEEEEA',
       accent: '#475569',
-      surface: '#EDEDE8',
-      badge: 'HISTORIC SURVEY',
-      headline: 'SCANDINAVIAN TIMBER HERITAGE',
-      tagline: 'Structural surveys of vernacular church spires and coastal boathouses.'
+      brand: 'NORDIC',
+      headline: 'Timber Heritage Survey',
+      sub: 'Structural blueprints and geographic vernacular mapping.',
+      mockupType: 'blueprint'
     }
   },
 
-  // SECTION 05: CREATIVE & WEB EXPERIENCES
+  // SECTION 05: CREATIVE
   {
-    id: 'digital-atelier',
+    id: 'aura-atelier',
     number: '17',
-    title: 'Digital Atelier',
-    category: 'Creative & Web Experiences',
+    title: 'AURA ATELIER',
+    category: 'CREATIVE',
     sectionSlug: 'creative',
     year: '2026',
     client: 'Aura Objects & Co.',
-    description: 'Avant-garde experimental typography showcase exploring tactile digital fabrics and virtual objects.',
-    deliverables: ['Virtual Couture', '3D Scans', 'Sensory Exploration'],
+    description: 'Avant-garde digital flagship exploring tactile computational fabrics, generative garments, and 3D scans.',
     demoUrl: '/demos/aura-atelier/index.html',
-    featured: true,
-    visualTheme: {
-      type: 'atelier',
+    theme: {
+      mode: 'light',
+      bg: '#F7F5F0',
       accent: '#169B50',
-      surface: '#F8F6F0',
-      badge: 'HAUTE NUMÉRIQUE',
-      headline: 'MATERIALISING THE VIRTUAL',
-      tagline: 'Generative textiles and computational garment simulations.'
+      brand: 'AURA',
+      headline: 'Materialising The Virtual',
+      sub: 'Generative couture and physics-driven computational textiles.',
+      mockupType: 'garment'
     }
   },
   {
     id: 'motion-lab',
     number: '18',
-    title: 'Motion Lab',
-    category: 'Creative & Web Experiences',
+    title: 'VANGUARD MOTION',
+    category: 'CREATIVE',
     sectionSlug: 'creative',
     year: '2026',
     client: 'Vanguard Dynamics',
-    description: 'High-contrast kinetic motion laboratory demonstrating 60fps real-time physics and expressive web typography.',
-    deliverables: ['Kinetic Typography', 'WebGL Shaders', 'Audio-reactive UI'],
+    description: 'High-contrast kinetic motion laboratory demonstrating 60fps WebGL shaders and audio-reactive typography.',
     demoUrl: '/demos/vanguard-mobility/index.html',
-    featured: false,
-    visualTheme: {
-      type: 'motion',
+    theme: {
+      mode: 'dark',
+      bg: '#0D0E14',
       accent: '#06B6D4',
-      surface: '#0D0E12',
-      badge: 'FRAME RATE: 60 FPS',
-      headline: 'KINETIC CHOREOGRAPHY',
-      tagline: 'Real-time physics engines powering dynamic brand identities.'
+      brand: 'VANGUARD',
+      headline: 'Kinetic Choreography',
+      sub: 'Real-time physics engines powering dynamic brand identities.',
+      mockupType: 'motion'
     }
   },
   {
-    id: 'future-interface',
+    id: 'monolith-ui',
     number: '19',
-    title: 'Future Interface',
-    category: 'Creative & Web Experiences',
+    title: 'MONOLITH HUD',
+    category: 'CREATIVE',
     sectionSlug: 'creative',
     year: '2026',
     client: 'Monolith Systems',
-    description: 'Experimental spatial computing concept with translucent floating HUD elements and gesture mappings.',
-    deliverables: ['Spatial HUD', 'Volumetric Grids', 'Audio Architecture'],
+    description: 'Experimental spatial computing interface with translucent volumetric grids and biometric eye-tracking.',
     demoUrl: '/demos/monolith-acoustics/index.html',
-    featured: false,
-    visualTheme: {
-      type: 'futureui',
+    theme: {
+      mode: 'dark',
+      bg: '#08080C',
       accent: '#10B981',
-      surface: '#08080A',
-      badge: 'SPATIAL COMPUTING',
-      headline: 'POST-SCREEN INTERACTIONS',
-      tagline: 'Volumetric glass shaders and biometric eye-tracking paradigms.'
+      brand: 'MONOLITH',
+      headline: 'Spatial Computing Interface',
+      sub: 'Volumetric glass shaders and post-screen interaction paradigms.',
+      mockupType: 'hud'
     }
   },
   {
-    id: 'interactive-worlds',
+    id: 'primeturf',
     number: '20',
-    title: 'Interactive Worlds',
-    category: 'Creative & Web Experiences',
+    title: 'PRIMETURF ARENA',
+    category: 'CREATIVE',
     sectionSlug: 'creative',
     year: '2026',
     client: 'PrimeTurf Arena',
-    description: 'Immersive digital sports facility booking experience with live pitch matrix, slot booking, and equipment rental.',
-    deliverables: ['Real-Time Booking', 'Pitch Allocation', 'Interactive Arena'],
+    description: 'Immersive sports arena reservation system with interactive pitch matrix, slot booking, and floodlight control.',
     demoUrl: '/demos/turf/index.html',
-    featured: true,
-    visualTheme: {
-      type: 'turf',
+    theme: {
+      mode: 'dark',
+      bg: '#0B150F',
       accent: '#169B50',
-      surface: '#0B150F',
-      badge: 'PITCH RESERVATION LIVE',
-      headline: 'PRIMETURF SPORTS ARENA',
-      tagline: 'FIFA-standard turf pitches, floodlight scheduling, and live slots.'
+      brand: 'PRIMETURF',
+      headline: 'PrimeTurf Sports Arena',
+      sub: 'FIFA-standard pitches, floodlight scheduling, and live booking.',
+      mockupType: 'pitch'
     }
   }
 ];

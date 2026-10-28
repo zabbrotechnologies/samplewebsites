@@ -9,22 +9,27 @@ export default function ProjectRow({ section, projects, onSelectProject }) {
   };
 
   return (
-    <div className="section-showcase-block" id={`section-${section.slug}`}>
-      {/* Section Header */}
-      <div className="section-header-bar">
-        <div className="section-header-left">
-          <span className="section-index-number">[{section.number}]</span>
-          <h2 className="section-category-title">{section.category}</h2>
+    <div className="showcase-section-unit" id={`section-${section.slug}`}>
+      {/* Section Header: "01 / E-COMMERCE" -------- "04 PROJECTS  <  >" */}
+      <div className="section-title-strip">
+        <div className="section-title-left">
+          <span className="section-number-prefix">{section.number}</span>
+          <span className="section-slash">/</span>
+          <h2 className="section-name-text">{section.category}</h2>
         </div>
-        <div className="section-divider-line" />
-        <div className="section-header-right">
-          <span className="section-project-count">{section.count}</span>
+        <div className="section-hairline" />
+        <div className="section-title-right">
+          <span className="section-count-badge">{section.count}</span>
+          <div className="section-nav-arrows">
+            <button type="button" className="nav-arrow-btn" aria-label="Previous">&lt;</button>
+            <button type="button" className="nav-arrow-btn" aria-label="Next">&gt;</button>
+          </div>
         </div>
       </div>
 
-      {/* 4-Item Horizontal Row with right-expanding flex physics */}
+      {/* 4-Item Horizontal Row with stable flex allocation */}
       <div 
-        className="horizontal-projects-row"
+        className="projects-horizontal-track"
         onMouseLeave={handleRowMouseLeave}
       >
         {projects.map((proj, idx) => (

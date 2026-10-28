@@ -9,35 +9,32 @@ export default function Navbar() {
   };
 
   return (
-    <header className="verhost-top-nav">
-      <div className="nav-container">
+    <header className="verhost-nav-header">
+      <div className="nav-inner-bounds">
         {/* Left: Brand Wordmark */}
-        <div className="nav-brand-group">
-          <a href="/" className="brand-wordmark">
-            VERHOST
-          </a>
-          <span className="brand-subtext">DIGITAL WORKS</span>
+        <div className="nav-brand-part">
+          <a href="/" className="verhost-logo-text">VERHOST</a>
         </div>
 
-        {/* Center / Navigation Links */}
-        <nav className="nav-menu-links" aria-label="Main Navigation">
-          <a href="#works-gallery-start" className="nav-link active">Work</a>
-          <a href="#about-verhost" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToExplore(); }}>About</a>
-          <a href="#contact" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToExplore(); }}>Contact</a>
+        {/* Center: Understated links */}
+        <nav className="nav-editorial-links">
+          <a href="#works-gallery-start" className="editorial-link active">WORK</a>
+          <a href="#about" className="editorial-link" onClick={(e) => { e.preventDefault(); scrollToExplore(); }}>ABOUT</a>
+          <a href="#contact" className="editorial-link" onClick={(e) => { e.preventDefault(); scrollToExplore(); }}>CONTACT</a>
         </nav>
 
-        {/* Right: Start a Project CTA */}
-        <div className="nav-action-group">
+        {/* Right: Start a Project with green accent */}
+        <div className="nav-cta-part">
+          <span className="green-accent-dash">—</span>
           <a 
             href="#contact" 
-            className="start-project-action"
+            className="start-project-link"
             onClick={(e) => {
               e.preventDefault();
-              alert('VERHOST Studio Client Inquiry: Connecting you with our design leads.');
+              alert('VERHOST Studio Inquiry: Connecting you with our design leads.');
             }}
           >
-            <span>Start a Project</span>
-            <span className="action-arrow">→</span>
+            START A PROJECT <span className="cta-arrow">↗</span>
           </a>
         </div>
       </div>

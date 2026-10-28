@@ -7,7 +7,7 @@ export default function ProjectCard({
   onMouseEnter,
   onSelectProject,
 }) {
-  const { title, year, category, description, deliverables, number } = project;
+  const { title, year, category, description, number } = project;
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -23,7 +23,7 @@ export default function ProjectCard({
 
   return (
     <article
-      className={`showcase-project-card ${isExpanded ? 'is-expanded' : 'is-compact'}`}
+      className={`verhost-project-item ${isExpanded ? 'is-expanded-item' : 'is-compact-item'}`}
       onMouseEnter={onMouseEnter}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -32,62 +32,64 @@ export default function ProjectCard({
       aria-expanded={isExpanded}
       aria-label={`Project ${number}: ${title}, ${category}`}
     >
-      <div className="card-inner-surface">
-        {/* Left / Primary Area: Miniature Website Preview */}
-        <div className="card-mockup-wrapper">
-          <ProjectMockup project={project} isExpanded={isExpanded} />
+      {/* COMPACT STATE VIEW */}
+      {!isExpanded && (
+        <div className="compact-item-surface">
+          {/* Rounded Preview Container */}
+          <div className="compact-preview-frame">
+            <ProjectMockup project={project} isExpanded={false} />
+          </div>
 
-          {/* Compact bottom metadata strip */}
-          <div className="card-compact-footer">
-            <div className="compact-title-group">
-              <span className="compact-number">[{number}]</span>
-              <h3 className="compact-title">{title}</h3>
-            </div>
-            <div className="compact-meta-group">
-              <span className="compact-year">{year}</span>
-              <span className="compact-arrow">↗</span>
+          {/* Metadata Row below preview */}
+          <div className="compact-meta-row">
+            <span className="compact-item-title">{title}</span>
+            <div className="compact-item-right">
+              <span className="compact-item-year">{year}</span>
+              <span className="compact-item-arrow">↗</span>
             </div>
           </div>
         </div>
+      )}
 
-        {/* Right / Expanding Drawer: Retained in DOM for ultra-smooth 60fps CSS animation */}
-        <div className="card-expanded-drawer">
-          <div className="drawer-header">
-            <div className="drawer-tags">
-              <span className="drawer-category-pill">{category}</span>
-              <span className="drawer-year-pill">{year}</span>
+      {/* EXPANDED HOVER STATE VIEW (Matching reference Livora/Nexora/Synthora) */}
+      {isExpanded && (
+        <div className="expanded-card-capsule">
+          {/* Left Side (approx 62%): Large Landscape Website Preview */}
+          <div className="expanded-preview-zone">
+            <ProjectMockup project={project} isExpanded={true} />
+          </div>
+
+          {/* Right Side (approx 38%): Project Information */}
+          <div className="expanded-info-zone">
+            {/* Top dash indicator */}
+            <div className="expanded-dash-bar">
+              <span className="info-dash">—</span>
             </div>
-            <span className="drawer-index-badge">[{number} / 20]</span>
-          </div>
 
-          <div className="drawer-body">
-            <h3 className="drawer-project-title">{title}</h3>
-            <p className="drawer-description">{description}</p>
+            {/* Title & Category Badge */}
+            <div className="expanded-title-group">
+              <h3 className="expanded-project-name">{title}</h3>
+              <span className="expanded-category-badge">[ {category} ]</span>
+            </div>
 
-            {deliverables && deliverables.length > 0 && (
-              <div className="drawer-deliverables-list">
-                {deliverables.map((item, idx) => (
-                  <span key={idx} className="drawer-deliverable-item">
-                    <span className="deliverable-bullet">•</span> {item}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+            {/* Description */}
+            <p className="expanded-project-desc">{description}</p>
 
-          <div className="drawer-footer">
-            <button
-              type="button"
-              className="drawer-launch-btn"
-              onClick={handleClick}
-              aria-label={`View project ${title}`}
-            >
-              <span>VIEW PROJECT</span>
-              <span className="btn-arrow">↗</span>
-            </button>
+            {/* Bottom Actions: Green VIEW PROJECT button & Year */}
+            <div className="expanded-action-row">
+              <button
+                type="button"
+                className="expanded-view-button"
+                onClick={handleClick}
+              >
+                <span>VIEW PROJECT</span>
+                <span className="button-arrow">↗</span>
+              </button>
+              <span className="expanded-year-label">{year}</span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </article>
   );
 }
