@@ -27,7 +27,7 @@ export default function ProjectRow({ section, projects, onSelectProject }) {
         </div>
       </div>
 
-      {/* 4-Item Horizontal Row with stable flex allocation */}
+      {/* Stable 4-Item Horizontal Track */}
       <div 
         className="projects-horizontal-track"
         onMouseLeave={handleRowMouseLeave}

@@ -42,7 +42,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Base App Container */
 .verhost-app-root {
   min-height: 100vh;
   display: flex;
@@ -50,7 +49,7 @@ body {
 }
 
 /* ----------------------------------------------------------------------------
- * 1. NAVBAR (Exact match to reference)
+ * 1. NAVBAR
  * ------------------------------------------------------------------------- */
 .verhost-nav-header {
   position: sticky;
@@ -128,7 +127,7 @@ body {
 }
 
 /* ----------------------------------------------------------------------------
- * 2. HERO SECTION (Exact match to reference)
+ * 2. HERO SECTION
  * ------------------------------------------------------------------------- */
 .verhost-editorial-hero {
   padding: 4.5rem 2.5rem 3.5rem;
@@ -273,7 +272,7 @@ body {
 }
 
 /* ----------------------------------------------------------------------------
- * 3. GALLERY SECTIONS STRIP (01 / E-COMMERCE -------- 04 PROJECTS < >)
+ * 3. GALLERY SECTIONS (01 / E-COMMERCE -------- 04 PROJECTS < >)
  * ------------------------------------------------------------------------- */
 .verhost-gallery-container {
   max-width: var(--max-width);
@@ -281,7 +280,7 @@ body {
   padding: 1.5rem 2.5rem 6rem;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3.75rem;
   width: 100%;
 }
 
@@ -374,38 +373,39 @@ body {
 }
 
 /* ----------------------------------------------------------------------------
- * 4. FOUR-CARD HORIZONTAL TRACK & RIGHT-EXPANDING HOVER
+ * 4. 4-CARD HORIZONTAL TRACK & RIGHT-EXPANDING HOVER
  * ------------------------------------------------------------------------- */
 .projects-horizontal-track {
   display: flex;
   width: 100%;
   gap: 1.25rem;
   align-items: stretch;
-  /* Natural landscape height: card is ~220px tall, NOT full-viewport! */
-  height: 240px;
+  /* Natural landscape height: exactly ~240px, NO 100vh! */
+  height: 245px;
 }
 
-.verhost-project-item {
+.verhost-project-card {
   position: relative;
   outline: none;
   cursor: pointer;
   flex: 1 1 0px;
   min-width: 0;
+  height: 100%;
   transition: flex-grow var(--speed) var(--ease-spring);
 }
 
-/* Row hover dynamics: unhovered cards shrink moderately, hovered card expands to ~55% */
-.projects-horizontal-track:hover .verhost-project-item {
+/* Unhovered cards shrink to ~15% share, active card expands to ~55% */
+.projects-horizontal-track:hover .verhost-project-card {
   flex-grow: 0.75;
 }
 
-.projects-horizontal-track .verhost-project-item:hover,
-.verhost-project-item.is-expanded-item {
+.projects-horizontal-track .verhost-project-card:hover,
+.verhost-project-card.is-active-expanded {
   flex-grow: 2.35 !important;
 }
 
 /* COMPACT STATE: Landscape rounded preview box + title & year below */
-.compact-item-surface {
+.compact-card-layout {
   width: 100%;
   height: 100%;
   display: flex;
@@ -413,28 +413,29 @@ body {
   justify-content: space-between;
 }
 
-.compact-preview-frame {
+.compact-preview-box {
   width: 100%;
   height: 195px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  transition: transform 250ms ease, box-shadow 250ms ease;
+  transition: box-shadow 250ms ease;
 }
 
-.verhost-project-item:hover .compact-preview-frame {
+.verhost-project-card:hover .compact-preview-box {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.compact-meta-row {
+.compact-label-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.25rem 0;
+  padding: 0.4rem 0.25rem 0;
+  height: 35px;
 }
 
-.compact-item-title {
+.compact-name-text {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
@@ -446,40 +447,37 @@ body {
   text-overflow: ellipsis;
 }
 
-.compact-item-right {
+.compact-meta-right {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-}
-
-.compact-item-year {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: var(--text-muted);
 }
 
-.compact-item-arrow {
+.compact-arrow-icon {
   font-size: 0.8rem;
   color: var(--text-black);
   transition: transform 200ms ease;
 }
 
-.verhost-project-item:hover .compact-item-arrow {
+.verhost-project-card:hover .compact-arrow-icon {
   transform: translate(2px, -2px);
 }
 
 /* ----------------------------------------------------------------------------
- * 5. EXPANDED CAPSULE (Matches reference LIVORA / NEXORA / SYNTHORA)
+ * 5. EXPANDED CAPSULE (Matches reference Livora/Nexora/Synthora)
  * ------------------------------------------------------------------------- */
-.expanded-card-capsule {
+.expanded-capsule-layout {
   width: 100%;
-  height: 240px;
+  height: 100%;
   background-color: var(--bg-white);
   border: 1.5px solid var(--green-primary);
   border-radius: 14px;
   padding: 8px;
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.45fr 1fr;
   gap: 1.25rem;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -491,7 +489,7 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-.expanded-preview-zone {
+.expanded-preview-pane {
   width: 100%;
   height: 100%;
   border-radius: 9px;
@@ -499,38 +497,39 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.expanded-info-zone {
+.expanded-info-pane {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.5rem 0.75rem 0.5rem 0;
+  padding: 0.4rem 0.75rem 0.4rem 0;
 }
 
-.expanded-dash-bar {
+.expanded-dash-row {
   text-align: right;
   line-height: 1;
 }
 
-.info-dash {
+.dash-indicator {
   color: var(--text-black);
   font-size: 1.1rem;
   font-weight: 700;
 }
 
-.expanded-title-group {
+.expanded-heading-block {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
 }
 
-.expanded-project-name {
-  font-size: 1.45rem;
+.expanded-project-title {
+  font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-black);
+  line-height: 1.15;
 }
 
-.expanded-category-badge {
+.expanded-category-tag {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 700;
@@ -538,7 +537,7 @@ body {
   color: var(--green-primary);
 }
 
-.expanded-project-desc {
+.expanded-project-blurb {
   font-size: 0.8rem;
   line-height: 1.45;
   color: var(--text-muted);
@@ -548,15 +547,15 @@ body {
   overflow: hidden;
 }
 
-.expanded-action-row {
+.expanded-footer-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
-  padding-top: 0.5rem;
+  padding-top: 0.4rem;
 }
 
-.expanded-view-button {
+.expanded-launch-button {
   background-color: var(--green-primary);
   color: #FFFFFF;
   border: none;
@@ -564,7 +563,7 @@ body {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 0.45rem 1.1rem;
+  padding: 0.45rem 1.15rem;
   border-radius: 9999px;
   cursor: pointer;
   display: inline-flex;
@@ -573,16 +572,16 @@ body {
   transition: background-color 200ms ease, transform 150ms ease;
 }
 
-.expanded-view-button:hover {
+.expanded-launch-button:hover {
   background-color: var(--green-dark);
   transform: translateY(-1px);
 }
 
-.button-arrow {
+.arrow-glyph {
   font-weight: 800;
 }
 
-.expanded-year-label {
+.expanded-year-corner {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
@@ -690,7 +689,7 @@ body {
 }
 
 /* ----------------------------------------------------------------------------
- * 7. PROJECT VIEWER MODAL
+ * 7. VIEWER MODAL
  * ------------------------------------------------------------------------- */
 .verhost-project-viewer-modal {
   position: fixed;
@@ -1028,11 +1027,11 @@ body {
     flex-wrap: wrap;
     height: auto;
   }
-  .verhost-project-item {
+  .verhost-project-card {
     flex: 1 1 calc(50% - 1rem) !important;
-    height: 240px;
+    height: 245px;
   }
-  .verhost-project-item.is-expanded-item {
+  .verhost-project-card.is-active-expanded {
     flex: 1 1 100% !important;
   }
 }
@@ -1052,15 +1051,15 @@ body {
     flex-direction: column;
     height: auto;
   }
-  .verhost-project-item {
+  .verhost-project-card {
     flex: 1 1 100% !important;
-    height: 240px;
+    height: 245px;
   }
-  .expanded-card-capsule {
+  .expanded-capsule-layout {
     grid-template-columns: 1fr;
     height: auto;
   }
-  .expanded-info-zone {
+  .expanded-info-pane {
     padding: 0.5rem 0.25rem;
   }
   .footer-top-row {

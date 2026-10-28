@@ -23,7 +23,7 @@ export default function ProjectCard({
 
   return (
     <article
-      className={`verhost-project-item ${isExpanded ? 'is-expanded-item' : 'is-compact-item'}`}
+      className={`verhost-project-card ${isExpanded ? 'is-active-expanded' : 'is-idle-compact'}`}
       onMouseEnter={onMouseEnter}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -32,60 +32,48 @@ export default function ProjectCard({
       aria-expanded={isExpanded}
       aria-label={`Project ${number}: ${title}, ${category}`}
     >
-      {/* COMPACT STATE VIEW */}
-      {!isExpanded && (
-        <div className="compact-item-surface">
-          {/* Rounded Preview Container */}
-          <div className="compact-preview-frame">
+      {!isExpanded ? (
+        /* COMPACT 4:3 / 3:2 LANDSCAPE PREVIEW (Matches reference Card 1, 3, 4) */
+        <div className="compact-card-layout">
+          <div className="compact-preview-box">
             <ProjectMockup project={project} isExpanded={false} />
           </div>
-
-          {/* Metadata Row below preview */}
-          <div className="compact-meta-row">
-            <span className="compact-item-title">{title}</span>
-            <div className="compact-item-right">
-              <span className="compact-item-year">{year}</span>
-              <span className="compact-item-arrow">↗</span>
+          <div className="compact-label-bar">
+            <span className="compact-name-text">{title}</span>
+            <div className="compact-meta-right">
+              <span className="compact-year-text">{year}</span>
+              <span className="compact-arrow-icon">↗</span>
             </div>
           </div>
         </div>
-      )}
-
-      {/* EXPANDED HOVER STATE VIEW (Matching reference Livora/Nexora/Synthora) */}
-      {isExpanded && (
-        <div className="expanded-card-capsule">
-          {/* Left Side (approx 62%): Large Landscape Website Preview */}
-          <div className="expanded-preview-zone">
+      ) : (
+        /* HOVER-EXPANDED PILL/CAPSULE (Matches reference Livora/Nexora/Synthora) */
+        <div className="expanded-capsule-layout">
+          {/* Left: 60-65% Landscape Website Preview */}
+          <div className="expanded-preview-pane">
             <ProjectMockup project={project} isExpanded={true} />
           </div>
 
-          {/* Right Side (approx 38%): Project Information */}
-          <div className="expanded-info-zone">
-            {/* Top dash indicator */}
-            <div className="expanded-dash-bar">
-              <span className="info-dash">—</span>
+          {/* Right: 35-40% Project Information */}
+          <div className="expanded-info-pane">
+            <div className="expanded-dash-row">
+              <span className="dash-indicator">—</span>
             </div>
-
-            {/* Title & Category Badge */}
-            <div className="expanded-title-group">
-              <h3 className="expanded-project-name">{title}</h3>
-              <span className="expanded-category-badge">[ {category} ]</span>
+            <div className="expanded-heading-block">
+              <h3 className="expanded-project-title">{title}</h3>
+              <span className="expanded-category-tag">[ {category} ]</span>
             </div>
-
-            {/* Description */}
-            <p className="expanded-project-desc">{description}</p>
-
-            {/* Bottom Actions: Green VIEW PROJECT button & Year */}
-            <div className="expanded-action-row">
+            <p className="expanded-project-blurb">{description}</p>
+            <div className="expanded-footer-bar">
               <button
                 type="button"
-                className="expanded-view-button"
+                className="expanded-launch-button"
                 onClick={handleClick}
               >
                 <span>VIEW PROJECT</span>
-                <span className="button-arrow">↗</span>
+                <span className="arrow-glyph">↗</span>
               </button>
-              <span className="expanded-year-label">{year}</span>
+              <span className="expanded-year-corner">{year}</span>
             </div>
           </div>
         </div>
