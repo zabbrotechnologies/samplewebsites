@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProjectMockup from './ProjectMockup';
+import LumoraLivingStore from '../projects/ecommerce/lumora-living/LumoraLivingStore';
 
 export default function ProjectViewer({ project, projects, onClose, onNavigateProject }) {
   const [viewportMode, setViewportMode] = useState('desktop'); // desktop | tablet | mobile
@@ -179,7 +180,27 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
                   sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                 />
               </div>
+            ) : project.id === 'lumora-living' ? (
+              /* LUMORA LIVING: Full Interactive Website Experience */
+              <div className="viewer-store-scroll-container">
+                <LumoraLivingStore />
+                <div className="prototype-specs-drawer lumora-specs-drawer">
+                  <div className="spec-item">
+                    <span className="spec-label">CLIENT / PRACTICE</span>
+                    <span className="spec-val">{project.client}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">YEAR</span>
+                    <span className="spec-val">{project.year}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">DELIVERABLES</span>
+                    <span className="spec-val">{project.deliverables?.join(', ')}</span>
+                  </div>
+                </div>
+              </div>
             ) : (
+              /* Fallback for projects with prototypes pending live build */
               <div className="viewer-prototype-wrapper">
                 <div className="prototype-status-banner">
                   <span className="pulse-green-dot" />
