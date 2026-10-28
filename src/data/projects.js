@@ -35,7 +35,7 @@ export const SECTIONS = [
 ];
 
 export const projects = [
-  // SECTION 01: E-COMMERCE
+    // SECTION 01: E-COMMERCE
   {
     id: 'maxywalk',
     number: '01',
@@ -44,77 +44,49 @@ export const projects = [
     sectionSlug: 'ecommerce',
     year: '2026',
     client: 'MAXYWALK Leather Craft',
-    description: 'High-performance footwear flagship with interactive leather grain inspection and fluid cart.',
+    description: 'Handcrafted full-grain leather footwear, bespoke comfort slippers, and artisanal accessories made in Avadi, Chennai.',
+    deliverables: ['Handcrafted Footwear', 'Full-Grain Leather', 'Express Ordering'],
     demoUrl: 'https://maxywalk.vercel.app/',
-    theme: {
-      mode: 'dark',
-      bg: '#0F1012',
-      accent: '#3B82F6',
-      brand: 'MAXYWALK',
-      headline: 'RUN YOUR STORY',
-      sub: 'Engineered for relentless endurance.',
-      mockupType: 'sneaker'
-    }
+    featured: true,
   },
   {
-    id: 'livora',
+    id: 'lumora-living',
     number: '02',
-    title: 'LIVORA',
+    title: 'LUMORA LIVING',
     category: 'E-COMMERCE',
     sectionSlug: 'ecommerce',
     year: '2026',
-    client: 'Livora Living Studio',
-    description: 'Minimal e-commerce experience for modern living and home aesthetics with tactile catalog navigation.',
+    client: 'Lumora Living Studio',
+    description: 'Premium home décor and furniture e-commerce featuring artisanal oak furniture, travertine tables, and ambient alabaster luminaires.',
+    deliverables: ['Curated Interiors', 'White-Glove Delivery', 'Artisanal Oak'],
     demoUrl: null,
-    theme: {
-      mode: 'light',
-      bg: '#F5F3EF',
-      accent: '#169B50',
-      brand: 'LIVORA',
-      headline: 'Modern Living Spaces',
-      sub: 'Curated artisanal furniture and organic textiles.',
-      mockupType: 'chair'
-    }
+    featured: false,
   },
   {
-    id: 'chronx',
+    id: 'vera-beauty',
     number: '03',
-    title: 'CHRONX',
+    title: 'VÉRA BEAUTY',
     category: 'E-COMMERCE',
     sectionSlug: 'ecommerce',
     year: '2026',
-    client: 'Chronx Horology',
-    description: 'Luxury horology digital flagship featuring precision caliber archives and bespoke customization.',
-    demoUrl: 'https://jkr-resin-arts.vercel.app/',
-    theme: {
-      mode: 'dark',
-      bg: '#0A0A0C',
-      accent: '#E5A93C',
-      brand: 'CHRONX',
-      headline: 'CRAFTED FOR TIMELESS MOMENTS',
-      sub: 'Automatic mechanical movements assembled in Geneva.',
-      mockupType: 'watch'
-    }
+    client: 'Véra Dermatological Laboratories',
+    description: 'Clean skincare and beauty commerce platform highlighting clinical bio-compatibility, peptide serums, and sustainable botanical packaging.',
+    deliverables: ['Antioxidant Serums', 'Barrier Repair', 'Clean Dermatology'],
+    demoUrl: null,
+    featured: true,
   },
   {
-    id: 'glowe',
+    id: 'fresh-market',
     number: '04',
-    title: 'GLOWE',
+    title: 'FRESH MARKET',
     category: 'E-COMMERCE',
     sectionSlug: 'ecommerce',
     year: '2026',
-    client: 'Glowe Dermatics',
-    description: 'Natural skincare boutique platform highlighting clinical efficacy, clean formulas, and express checkout.',
+    client: 'Fresh Market Collective',
+    description: 'Genuine farm-to-table grocery shopping storefront featuring local organic produce, express delivery, and seasonal harvest catalogs.',
+    deliverables: ['Organic Produce', 'Farm-to-Door', '30-Min Delivery'],
     demoUrl: null,
-    theme: {
-      mode: 'light',
-      bg: '#F7F4F0',
-      accent: '#A07155',
-      brand: 'GLOWE',
-      headline: 'Pure Care Real Results',
-      sub: 'Cold-pressed botanical serums and barrier repair creams.',
-      mockupType: 'cosmetic'
-    }
+    featured: false,
   },
 
   // SECTION 02: BUSINESS
