@@ -1,57 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-export default function Navbar({ onOpenAbout, onOpenContact }) {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const scrollToWorks = (e) => {
-    e.preventDefault();
-    const el = document.getElementById('works-section');
+export default function Navbar() {
+  const scrollToExplore = () => {
+    const el = document.getElementById('works-gallery-start');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <header className={`site-nav ${scrolled ? 'scrolled' : ''}`}>
-      <a href="#" className="nav-brand" onClick={scrollToTop} aria-label="VERHOST Home">
-        <span className="brand-dot"></span>
-        <span className="brand-title">VERHOST</span>
-      </a>
+    <header className="verhost-top-nav">
+      <div className="nav-container">
+        {/* Left: Brand Wordmark */}
+        <div className="nav-brand-group">
+          <a href="/" className="brand-wordmark">
+            VERHOST
+          </a>
+          <span className="brand-subtext">DIGITAL WORKS</span>
+        </div>
 
-      <nav className="nav-menu" aria-label="Main Navigation">
-        <a href="#works" className="nav-link active" onClick={scrollToWorks}>
-          Work
-        </a>
-        <button type="button" className="nav-link" onClick={onOpenAbout}>
-          About
-        </button>
-        <button type="button" className="nav-link" onClick={onOpenContact}>
-          Contact
-        </button>
-      </nav>
+        {/* Center / Navigation Links */}
+        <nav className="nav-menu-links" aria-label="Main Navigation">
+          <a href="#works-gallery-start" className="nav-link active">Work</a>
+          <a href="#about-verhost" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToExplore(); }}>About</a>
+          <a href="#contact" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToExplore(); }}>Contact</a>
+        </nav>
 
-      <button
-        type="button"
-        className="nav-cta"
-        onClick={onOpenContact}
-        aria-label="Start a Project with VERHOST"
-      >
-        <span>Start a project</span>
-        <span className="arrow">↗</span>
-      </button>
+        {/* Right: Start a Project CTA */}
+        <div className="nav-action-group">
+          <a 
+            href="#contact" 
+            className="start-project-action"
+            onClick={(e) => {
+              e.preventDefault();
+              alert('VERHOST Studio Client Inquiry: Connecting you with our design leads.');
+            }}
+          >
+            <span>Start a Project</span>
+            <span className="action-arrow">→</span>
+          </a>
+        </div>
+      </div>
     </header>
   );
 }

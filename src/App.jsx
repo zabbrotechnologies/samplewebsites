@@ -1,57 +1,40 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import CategoryNav from './components/CategoryNav';
 import ProjectShowcase from './components/ProjectShowcase';
 import ProjectViewer from './components/ProjectViewer';
-import StartProject from './components/StartProject';
+import Footer from './components/Footer';
 import { projects } from './data/projects';
 
 export default function App() {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [viewerProject, setViewerProject] = useState(null);
-
-  const filteredProjects = useMemo(() => {
-    if (activeCategory === 'all') {
-      return projects;
-    }
-    return projects.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
-
-  const handleSelectCategory = (catId) => {
-    setActiveCategory(catId);
-  };
+  const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <div className="standalone-showcase-root">
-      {/* Standalone Header / Hero with VERHOST Theme */}
+    <div className="verhost-app-root">
+      {/* Top Navigation */}
+      <Navbar />
+
+      {/* Editorial Typography Hero */}
       <Hero />
 
-      {/* Category Pill Navigation */}
-      <CategoryNav
-        activeCategory={activeCategory}
-        onSelectCategory={handleSelectCategory}
-        totalCount={filteredProjects.length}
-      />
-
-      {/* Cinematic Showcase: Horizontal Project Selector */}
-      <main id="works-showcase-main">
+      {/* Main 20-Project Gallery Across 5 Sections */}
+      <main id="works-gallery-start">
         <ProjectShowcase
-          projects={filteredProjects}
-          onSelectProject={(project) => setViewerProject(project)}
-          onResetFilter={() => setActiveCategory('all')}
+          projects={projects}
+          onSelectProject={(project) => setSelectedProject(project)}
         />
       </main>
 
-      {/* Start Project CTA */}
-      <StartProject />
+      {/* Editorial Footer */}
+      <Footer />
 
-      {/* Immersive Project Viewer Modal */}
-      {viewerProject && (
+      {/* Click-to-Open Website Previewer Modal */}
+      {selectedProject && (
         <ProjectViewer
-          project={viewerProject}
-          projects={filteredProjects}
-          onClose={() => setViewerProject(null)}
-          onNavigateProject={(newProject) => setViewerProject(newProject)}
+          project={selectedProject}
+          projects={projects}
+          onClose={() => setSelectedProject(null)}
+          onNavigateProject={(newProj) => setSelectedProject(newProj)}
         />
       )}
     </div>
