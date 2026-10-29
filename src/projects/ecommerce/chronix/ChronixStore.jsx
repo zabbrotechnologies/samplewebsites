@@ -419,12 +419,7 @@ export default function ChronixStore() {
               {/* Right Side: Prominent Photorealistic Luxury Watch */}
               <div className="hero-visual-column">
                 <div className="hero-watch-stage">
-                  <img
-                    src="/projects/chronix/hero-watch-dark.jpg"
-                    alt="CHRONIX luxury black timepiece with stainless steel bracelet and dark chronograph dial"
-                    className="hero-watch-photograph"
-                    loading="eager"
-                  />
+                  {/* Background showcases the Roger Dubuis luxury skeleton timepiece */}
                   {/* Subtle Floating Lookbook Badge */}
                   <div className="hero-floating-watch-badge">
                     <span className="floating-badge-tag">CHRONIX MONOLITH CX-1</span>

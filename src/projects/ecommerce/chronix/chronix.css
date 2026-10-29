@@ -319,7 +319,13 @@
 
 .chronix-hero-canvas {
   position: relative;
-  background-color: #0A0A0E;
+  background-color: #000000;
+  background-image:
+    linear-gradient(90deg, #000000 0%, #000000 40%, rgba(0, 0, 0, 0.3) 65%, rgba(0, 0, 0, 0) 100%),
+    url('/projects/chronix/hero-bg.jpg');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
@@ -2058,6 +2064,11 @@
 
   .chronix-hero-canvas {
     padding: 3rem 2rem;
+    background-image:
+      linear-gradient(180deg, #000000 0%, #000000 42%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 80%),
+      url('/projects/chronix/hero-bg.jpg');
+    background-position: center bottom;
+    background-size: cover;
   }
 
   .chronix-hero-grid {
@@ -2145,6 +2156,11 @@
 
   .chronix-hero-canvas {
     padding: 2rem 1.25rem;
+    background-image:
+      linear-gradient(180deg, #000000 0%, #000000 48%, rgba(0, 0, 0, 0.7) 65%, rgba(0, 0, 0, 0) 85%),
+      url('/projects/chronix/hero-bg.jpg');
+    background-position: 70% bottom;
+    background-size: cover;
   }
 
   .hero-serif-headline {
@@ -2293,4 +2309,30 @@
 
 .viewer-container-frame[style*="768px"] .chronix-hero-grid {
   grid-template-columns: 1fr !important;
+}
+
+.viewer-container-frame[style*="768px"] .chronix-hero-canvas {
+  padding: 3rem 2rem !important;
+  background-image:
+    linear-gradient(180deg, #000000 0%, #000000 42%, rgba(0, 0, 0, 0.65) 58%, rgba(0, 0, 0, 0) 80%),
+    url('/projects/chronix/hero-bg.jpg') !important;
+  background-position: center bottom !important;
+  background-size: cover !important;
+}
+
+.viewer-container-frame[style*="768px"] .hero-watch-stage {
+  height: 380px !important;
+}
+
+.viewer-container-frame[style*="390px"] .chronix-hero-canvas {
+  padding: 2rem 1.25rem !important;
+  background-image:
+    linear-gradient(180deg, #000000 0%, #000000 52%, rgba(0, 0, 0, 0.75) 68%, rgba(0, 0, 0, 0) 88%),
+    url('/projects/chronix/hero-bg.jpg') !important;
+  background-position: 75% bottom !important;
+  background-size: cover !important;
+}
+
+.viewer-container-frame[style*="390px"] .hero-watch-stage {
+  height: 280px !important;
 }
