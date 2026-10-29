@@ -5,6 +5,7 @@ import VeraBeautyPreview from '../projects/ecommerce/vera-beauty/VeraBeautyPrevi
 import ChronixPreview from '../projects/ecommerce/chronix/ChronixPreview';
 import FreshMarketPreview from '../projects/ecommerce/fresh-market/FreshMarketPreview';
 import GlowePreview from '../projects/ecommerce/glowe/GlowePreview';
+import AtelierPreview from '../projects/business/atelier/AtelierPreview';
 
 export default function ProjectMockup({ project, isExpanded = false }) {
   // Delegate E-Commerce projects to their independent modules
@@ -22,6 +23,9 @@ export default function ProjectMockup({ project, isExpanded = false }) {
   }
   if (project.id === 'glowe') {
     return <GlowePreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'atelier') {
+    return <AtelierPreview isExpanded={isExpanded} />;
   }
   if (project.id === 'fresh-market') {
     return <FreshMarketPreview isExpanded={isExpanded} />;

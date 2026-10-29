@@ -3,6 +3,7 @@ import ProjectMockup from './ProjectMockup';
 import LumoraLivingStore from '../projects/ecommerce/lumora-living/LumoraLivingStore';
 import ChronixStore from '../projects/ecommerce/chronix/ChronixStore';
 import GloweStore from '../projects/ecommerce/glowe/GloweStore';
+import AtelierStudio from '../projects/business/atelier/AtelierStudio';
 
 export default function ProjectViewer({ project, projects, onClose, onNavigateProject }) {
   const [viewportMode, setViewportMode] = useState('desktop'); // desktop | tablet | mobile
@@ -227,6 +228,25 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
                 <div className="prototype-specs-drawer glowe-specs-drawer">
                   <div className="spec-item">
                     <span className="spec-label">CLIENT / BOTANICAL LAB</span>
+                    <span className="spec-val">{project.client}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">YEAR</span>
+                    <span className="spec-val">{project.year}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">DELIVERABLES</span>
+                    <span className="spec-val">{project.deliverables?.join(', ')}</span>
+                  </div>
+                </div>
+              </div>
+            ) : project.id === 'atelier' ? (
+              /* ATELIER: Full Interactive Architecture Studio Website Experience */
+              <div className="viewer-store-scroll-container">
+                <AtelierStudio />
+                <div className="prototype-specs-drawer atelier-specs-drawer">
+                  <div className="spec-item">
+                    <span className="spec-label">CLIENT / STUDIO</span>
                     <span className="spec-val">{project.client}</span>
                   </div>
                   <div className="spec-item">

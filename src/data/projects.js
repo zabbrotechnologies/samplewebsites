@@ -91,24 +91,17 @@ export const projects = [
 
   // SECTION 02: BUSINESS
   {
-    id: 'kinetic-arch',
+    id: 'atelier',
     number: '05',
-    title: 'KINETIC ARCHITECTURE',
+    title: 'ATELIER',
     category: 'BUSINESS',
     sectionSlug: 'business',
     year: '2026',
-    client: 'Kinetic Structural Practice',
-    description: 'Monolithic digital portfolio pairing brutalist spatial grids with architectural project archives.',
-    demoUrl: '/demos/kinetic-arch/index.html',
-    theme: {
-      mode: 'light',
-      bg: '#EBEBE6',
-      accent: '#111111',
-      brand: 'KINETIC',
-      headline: 'Kinetic Architecture',
-      sub: 'Civic masterplans and sustainable structural timber.',
-      mockupType: 'architecture'
-    }
+    client: 'Atelier Architecture & Interiors',
+    description: 'Award-winning architecture and interior design studio curating tactile spatial environments, residential pavilions, and material research.',
+    deliverables: ['Architectural Field Journal', 'Interactive Material Library', 'Spatial Archive'],
+    demoUrl: null,
+    featured: true,
   },
   {
     id: 'greentech',
