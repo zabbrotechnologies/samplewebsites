@@ -1,36 +1,37 @@
 /* ============================================================================
-   GLOWÉ — Botanical Science & Modern Beauty Editorial Stylesheet
-   Porcelain (#F8F3ED), Soft Blush (#EAD8CE), Terracotta (#B97D67), Olive (#737957), Ink (#26231F)
+   GLOWÉ — Botanical Science & High-Fashion Beauty Editorial Stylesheet
+   REBUILT DESIGN ARCHITECTURE: Magazine Masthead, Campaign Canvas,
+   Horizontal Ticker, Asymmetric Product Wall, Central Ingredient Explorer
    ============================================================================ */
 
 :root {
-  --glowe-porcelain: #F8F3ED;
-  --glowe-blush: #EAD8CE;
-  --glowe-blush-soft: #F4EBE5;
-  --glowe-terracotta: #B97D67;
-  --glowe-terracotta-dark: #9E6550;
-  --glowe-olive: #737957;
-  --glowe-olive-light: #8E956E;
-  --glowe-olive-soft: #EEF0E7;
-  --glowe-ink: #26231F;
-  --glowe-ink-muted: #57524A;
-  --glowe-ink-subtle: #8A847B;
+  --glowe-porcelain: #F7F3ED;
+  --glowe-porcelain-warm: #EFE9DF;
+  --glowe-stone: #E6DFD5;
+  --glowe-blush-translucent: rgba(234, 216, 206, 0.45);
+  --glowe-ink: #25231F;
+  --glowe-ink-muted: #59544C;
+  --glowe-ink-subtle: #8C867C;
+  --glowe-terracotta: #BD806A;
+  --glowe-terracotta-dark: #9E6350;
+  --glowe-olive: #74785A;
+  --glowe-olive-soft: #EDF0E6;
   --glowe-white: #FFFFFF;
-  --glowe-border: rgba(38, 35, 31, 0.1);
-  --glowe-border-light: rgba(38, 35, 31, 0.06);
-  --glowe-border-hover: rgba(185, 125, 103, 0.4);
+  --glowe-border: rgba(37, 35, 31, 0.12);
+  --glowe-border-light: rgba(37, 35, 31, 0.07);
+  --glowe-border-dark: rgba(37, 35, 31, 0.28);
 
   --glowe-font-serif: 'Cormorant Garamond', 'Playfair Display', Didot, 'Times New Roman', serif;
-  --glowe-font-sans: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --glowe-font-mono: 'JetBrains Mono', monospace;
+  --glowe-font-sans: 'Manrope', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --glowe-font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
   --glowe-ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
-  --glowe-shadow-card: 0 4px 20px rgba(38, 35, 31, 0.05);
-  --glowe-shadow-elevated: 0 16px 40px rgba(38, 35, 31, 0.09);
-  --glowe-shadow-modal: 0 24px 60px rgba(38, 35, 31, 0.2);
+  --glowe-shadow-subtle: 0 4px 20px rgba(37, 35, 31, 0.05);
+  --glowe-shadow-elevated: 0 16px 40px rgba(37, 35, 31, 0.08);
+  --glowe-shadow-modal: 0 24px 60px rgba(37, 35, 31, 0.22);
 }
 
-/* Base Root Container */
+/* Base Store Container */
 .glowe-store-root {
   background-color: var(--glowe-porcelain);
   color: var(--glowe-ink);
@@ -38,6 +39,8 @@
   line-height: 1.55;
   position: relative;
   width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   display: block;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -57,487 +60,1031 @@
   z-index: 9999;
   background-color: var(--glowe-ink);
   color: var(--glowe-porcelain);
-  padding: 0.9rem 1.4rem;
-  border-radius: 4px;
+  padding: 0.9rem 1.5rem;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.825rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  box-shadow: 0 12px 32px rgba(38, 35, 31, 0.25);
+  letter-spacing: 0.04em;
+  box-shadow: 0 12px 32px rgba(37, 35, 31, 0.25);
   border-left: 3px solid var(--glowe-terracotta);
-  animation: gloweSlideUp 0.35s var(--glowe-ease-editorial) forwards;
+  animation: gloweToastSlide 0.35s var(--glowe-ease-editorial) forwards;
 }
 
-@keyframes gloweSlideUp {
-  from { opacity: 0; transform: translateY(12px); }
+@keyframes gloweToastSlide {
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Announcement Top Bar */
-.glowe-top-announcement {
-  background-color: var(--glowe-blush-soft);
-  border-bottom: 1px solid rgba(38, 35, 31, 0.06);
-  padding: 0.45rem 1.5rem;
+/* ============================================================================
+   1. MAGAZINE MASTHEAD HEADER (COMPLETELY REPLACES STANDARD E-COMMERCE NAVBAR)
+   ============================================================================ */
+.glowe-masthead-wrapper {
+  background-color: var(--glowe-porcelain);
+  border-bottom: 1px solid var(--glowe-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Top Announcement Wire */
+.glowe-announcement-wire {
+  border-bottom: 1px solid var(--glowe-border-light);
+  padding: 0.4rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--glowe-ink-muted);
+  font-family: var(--glowe-font-mono);
 }
 
-.glowe-announcement-pills {
+.glowe-wire-left {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
 }
 
-.glowe-announcement-pill {
+.glowe-wire-tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
-.glowe-announcement-dot {
+.glowe-wire-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background-color: var(--glowe-olive);
 }
 
-/* Header & Navigation */
-.glowe-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: rgba(248, 243, 237, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glowe-border);
-  transition: all 0.25s ease;
-}
-
-.glowe-header-inner {
+/* The Grand Magazine Masthead */
+.glowe-masthead-main {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1.25rem 2rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--glowe-border-light);
+}
+
+.glowe-masthead-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.glowe-meta-vol {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--glowe-olive);
+}
+
+.glowe-meta-origin {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--glowe-ink-subtle);
+}
+
+.glowe-masthead-center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.glowe-masthead-logo {
+  font-family: var(--glowe-font-serif);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 0.9;
+  color: var(--glowe-ink);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.glowe-masthead-subline {
+  font-size: 0.6rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--glowe-terracotta);
+  font-weight: 600;
+  margin-top: 0.35rem;
+}
+
+.glowe-masthead-controls-right {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1.5rem;
 }
 
-.glowe-brand-lockup {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: var(--glowe-ink);
-}
-
-.glowe-wordmark {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.85rem;
+.glowe-header-action-btn {
+  background: none;
+  border: none;
+  font-family: var(--glowe-font-mono);
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.12em;
-  line-height: 1;
-}
-
-.glowe-brand-subtitle {
-  font-size: 0.58rem;
-  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--glowe-olive);
-  font-weight: 600;
-  margin-top: 0.2rem;
+  color: var(--glowe-ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 2px;
+  transition: all 0.2s ease;
 }
 
-.glowe-nav-links {
+.glowe-header-action-btn:hover {
+  color: var(--glowe-terracotta);
+  background-color: var(--glowe-porcelain-warm);
+}
+
+.glowe-bag-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--glowe-terracotta);
+  color: var(--glowe-white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-left: 0.2rem;
+}
+
+/* Category Index Bar (Under Masthead) */
+.glowe-category-index-bar {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0.65rem 2rem;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: space-between;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.glowe-category-index-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.glowe-index-links {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.glowe-nav-link {
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--glowe-ink-muted);
-  text-decoration: none;
-  padding: 0.25rem 0;
-  position: relative;
-  transition: color 0.2s ease;
-  cursor: pointer;
+.glowe-index-link {
   background: none;
   border: none;
-}
-
-.glowe-nav-link:hover,
-.glowe-nav-link.active {
-  color: var(--glowe-ink);
-}
-
-.glowe-nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: var(--glowe-terracotta);
-  transition: width 0.25s ease;
-}
-
-.glowe-nav-link:hover::after,
-.glowe-nav-link.active::after {
-  width: 100%;
-}
-
-.glowe-nav-badge {
-  font-size: 0.62rem;
-  padding: 0.15rem 0.4rem;
-  background-color: var(--glowe-blush);
-  color: var(--glowe-terracotta-dark);
-  border-radius: 9999px;
-  margin-left: 0.35rem;
-  font-weight: 600;
-}
-
-.glowe-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.glowe-search-bar {
-  display: flex;
-  align-items: center;
-  background-color: var(--glowe-white);
-  border: 1px solid var(--glowe-border);
-  border-radius: 9999px;
-  padding: 0.35rem 0.85rem;
-  width: 210px;
-  transition: all 0.2s ease;
-}
-
-.glowe-search-bar:focus-within {
-  border-color: var(--glowe-terracotta);
-  box-shadow: 0 0 0 2px rgba(185, 125, 103, 0.15);
-  width: 240px;
-}
-
-.glowe-search-icon {
-  width: 14px;
-  height: 14px;
-  stroke: var(--glowe-ink-subtle);
-  margin-right: 0.45rem;
-}
-
-.glowe-search-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 0.775rem;
-  color: var(--glowe-ink);
-  font-family: inherit;
-  width: 100%;
-}
-
-.glowe-search-input::placeholder {
-  color: var(--glowe-ink-subtle);
-}
-
-.glowe-bag-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--glowe-white);
-  border: 1px solid var(--glowe-border);
-  padding: 0.45rem 1rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
-
-.glowe-bag-btn:hover {
-  border-color: var(--glowe-terracotta);
-  background-color: var(--glowe-blush-soft);
-}
-
-.glowe-bag-icon {
-  width: 16px;
-  height: 16px;
-  stroke: var(--glowe-ink);
-}
-
-.glowe-bag-count {
-  background-color: var(--glowe-terracotta);
-  color: var(--glowe-white);
-  font-size: 0.68rem;
-  font-weight: 700;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glowe-btn-ritual-cta {
-  background-color: var(--glowe-olive);
-  color: var(--glowe-white);
-  border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.glowe-btn-ritual-cta:hover {
-  background-color: var(--glowe-ink);
-  transform: translateY(-1px);
-}
-
-.glowe-mobile-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-/* ============================================================================
-   2. HERO SECTION — Asymmetrical Botanical Editorial Campaign
-   ============================================================================ */
-.glowe-hero-section {
-  position: relative;
-  overflow: hidden;
-  padding: 3rem 2rem 4rem;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
-.glowe-hero-grid {
-  display: grid;
-  grid-template-columns: 80px 1.1fr 1.3fr;
-  gap: 2.5rem;
-  align-items: center;
-}
-
-/* Left Vertical Campaign Index */
-.glowe-hero-vertical-index {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding-right: 1.5rem;
-  border-right: 1px solid var(--glowe-border);
-  height: 100%;
-  justify-content: space-between;
-}
-
-.glowe-vertical-issue {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--glowe-olive);
-  font-weight: 600;
-}
-
-.glowe-vertical-line {
-  width: 1px;
-  flex-grow: 1;
-  background: linear-gradient(to bottom, var(--glowe-border), var(--glowe-terracotta), var(--glowe-border));
-  min-height: 120px;
-}
-
-.glowe-vertical-coords {
-  font-size: 0.62rem;
-  font-family: var(--glowe-font-mono);
-  color: var(--glowe-ink-subtle);
-  writing-mode: vertical-rl;
-}
-
-/* Center Copy Column */
-.glowe-hero-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-right: 1rem;
-}
-
-.glowe-campaign-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--glowe-blush-soft);
-  border: 1px solid var(--glowe-blush);
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  margin-bottom: 1.5rem;
-}
-
-.glowe-badge-symbol {
-  color: var(--glowe-terracotta);
-  font-size: 0.75rem;
-}
-
-.glowe-badge-text {
-  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--glowe-ink-muted);
+  cursor: pointer;
+  padding: 0.2rem 0;
+  position: relative;
+  transition: color 0.2s ease;
 }
 
-.glowe-hero-headline {
+.glowe-index-link:hover,
+.glowe-index-link.active {
+  color: var(--glowe-ink);
+}
+
+.glowe-index-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--glowe-terracotta);
+  transition: width 0.25s ease;
+}
+
+.glowe-index-link:hover::after,
+.glowe-index-link.active::after {
+  width: 100%;
+}
+
+.glowe-index-cta-pill {
+  background-color: var(--glowe-olive);
+  color: var(--glowe-white);
+  border: none;
+  padding: 0.45rem 1.15rem;
+  border-radius: 2px;
+  font-family: var(--glowe-font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.glowe-index-cta-pill:hover {
+  background-color: var(--glowe-ink);
+}
+
+/* Search Dropdown Panel */
+.glowe-search-tray {
+  background-color: var(--glowe-white);
+  border-bottom: 1px solid var(--glowe-border);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  box-shadow: var(--glowe-shadow-subtle);
+  animation: gloweTrayDrop 0.25s ease forwards;
+}
+
+@keyframes gloweTrayDrop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.glowe-tray-input {
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid var(--glowe-border);
+  padding: 0.65rem 1.25rem;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.glowe-tray-input:focus {
+  border-color: var(--glowe-terracotta);
+}
+
+/* ============================================================================
+   2. ART-DIRECTED CAMPAIGN HERO CANVAS (FULL-WIDTH, OVERLAPPING TYPOGRAPHY)
+   ============================================================================ */
+.glowe-campaign-canvas-hero {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+  overflow: visible;
+}
+
+.glowe-canvas-frame {
+  position: relative;
+  background-color: #EFE9DF;
+  border: 1px solid var(--glowe-border);
+  border-radius: 4px;
+  padding: 3rem 3rem 4rem;
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: var(--glowe-shadow-elevated);
+}
+
+/* Left Vertical Accent Index */
+.glowe-canvas-edge-index {
+  position: absolute;
+  top: 3rem;
+  left: 2rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.glowe-edge-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--glowe-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--glowe-olive);
+}
+
+.glowe-edge-divider {
+  width: 1px;
+  height: 80px;
+  background-color: var(--glowe-border-dark);
+}
+
+/* Central Full-Bleed Skincare Still Life Photograph */
+.glowe-canvas-hero-photo-wrapper {
+  position: absolute;
+  top: 15%;
+  right: 6%;
+  width: 58%;
+  height: 75%;
+  z-index: 2;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(37, 35, 31, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.glowe-canvas-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 1.2s var(--glowe-ease-editorial);
+}
+
+.glowe-canvas-frame:hover .glowe-canvas-hero-img {
+  transform: scale(1.03);
+}
+
+/* Overlapping Editorial Typography Stage */
+.glowe-canvas-typography-stage {
+  position: relative;
+  z-index: 5;
+  max-width: 650px;
+  padding-left: 2.5rem;
+}
+
+.glowe-hero-editorial-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--glowe-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--glowe-olive);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.glowe-hero-colossal-title {
   font-family: var(--glowe-font-serif);
-  font-size: clamp(2.8rem, 5.2vw, 4.8rem);
+  font-size: clamp(3.2rem, 6.2vw, 5.6rem);
   font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
   color: var(--glowe-ink);
   margin-bottom: 1.5rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
-.glowe-headline-italic {
+.glowe-title-em {
   font-style: italic;
   font-weight: 400;
   color: var(--glowe-terracotta);
 }
 
-.glowe-hero-description {
+.glowe-hero-narrative-copy {
   font-size: 1.05rem;
   line-height: 1.65;
   color: var(--glowe-ink-muted);
   max-width: 480px;
-  margin-bottom: 2.25rem;
+  margin-bottom: 2rem;
+  background-color: rgba(239, 233, 223, 0.75);
+  backdrop-filter: blur(4px);
+  padding: 0.75rem 0.5rem;
+  border-radius: 2px;
 }
 
-.glowe-hero-ctas {
+.glowe-canvas-cta-cluster {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  margin-bottom: 2.5rem;
 }
 
-.glowe-btn-primary {
+.glowe-cta-ink-block {
   background-color: var(--glowe-ink);
   color: var(--glowe-porcelain);
   border: 1px solid var(--glowe-ink);
-  padding: 0.85rem 2rem;
-  border-radius: 4px;
-  font-size: 0.825rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: 2px;
+  font-family: var(--glowe-font-mono);
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.25s var(--glowe-ease-editorial);
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
-.glowe-btn-primary:hover {
+.glowe-cta-ink-block:hover {
   background-color: var(--glowe-terracotta);
   border-color: var(--glowe-terracotta);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(185, 125, 103, 0.25);
+  box-shadow: 0 8px 24px rgba(189, 128, 106, 0.3);
 }
 
-.glowe-btn-secondary {
-  background: transparent;
-  color: var(--glowe-ink);
-  border: 1px solid var(--glowe-border);
-  padding: 0.85rem 1.75rem;
-  border-radius: 4px;
-  font-size: 0.825rem;
+.glowe-cta-text-link {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--glowe-ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  transition: color 0.2s ease;
 }
 
-.glowe-btn-secondary:hover {
-  border-color: var(--glowe-ink);
-  background-color: var(--glowe-white);
+.glowe-cta-text-link:hover {
+  color: var(--glowe-terracotta);
 }
 
-/* Hero Key Metric Badges */
-.glowe-hero-metrics {
+/* Floating Precision Ingredient Annotations */
+.glowe-canvas-annotation {
+  position: absolute;
+  z-index: 8;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glowe-border);
+  padding: 0.6rem 0.95rem;
+  border-radius: 2px;
   display: flex;
-  gap: 2rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--glowe-border);
-  width: 100%;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(37, 35, 31, 0.1);
+  transition: all 0.25s ease;
 }
 
-.glowe-metric-item {
+.glowe-canvas-annotation:hover {
+  border-color: var(--glowe-terracotta);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(189, 128, 106, 0.22);
+}
+
+.glowe-annotation-num {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--glowe-olive);
+}
+
+.glowe-annotation-title {
+  font-family: var(--glowe-font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--glowe-ink);
+  line-height: 1.15;
+}
+
+.glowe-annotation-desc {
+  font-size: 0.68rem;
+  color: var(--glowe-ink-muted);
+}
+
+.glowe-anno-pos-1 {
+  top: 14%;
+  right: 48%;
+}
+
+.glowe-anno-pos-2 {
+  bottom: 12%;
+  right: 5%;
+}
+
+.glowe-anno-pos-3 {
+  bottom: 8%;
+  left: 36%;
+}
+
+/* Canvas Bottom Specifications Strip */
+.glowe-canvas-bottom-bar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--glowe-border);
+  padding-top: 1.5rem;
+  margin-top: 3.5rem;
+  padding-left: 2.5rem;
+}
+
+.glowe-canvas-spec-col {
   display: flex;
   flex-direction: column;
 }
 
-.glowe-metric-num {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.5rem;
-  font-weight: 600;
+.glowe-spec-num-heading {
+  font-family: var(--glowe-font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--glowe-olive);
-  line-height: 1;
 }
 
-.glowe-metric-label {
-  font-size: 0.65rem;
+.glowe-spec-txt-label {
+  font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--glowe-ink-subtle);
-  margin-top: 0.25rem;
+  color: var(--glowe-ink-muted);
 }
 
-/* Right Side: Editorial Skincare Still-Life & Ingredient Callouts */
-.glowe-hero-stage {
-  position: relative;
-  border-radius: 12px;
-  overflow: visible;
-  padding: 1.5rem;
+/* ============================================================================
+   3. HORIZONTAL EDITORIAL CONCERN TICKER / INDEX (SWIPEABLE & INTERACTIVE)
+   ============================================================================ */
+.glowe-concern-ticker-section {
+  border-top: 1px solid var(--glowe-border);
+  border-bottom: 1px solid var(--glowe-border);
+  background-color: var(--glowe-porcelain-warm);
+  padding: 1.25rem 0;
+  overflow: hidden;
 }
 
-.glowe-stage-backdrop {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(145deg, #F0E6DE 0%, #E7D7CC 100%);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+.glowe-ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 2rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.glowe-ticker-track::-webkit-scrollbar {
+  display: none;
+}
+
+.glowe-ticker-item {
+  background: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0.4rem 0.6rem;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.glowe-ticker-item:hover {
+  background-color: var(--glowe-white);
+}
+
+.glowe-ticker-item.active {
+  background-color: var(--glowe-ink);
+  color: var(--glowe-white);
+}
+
+.glowe-ticker-num {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.65rem;
+  color: var(--glowe-olive);
+  font-weight: 700;
+}
+
+.glowe-ticker-item.active .glowe-ticker-num {
+  color: var(--glowe-terracotta);
+}
+
+.glowe-ticker-label {
+  font-family: var(--glowe-font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.glowe-ticker-sep {
+  color: var(--glowe-border-dark);
+  font-size: 1.2rem;
+}
+
+/* ============================================================================
+   4. ASYMMETRICAL EDITORIAL PRODUCT WALL (NOT A 4-CARD REPETITIVE GRID!)
+   ============================================================================ */
+.glowe-product-wall-section {
+  max-width: 1440px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+}
+
+.glowe-wall-top-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--glowe-border);
+  padding-bottom: 1.5rem;
+}
+
+.glowe-wall-title-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.glowe-wall-section-label {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--glowe-terracotta);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.glowe-wall-headline {
+  font-family: var(--glowe-font-serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+/* Asymmetric Wall Grid: 1 Colossal Hero Product + 2 Off-Axis Products + 1 Editorial Manifesto Card */
+.glowe-wall-mosaic-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Massive Left Flagship Product */
+.glowe-wall-flagship {
+  grid-row: span 2;
+  background-color: var(--glowe-white);
+  border: 1px solid var(--glowe-border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--glowe-shadow-subtle);
+  transition: all 0.35s var(--glowe-ease-editorial);
+}
+
+.glowe-wall-flagship:hover {
+  transform: translateY(-4px);
   box-shadow: var(--glowe-shadow-elevated);
 }
 
-.glowe-hero-photo-wrapper {
+.glowe-flagship-visual {
   position: relative;
-  z-index: 2;
-  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 1/1.05;
+  background-color: #ECE5DC;
   overflow: hidden;
-  aspect-ratio: 4/3.8;
-  box-shadow: 0 12px 36px rgba(38, 35, 31, 0.12);
 }
 
-.glowe-hero-img {
+.glowe-flagship-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--glowe-ease-editorial);
+}
+
+.glowe-wall-flagship:hover .glowe-flagship-photo {
+  transform: scale(1.04);
+}
+
+.glowe-flagship-award-tag {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  background-color: var(--glowe-ink);
+  color: var(--glowe-porcelain);
+  font-family: var(--glowe-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 2px;
+}
+
+.glowe-flagship-info-plate {
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.glowe-flagship-cat-label {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--glowe-olive);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.glowe-flagship-name {
+  font-family: var(--glowe-font-serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--glowe-ink);
+  margin-bottom: 0.85rem;
+}
+
+.glowe-flagship-formula-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--glowe-ink-muted);
+  margin-bottom: 1.5rem;
+}
+
+.glowe-flagship-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--glowe-border-light);
+  border-bottom: 1px solid var(--glowe-border-light);
+  margin-bottom: 1.75rem;
+}
+
+.glowe-matrix-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.glowe-matrix-label {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  color: var(--glowe-ink-subtle);
+}
+
+.glowe-matrix-val {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--glowe-ink);
+  margin-top: 0.2rem;
+}
+
+.glowe-flagship-purchase-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.glowe-flagship-price-val {
+  font-family: var(--glowe-font-serif);
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--glowe-terracotta);
+}
+
+.glowe-flagship-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Right Stacked Secondary Product Cards */
+.glowe-wall-secondary-card {
+  background-color: var(--glowe-white);
+  border: 1px solid var(--glowe-border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  box-shadow: var(--glowe-shadow-subtle);
+  transition: all 0.3s ease;
+}
+
+.glowe-wall-secondary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glowe-shadow-elevated);
+}
+
+.glowe-sec-thumb {
+  position: relative;
+  background-color: #EFE8E1;
+  overflow: hidden;
+}
+
+.glowe-sec-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glowe-sec-content {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.glowe-sec-cat {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--glowe-olive);
+  font-weight: 700;
+}
+
+.glowe-sec-title {
+  font-family: var(--glowe-font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--glowe-ink);
+  line-height: 1.2;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.glowe-sec-desc {
+  font-size: 0.8rem;
+  color: var(--glowe-ink-muted);
+  line-height: 1.45;
+  margin-bottom: 1rem;
+}
+
+.glowe-sec-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.glowe-sec-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--glowe-terracotta);
+}
+
+.glowe-sec-btn-add {
+  background-color: var(--glowe-ink);
+  color: var(--glowe-white);
+  border: none;
+  font-family: var(--glowe-font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.glowe-sec-btn-add:hover {
+  background-color: var(--glowe-terracotta);
+}
+
+/* Embedded Editorial Manifesto Card */
+.glowe-wall-manifesto-card {
+  background-color: var(--glowe-porcelain-warm);
+  border: 1px dashed var(--glowe-border-dark);
+  border-radius: 4px;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.glowe-manifesto-quote {
+  font-family: var(--glowe-font-serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.35;
+  font-style: italic;
+  color: var(--glowe-ink);
+  margin-bottom: 1rem;
+}
+
+.glowe-manifesto-author {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--glowe-olive);
+  font-weight: 700;
+}
+
+/* Horizontal Rail of Additional Formulations */
+.glowe-wall-rail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3.5rem 0 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--glowe-border);
+}
+
+.glowe-rail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* ============================================================================
+   5. SIGNATURE INTERACTION: CENTRAL INGREDIENT EXPLORER (MACRO CANVAS)
+   ============================================================================ */
+.glowe-ingredient-explorer-section {
+  background-color: var(--glowe-white);
+  border-top: 1px solid var(--glowe-border);
+  border-bottom: 1px solid var(--glowe-border);
+  padding: 6rem 2rem;
+}
+
+.glowe-explorer-inner {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.glowe-explorer-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem;
+}
+
+.glowe-explorer-stage-layout {
+  display: grid;
+  grid-template-columns: 320px 1.4fr 340px;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+/* Left: Interactive Selectable Molecule List */
+.glowe-molecules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.glowe-molecule-nav-item {
+  background: var(--glowe-porcelain);
+  border: 1px solid var(--glowe-border);
+  padding: 1rem 1.25rem;
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s var(--glowe-ease-editorial);
+  display: flex;
+  flex-direction: column;
+}
+
+.glowe-molecule-nav-item:hover {
+  border-color: var(--glowe-terracotta);
+  transform: translateX(4px);
+}
+
+.glowe-molecule-nav-item.active {
+  background-color: var(--glowe-ink);
+  color: var(--glowe-white);
+  border-color: var(--glowe-ink);
+  box-shadow: 0 4px 16px rgba(37, 35, 31, 0.15);
+}
+
+.glowe-mol-code {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--glowe-olive);
+  font-weight: 700;
+}
+
+.glowe-molecule-nav-item.active .glowe-mol-code {
+  color: var(--glowe-terracotta);
+}
+
+.glowe-mol-name {
+  font-family: var(--glowe-font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 0.15rem;
+}
+
+/* Center: Large High-Resolution Macro Photography Canvas */
+.glowe-central-macro-stage {
+  position: relative;
+  aspect-ratio: 1/1;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--glowe-shadow-elevated);
+  border: 1px solid var(--glowe-border);
+  background-color: #EFE8E1;
+}
+
+.glowe-central-macro-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -545,982 +1092,468 @@
   transition: transform 0.8s var(--glowe-ease-editorial);
 }
 
-.glowe-hero-photo-wrapper:hover .glowe-hero-img {
-  transform: scale(1.03);
+.glowe-central-macro-stage:hover .glowe-central-macro-img {
+  transform: scale(1.05);
 }
 
-/* Ingredient Annotation Pins */
-.glowe-ingredient-pin {
+.glowe-macro-watermark {
   position: absolute;
-  z-index: 5;
-  background-color: rgba(255, 255, 255, 0.94);
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
+  padding: 0.4rem 0.85rem;
+  border-radius: 2px;
+  font-family: var(--glowe-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--glowe-ink);
   border: 1px solid var(--glowe-border);
-  padding: 0.5rem 0.85rem;
-  border-radius: 6px;
+}
+
+/* Right: Molecule Details & Associated Formulation Card */
+.glowe-explorer-detail-panel {
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 24px rgba(38, 35, 31, 0.08);
-  transition: all 0.25s ease;
-  pointer-events: auto;
 }
 
-.glowe-ingredient-pin:hover {
-  transform: translateY(-2px);
-  border-color: var(--glowe-terracotta);
-  box-shadow: 0 12px 28px rgba(185, 125, 103, 0.2);
-}
-
-.glowe-pin-tag {
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
+.glowe-panel-inci {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--glowe-olive);
   font-weight: 700;
+  margin-bottom: 0.35rem;
 }
 
-.glowe-pin-name {
-  font-size: 0.78rem;
+.glowe-panel-title {
+  font-family: var(--glowe-font-serif);
+  font-size: 2rem;
   font-weight: 600;
   color: var(--glowe-ink);
+  line-height: 1.15;
+  margin-bottom: 0.85rem;
 }
 
-.glowe-pin-1 {
-  top: 10%;
-  left: -20px;
+.glowe-panel-bio-mechanism {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--glowe-ink-muted);
+  margin-bottom: 1.75rem;
 }
 
-.glowe-pin-2 {
-  bottom: 12%;
-  right: -20px;
+.glowe-associated-product-card {
+  background-color: var(--glowe-porcelain);
+  border: 1px solid var(--glowe-border);
+  padding: 1.25rem;
+  border-radius: 4px;
 }
 
-.glowe-pin-3 {
-  bottom: -15px;
-  left: 20%;
-}
-
-/* ============================================================================
-   3. SIGNATURE INTERACTION: THE SKIN RITUAL FINDER
-   ============================================================================ */
-.glowe-ritual-finder-section {
-  background-color: var(--glowe-white);
-  border-top: 1px solid var(--glowe-border);
-  border-bottom: 1px solid var(--glowe-border);
-  padding: 4.5rem 2rem;
-  margin: 2rem 0;
-}
-
-.glowe-finder-container {
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.glowe-finder-header {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto 3rem;
-}
-
-.glowe-section-eyebrow {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+.glowe-assoc-label {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--glowe-terracotta);
   font-weight: 700;
   margin-bottom: 0.5rem;
-  display: block;
 }
 
-.glowe-section-title {
-  font-family: var(--glowe-font-serif);
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 500;
-  line-height: 1.15;
-  color: var(--glowe-ink);
-  margin-bottom: 0.75rem;
-}
-
-.glowe-section-subtitle {
-  font-size: 0.95rem;
-  color: var(--glowe-ink-muted);
-  line-height: 1.6;
-}
-
-/* Step Progress Indicator */
-.glowe-finder-progress-bar {
+.glowe-assoc-flex {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  gap: 1rem;
 }
 
-.glowe-step-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--glowe-ink-subtle);
-  transition: all 0.2s ease;
+.glowe-assoc-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 2px;
+  object-fit: cover;
 }
 
-.glowe-step-item.active {
-  color: var(--glowe-ink);
-}
-
-.glowe-step-num {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--glowe-border);
-  font-size: 0.7rem;
-}
-
-.glowe-step-item.active .glowe-step-num {
-  background-color: var(--glowe-terracotta);
-  border-color: var(--glowe-terracotta);
-  color: var(--glowe-white);
-}
-
-.glowe-step-connector {
-  width: 40px;
-  height: 1px;
-  background-color: var(--glowe-border);
-}
-
-/* Finder Card Wrapper */
-.glowe-finder-body {
-  background-color: var(--glowe-porcelain);
-  border: 1px solid var(--glowe-border);
-  border-radius: 12px;
-  padding: 3rem;
-  box-shadow: var(--glowe-shadow-card);
-}
-
-/* Step 1: Concern Grid */
-.glowe-concerns-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.glowe-concern-card {
-  background-color: var(--glowe-white);
-  border: 1.5px solid var(--glowe-border);
-  border-radius: 8px;
-  padding: 1.5rem 1.25rem;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.25s var(--glowe-ease-editorial);
+.glowe-assoc-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-grow: 1;
 }
 
-.glowe-concern-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--glowe-terracotta);
-  box-shadow: 0 10px 24px rgba(185, 125, 103, 0.12);
+.glowe-assoc-name {
+  font-family: var(--glowe-font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--glowe-ink);
 }
 
-.glowe-concern-card.selected {
-  border-color: var(--glowe-terracotta);
-  background-color: var(--glowe-blush-soft);
-  box-shadow: 0 0 0 2px var(--glowe-terracotta);
-}
-
-.glowe-concern-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: var(--glowe-porcelain);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+.glowe-assoc-price {
+  font-size: 0.85rem;
+  font-weight: 700;
   color: var(--glowe-terracotta);
 }
 
-.glowe-concern-name {
+.glowe-btn-assoc-add {
+  background-color: var(--glowe-ink);
+  color: var(--glowe-white);
+  border: none;
+  font-family: var(--glowe-font-mono);
+  font-size: 0.68rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 2px;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.2s ease;
+}
+
+.glowe-btn-assoc-add:hover {
+  background-color: var(--glowe-terracotta);
+}
+
+/* ============================================================================
+   6. EDITORIAL SKIN RITUAL BUILDER (VERTICAL PROGRESS RAIL SEQUENCE)
+   ============================================================================ */
+.glowe-ritual-builder-section {
+  max-width: 1200px;
+  margin: 6rem auto;
+  padding: 0 2rem;
+}
+
+.glowe-builder-frame {
+  background-color: var(--glowe-white);
+  border: 1px solid var(--glowe-border);
+  border-radius: 4px;
+  padding: 3.5rem;
+  box-shadow: var(--glowe-shadow-elevated);
+}
+
+.glowe-builder-rail-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3.5rem;
+}
+
+/* Left Vertical Progress Rail */
+.glowe-vertical-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-right: 1px solid var(--glowe-border-light);
+  padding-right: 2rem;
+}
+
+.glowe-rail-step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--glowe-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--glowe-ink-subtle);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.glowe-rail-step-indicator.active {
+  color: var(--glowe-ink);
+}
+
+.glowe-rail-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--glowe-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.glowe-rail-step-indicator.active .glowe-rail-circle {
+  border-color: var(--glowe-terracotta);
+  background-color: var(--glowe-terracotta);
+  color: var(--glowe-white);
+}
+
+/* Right Content Canvas */
+.glowe-rail-content-canvas {
+  display: flex;
+  flex-direction: column;
+}
+
+.glowe-builder-question-heading {
   font-family: var(--glowe-font-serif);
-  font-size: 1.15rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--glowe-ink);
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+/* Builder Step 1: Concern Choice Tiles */
+.glowe-builder-tiles-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.glowe-builder-concern-box {
+  background-color: var(--glowe-porcelain);
+  border: 1.5px solid var(--glowe-border);
+  border-radius: 4px;
+  padding: 1.75rem;
+  cursor: pointer;
+  transition: all 0.25s var(--glowe-ease-editorial);
+}
+
+.glowe-builder-concern-box:hover {
+  border-color: var(--glowe-terracotta);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(189, 128, 106, 0.15);
+}
+
+.glowe-builder-concern-box.selected {
+  border-color: var(--glowe-ink);
+  background-color: var(--glowe-porcelain-warm);
+  box-shadow: 0 0 0 2px var(--glowe-ink);
+}
+
+.glowe-box-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.glowe-box-title {
+  font-family: var(--glowe-font-serif);
+  font-size: 1.35rem;
   font-weight: 600;
   color: var(--glowe-ink);
   margin-bottom: 0.35rem;
 }
 
-.glowe-concern-desc {
-  font-size: 0.75rem;
+.glowe-box-desc {
+  font-size: 0.8rem;
   color: var(--glowe-ink-muted);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
-/* Step 2: Routine Length Choices */
-.glowe-routines-grid {
+/* Step 2: Routine Pacing Options */
+.glowe-builder-pacing-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  margin-top: 1.5rem;
 }
 
-.glowe-routine-choice-card {
-  background-color: var(--glowe-white);
+.glowe-pacing-card {
+  background-color: var(--glowe-porcelain);
   border: 2px solid var(--glowe-border);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 2.25rem 2rem;
   cursor: pointer;
   transition: all 0.25s var(--glowe-ease-editorial);
-  position: relative;
 }
 
-.glowe-routine-choice-card:hover {
+.glowe-pacing-card:hover {
   border-color: var(--glowe-terracotta);
-  box-shadow: 0 12px 28px rgba(185, 125, 103, 0.12);
 }
 
-.glowe-routine-choice-card.selected {
+.glowe-pacing-card.selected {
   border-color: var(--glowe-olive);
   background-color: var(--glowe-olive-soft);
-  box-shadow: 0 0 0 2px var(--glowe-olive);
 }
 
-.glowe-routine-badge {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--glowe-olive);
-  margin-bottom: 0.5rem;
-}
-
-.glowe-routine-title {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-  margin-bottom: 0.5rem;
-}
-
-.glowe-routine-desc {
-  font-size: 0.85rem;
-  color: var(--glowe-ink-muted);
-  line-height: 1.55;
-  margin-bottom: 1.25rem;
-}
-
-.glowe-routine-steps-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.8rem;
-  color: var(--glowe-ink);
-}
-
-.glowe-routine-steps-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.glowe-routine-steps-list li::before {
-  content: '✓';
-  color: var(--glowe-olive);
-  font-weight: bold;
-}
-
-/* Step 3: Recommendation Results */
-.glowe-results-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.glowe-results-header {
+/* Step 3: Recommendation Suite */
+.glowe-curated-suite-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--glowe-border);
-  padding-bottom: 1.25rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.glowe-results-title {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-}
-
-.glowe-results-actions {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.glowe-restart-btn {
-  background: transparent;
-  border: 1px solid var(--glowe-border);
-  color: var(--glowe-ink-muted);
-  padding: 0.45rem 1rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.glowe-restart-btn:hover {
-  border-color: var(--glowe-ink);
-  color: var(--glowe-ink);
-}
-
-.glowe-recommended-grid {
+.glowe-suite-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
 }
 
-.glowe-recommended-card {
-  background-color: var(--glowe-white);
+.glowe-suite-card {
+  background-color: var(--glowe-porcelain);
   border: 1px solid var(--glowe-border);
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--glowe-shadow-card);
-  transition: all 0.25s ease;
 }
 
-.glowe-recommended-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--glowe-shadow-elevated);
-}
-
-.glowe-rec-thumb-box {
-  width: 100%;
-  aspect-ratio: 1/1;
+.glowe-suite-thumb {
   position: relative;
-  background-color: #F5EFEB;
-  overflow: hidden;
+  aspect-ratio: 1/1;
+  background-color: #EFE8E1;
 }
 
-.glowe-rec-img {
+.glowe-suite-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
 }
 
-.glowe-recommended-card:hover .glowe-rec-img {
-  transform: scale(1.05);
-}
-
-.glowe-rec-step-badge {
+.glowe-suite-step-tag {
   position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background-color: var(--glowe-white);
-  border: 1px solid var(--glowe-border);
+  top: 0.65rem;
+  left: 0.65rem;
+  background-color: var(--glowe-ink);
+  color: var(--glowe-porcelain);
+  font-family: var(--glowe-font-mono);
+  font-size: 0.6rem;
   padding: 0.2rem 0.5rem;
-  border-radius: 3px;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--glowe-olive);
+  border-radius: 2px;
 }
 
-.glowe-rec-info {
+.glowe-suite-body {
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.glowe-rec-cat {
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--glowe-ink-subtle);
-  margin-bottom: 0.25rem;
-}
-
-.glowe-rec-name {
+.glowe-suite-name {
   font-family: var(--glowe-font-serif);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--glowe-ink);
   margin-bottom: 0.35rem;
-  line-height: 1.25;
 }
 
-.glowe-rec-price {
-  font-size: 0.95rem;
-  font-weight: 600;
+.glowe-suite-price {
+  font-size: 0.9rem;
+  font-weight: 700;
   color: var(--glowe-terracotta);
   margin-bottom: 1rem;
 }
 
-.glowe-rec-btn-strip {
+.glowe-suite-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
   margin-top: auto;
 }
 
-.glowe-btn-rec-detail {
-  background: transparent;
-  border: 1px solid var(--glowe-border);
-  color: var(--glowe-ink);
-  padding: 0.45rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-align: center;
-}
-
-.glowe-btn-rec-add {
-  background-color: var(--glowe-ink);
-  border: 1px solid var(--glowe-ink);
-  color: var(--glowe-porcelain);
-  padding: 0.45rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-align: center;
-  transition: background 0.2s ease;
-}
-
-.glowe-btn-rec-add:hover {
-  background-color: var(--glowe-terracotta);
-  border-color: var(--glowe-terracotta);
-}
-
-.glowe-finder-disclaimer {
-  font-size: 0.72rem;
-  color: var(--glowe-ink-subtle);
-  text-align: center;
-  margin-top: 1.5rem;
-  font-style: italic;
-}
-
 /* ============================================================================
-   4. SHOP BY SKIN CONCERN SECTION
+   7. DAILY RITUAL (CIRCADIAN AM / PM TIMELINE)
    ============================================================================ */
-.glowe-concern-tiles-section {
-  max-width: 1440px;
-  margin: 4.5rem auto;
-  padding: 0 2rem;
-}
-
-.glowe-concern-tiles-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 2.5rem;
-}
-
-.glowe-tiles-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-
-.glowe-tile-item {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 3/4;
-  box-shadow: var(--glowe-shadow-card);
-  transition: all 0.35s var(--glowe-ease-editorial);
-}
-
-.glowe-tile-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--glowe-shadow-elevated);
-}
-
-.glowe-tile-item.active {
-  box-shadow: 0 0 0 3px var(--glowe-terracotta);
-}
-
-.glowe-tile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--glowe-ease-editorial);
-}
-
-.glowe-tile-item:hover .glowe-tile-img {
-  transform: scale(1.06);
-}
-
-.glowe-tile-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(38, 35, 31, 0.85) 0%, rgba(38, 35, 31, 0.2) 50%, rgba(38, 35, 31, 0) 100%);
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  color: var(--glowe-white);
-}
-
-.glowe-tile-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--glowe-blush);
-  font-weight: 700;
-  margin-bottom: 0.35rem;
-}
-
-.glowe-tile-title {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1.15;
-  margin-bottom: 0.5rem;
-}
-
-.glowe-tile-action {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--glowe-white);
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
-}
-
-.glowe-tile-item:hover .glowe-tile-action {
-  opacity: 1;
-}
-
-/* ============================================================================
-   5. THE PRODUCT EDIT — Asymmetrical Curated Showcase
-   ============================================================================ */
-.glowe-product-edit-section {
-  background-color: var(--glowe-white);
+.glowe-circadian-timeline-section {
+  background-color: var(--glowe-porcelain-warm);
   border-top: 1px solid var(--glowe-border);
   border-bottom: 1px solid var(--glowe-border);
-  padding: 5rem 2rem;
+  padding: 6rem 2rem;
 }
 
-.glowe-product-edit-inner {
-  max-width: 1440px;
+.glowe-circadian-inner {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.glowe-edit-filter-strip {
+.glowe-circadian-top {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
 }
 
-.glowe-filter-pills {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.glowe-filter-pill-btn {
-  background: transparent;
-  border: 1px solid var(--glowe-border);
-  padding: 0.45rem 1.15rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--glowe-ink-muted);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.glowe-filter-pill-btn:hover {
-  border-color: var(--glowe-ink);
-  color: var(--glowe-ink);
-}
-
-.glowe-filter-pill-btn.active {
-  background-color: var(--glowe-ink);
-  border-color: var(--glowe-ink);
-  color: var(--glowe-porcelain);
-}
-
-.glowe-filter-count-badge {
-  font-size: 0.75rem;
-  color: var(--glowe-ink-subtle);
-  font-family: var(--glowe-font-mono);
-}
-
-/* Asymmetrical Layout: 1 Large Flagship on Left, 3 on Right */
-.glowe-asym-product-layout {
-  display: grid;
-  grid-template-columns: 1.25fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 2rem;
-}
-
-.glowe-flagship-card {
-  grid-row: span 2;
-  background-color: var(--glowe-porcelain);
-  border: 1px solid var(--glowe-border);
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--glowe-shadow-card);
-  transition: all 0.35s var(--glowe-ease-editorial);
-}
-
-.glowe-flagship-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--glowe-shadow-elevated);
-}
-
-.glowe-flagship-thumb {
-  width: 100%;
-  aspect-ratio: 1/1.05;
-  background-color: #ECE3DB;
-  position: relative;
-  overflow: hidden;
-}
-
-.glowe-flagship-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--glowe-ease-editorial);
-}
-
-.glowe-flagship-card:hover .glowe-flagship-img {
-  transform: scale(1.04);
-}
-
-.glowe-flagship-badge {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: var(--glowe-terracotta);
-  color: var(--glowe-white);
-  padding: 0.3rem 0.75rem;
-  border-radius: 4px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.glowe-flagship-content {
-  padding: 2.25rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.glowe-flagship-key-ing {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--glowe-olive);
-  font-weight: 700;
-  margin-bottom: 0.35rem;
-}
-
-.glowe-flagship-title {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.85rem;
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--glowe-ink);
-  margin-bottom: 0.75rem;
-}
-
-.glowe-flagship-desc {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--glowe-ink-muted);
-  margin-bottom: 1.5rem;
-}
-
-.glowe-flagship-specs {
-  display: flex;
-  gap: 1.5rem;
-  padding: 1rem 0;
-  border-top: 1px solid var(--glowe-border);
-  border-bottom: 1px solid var(--glowe-border);
-  margin-bottom: 1.5rem;
-}
-
-.glowe-spec-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.glowe-spec-label {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--glowe-ink-subtle);
-}
-
-.glowe-spec-val {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-  margin-top: 0.15rem;
-}
-
-.glowe-flagship-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-}
-
-.glowe-flagship-price {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--glowe-terracotta);
-}
-
-/* Secondary Standard Product Cards */
-.glowe-product-card {
+.glowe-circadian-toggle {
+  display: inline-flex;
   background-color: var(--glowe-white);
   border: 1px solid var(--glowe-border);
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--glowe-shadow-card);
-  transition: all 0.3s var(--glowe-ease-editorial);
+  padding: 0.3rem;
+  border-radius: 2px;
 }
 
-.glowe-product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--glowe-shadow-elevated);
-}
-
-.glowe-card-thumb {
-  width: 100%;
-  aspect-ratio: 1/1;
-  background-color: #F6F0EC;
-  position: relative;
-  overflow: hidden;
-}
-
-.glowe-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.glowe-product-card:hover .glowe-card-img {
-  transform: scale(1.05);
-}
-
-.glowe-card-badge {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background-color: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--glowe-border);
-  padding: 0.2rem 0.55rem;
-  border-radius: 3px;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--glowe-ink);
-}
-
-.glowe-card-body {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.glowe-card-category {
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--glowe-olive);
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.glowe-card-title {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-  margin-bottom: 0.35rem;
-  line-height: 1.2;
-}
-
-.glowe-card-desc {
-  font-size: 0.8rem;
-  color: var(--glowe-ink-muted);
-  line-height: 1.5;
-  margin-bottom: 1rem;
-}
-
-.glowe-card-ingredients-tag {
-  font-size: 0.68rem;
-  color: var(--glowe-ink-subtle);
-  margin-bottom: 1.25rem;
-}
-
-.glowe-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid var(--glowe-border-light);
-}
-
-.glowe-card-price {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--glowe-terracotta);
-}
-
-.glowe-card-actions {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.glowe-btn-icon-view {
-  background: transparent;
-  border: 1px solid var(--glowe-border);
-  color: var(--glowe-ink);
-  padding: 0.45rem 0.65rem;
-  border-radius: 4px;
+.glowe-circadian-btn {
+  background: none;
+  border: none;
+  font-family: var(--glowe-font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
   cursor: pointer;
+  border-radius: 2px;
   transition: all 0.2s ease;
 }
 
-.glowe-btn-icon-view:hover {
-  border-color: var(--glowe-ink);
-  background-color: var(--glowe-porcelain);
-}
-
-.glowe-btn-card-add {
+.glowe-circadian-btn.active {
   background-color: var(--glowe-ink);
-  border: 1px solid var(--glowe-ink);
   color: var(--glowe-white);
-  padding: 0.45rem 0.85rem;
-  border-radius: 4px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.glowe-btn-card-add:hover {
-  background-color: var(--glowe-terracotta);
-  border-color: var(--glowe-terracotta);
-}
-
-/* ============================================================================
-   6. INGREDIENT LIBRARY SECTION
-   ============================================================================ */
-.glowe-ingredient-library-section {
-  max-width: 1440px;
-  margin: 5rem auto;
-  padding: 0 2rem;
-}
-
-.glowe-ingredient-grid {
+.glowe-vertical-timeline-stack {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.75rem;
-  margin-top: 2.5rem;
+  position: relative;
 }
 
-.glowe-ing-card {
+.glowe-vertical-timeline-stack::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 2%;
+  right: 2%;
+  height: 1px;
+  background-color: var(--glowe-border-dark);
+  z-index: 1;
+}
+
+.glowe-circadian-step-card {
+  position: relative;
+  z-index: 2;
   background-color: var(--glowe-white);
   border: 1px solid var(--glowe-border);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--glowe-shadow-card);
-  transition: all 0.3s ease;
-  cursor: pointer;
+  border-radius: 4px;
+  padding: 1.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--glowe-shadow-subtle);
+  transition: transform 0.25s ease;
 }
 
-.glowe-ing-card:hover {
+.glowe-circadian-step-card:hover {
   transform: translateY(-4px);
-  border-color: var(--glowe-olive);
   box-shadow: var(--glowe-shadow-elevated);
 }
 
-.glowe-ing-thumb {
-  width: 100%;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-}
-
-.glowe-ing-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.glowe-ing-card:hover .glowe-ing-img {
-  transform: scale(1.06);
-}
-
-.glowe-ing-content {
-  padding: 1.5rem;
-}
-
-.glowe-ing-latin {
+.glowe-step-time-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--glowe-ink);
+  color: var(--glowe-white);
+  font-family: var(--glowe-font-mono);
   font-size: 0.65rem;
-  font-style: italic;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 0 0 4px var(--glowe-white);
+}
+
+.glowe-step-time-label {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--glowe-olive);
+  font-weight: 700;
   margin-bottom: 0.25rem;
 }
 
-.glowe-ing-title {
+.glowe-step-headline {
   font-family: var(--glowe-font-serif);
   font-size: 1.35rem;
   font-weight: 600;
@@ -1528,154 +1561,14 @@
   margin-bottom: 0.5rem;
 }
 
-.glowe-ing-benefit {
-  font-size: 0.8rem;
-  color: var(--glowe-ink-muted);
-  line-height: 1.5;
-  margin-bottom: 1rem;
-}
-
-.glowe-ing-pill-tag {
-  display: inline-block;
-  background-color: var(--glowe-olive-soft);
-  color: var(--glowe-olive);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
-}
-
-/* ============================================================================
-   7. THE DAILY RITUAL (AM / PM TIMELINE)
-   ============================================================================ */
-.glowe-daily-ritual-section {
-  background-color: #F1ECE6;
-  border-top: 1px solid var(--glowe-border);
-  border-bottom: 1px solid var(--glowe-border);
-  padding: 5rem 2rem;
-}
-
-.glowe-ritual-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-.glowe-ritual-toggle-bar {
-  display: flex;
-  justify-content: center;
-  margin: 2.5rem 0 3.5rem;
-}
-
-.glowe-routine-mode-switcher {
-  display: inline-flex;
-  background-color: var(--glowe-white);
-  border: 1px solid var(--glowe-border);
-  border-radius: 9999px;
-  padding: 0.35rem;
-  box-shadow: var(--glowe-shadow-card);
-}
-
-.glowe-routine-mode-btn {
-  background: transparent;
-  border: none;
-  padding: 0.6rem 1.85rem;
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--glowe-ink-muted);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.glowe-routine-mode-btn.active {
-  background-color: var(--glowe-ink);
-  color: var(--glowe-porcelain);
-  box-shadow: 0 4px 12px rgba(38, 35, 31, 0.15);
-}
-
-.glowe-timeline-track {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  position: relative;
-}
-
-.glowe-timeline-track::before {
-  content: '';
-  position: absolute;
-  top: 30px;
-  left: 5%;
-  right: 5%;
-  height: 2px;
-  background: linear-gradient(to right, var(--glowe-terracotta), var(--glowe-olive));
-  z-index: 1;
-}
-
-.glowe-timeline-step-card {
-  position: relative;
-  z-index: 2;
-  background-color: var(--glowe-white);
-  border: 1px solid var(--glowe-border);
-  border-radius: 8px;
-  padding: 1.75rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--glowe-shadow-card);
-  transition: all 0.3s ease;
-}
-
-.glowe-timeline-step-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--glowe-shadow-elevated);
-}
-
-.glowe-timeline-step-badge {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: var(--glowe-ink);
-  color: var(--glowe-porcelain);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 0 0 4px var(--glowe-white);
-}
-
-.glowe-step-phase {
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--glowe-terracotta);
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.glowe-step-title {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-  margin-bottom: 0.35rem;
-}
-
-.glowe-step-desc {
+.glowe-step-instruction {
   font-size: 0.8rem;
   color: var(--glowe-ink-muted);
   line-height: 1.5;
   margin-bottom: 1.25rem;
 }
 
-.glowe-step-product-link {
+.glowe-step-product-snip {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -1685,75 +1578,69 @@
   cursor: pointer;
 }
 
-.glowe-step-prod-thumb {
+.glowe-snip-img {
   width: 44px;
   height: 44px;
-  border-radius: 4px;
+  border-radius: 2px;
   object-fit: cover;
 }
 
-.glowe-step-prod-meta {
-  display: flex;
-  flex-direction: column;
-}
-
-.glowe-step-prod-name {
+.glowe-snip-name {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--glowe-ink);
 }
 
-.glowe-step-prod-price {
+.glowe-snip-price {
   font-size: 0.7rem;
   color: var(--glowe-terracotta);
   font-weight: 600;
 }
 
 /* ============================================================================
-   8. TEXTURE STUDIO SECTION
+   8. TEXTURE STUDIO COLLAGE
    ============================================================================ */
-.glowe-texture-studio-section {
+.glowe-texture-studio-collage {
   max-width: 1440px;
-  margin: 5rem auto;
+  margin: 6rem auto;
   padding: 0 2rem;
 }
 
-.glowe-texture-grid {
+.glowe-texture-mosaic {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 3rem;
 }
 
-.glowe-texture-card {
+.glowe-mosaic-item {
   position: relative;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
   aspect-ratio: 1/1.2;
-  box-shadow: var(--glowe-shadow-card);
+  box-shadow: var(--glowe-shadow-subtle);
   transition: all 0.35s ease;
 }
 
-.glowe-texture-card:hover {
+.glowe-mosaic-item:hover {
   transform: translateY(-4px);
   box-shadow: var(--glowe-shadow-elevated);
 }
 
-.glowe-texture-img {
+.glowe-mosaic-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s var(--glowe-ease-editorial);
+  transition: transform 0.8s var(--glowe-ease-editorial);
 }
 
-.glowe-texture-card:hover .glowe-texture-img {
-  transform: scale(1.08);
+.glowe-mosaic-item:hover .glowe-mosaic-img {
+  transform: scale(1.06);
 }
 
-.glowe-texture-overlay {
+.glowe-mosaic-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(38, 35, 31, 0.9) 0%, rgba(38, 35, 31, 0.25) 50%, rgba(38, 35, 31, 0) 100%);
+  background: linear-gradient(to top, rgba(37, 35, 31, 0.92) 0%, rgba(37, 35, 31, 0.2) 60%, rgba(37, 35, 31, 0) 100%);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -1761,263 +1648,116 @@
   color: var(--glowe-white);
 }
 
-.glowe-texture-feel {
-  font-size: 0.65rem;
+.glowe-mosaic-tag {
+  font-family: var(--glowe-font-mono);
+  font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--glowe-blush);
+  color: var(--glowe-terracotta);
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
 }
 
-.glowe-texture-title {
+.glowe-mosaic-title {
   font-family: var(--glowe-font-serif);
-  font-size: 1.65rem;
+  font-size: 1.7rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
 }
 
-.glowe-texture-desc {
-  font-size: 0.8rem;
+.glowe-mosaic-desc {
+  font-size: 0.825rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
 }
 
 /* ============================================================================
-   9. BRAND STORY & BOTANICAL LAB
+   9. BRAND STORY EDITORIAL
    ============================================================================ */
-.glowe-story-section {
+.glowe-brand-story-editorial {
   background-color: var(--glowe-white);
   border-top: 1px solid var(--glowe-border);
   border-bottom: 1px solid var(--glowe-border);
-  padding: 6rem 2rem;
+  padding: 7rem 2rem;
 }
 
-.glowe-story-grid {
+.glowe-story-editorial-grid {
   max-width: 1360px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 4rem;
+  gap: 4.5rem;
   align-items: center;
 }
 
-.glowe-story-photo-frame {
+.glowe-editorial-frame {
   position: relative;
-  border-radius: 10px;
+  border-radius: 4px;
   overflow: hidden;
   box-shadow: var(--glowe-shadow-elevated);
   aspect-ratio: 4/3.2;
 }
 
-.glowe-story-img {
+.glowe-editorial-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.glowe-story-caption-card {
+.glowe-editorial-colophon {
   position: absolute;
   bottom: 1.5rem;
   left: 1.5rem;
-  background-color: rgba(248, 243, 237, 0.94);
+  background-color: rgba(247, 243, 237, 0.95);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--glowe-border);
   padding: 0.85rem 1.25rem;
-  border-radius: 4px;
-}
-
-.glowe-story-caption-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--glowe-ink);
-}
-
-.glowe-story-caption-sub {
-  font-size: 0.65rem;
-  color: var(--glowe-olive);
-}
-
-.glowe-story-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.glowe-story-quote {
-  font-family: var(--glowe-font-serif);
-  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
-  font-weight: 500;
-  line-height: 1.25;
-  color: var(--glowe-ink);
-  font-style: italic;
-  margin-bottom: 1.5rem;
-}
-
-.glowe-story-body {
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--glowe-ink-muted);
-  margin-bottom: 1.5rem;
-}
-
-.glowe-story-pillars {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.glowe-pillar-item h4 {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.1rem;
-  color: var(--glowe-ink);
-  margin-bottom: 0.35rem;
-}
-
-.glowe-pillar-item p {
-  font-size: 0.8rem;
-  color: var(--glowe-ink-muted);
-  line-height: 1.5;
+  border-radius: 2px;
+  border: 1px solid var(--glowe-border);
 }
 
 /* ============================================================================
-   10. NEWSLETTER & FOOTER
+   10. NEWSLETTER & COLOPHON FOOTER
    ============================================================================ */
-.glowe-newsletter-section {
-  max-width: 960px;
-  margin: 5rem auto;
-  padding: 3.5rem 2.5rem;
-  background-color: var(--glowe-blush-soft);
-  border: 1px solid var(--glowe-blush);
-  border-radius: 12px;
+.glowe-newsletter-plate {
+  max-width: 900px;
+  margin: 6rem auto;
+  padding: 4rem 2.5rem;
+  background-color: var(--glowe-porcelain-warm);
+  border: 1px solid var(--glowe-border-dark);
+  border-radius: 4px;
   text-align: center;
 }
 
-.glowe-newsletter-title {
+.glowe-newsletter-plate h3 {
   font-family: var(--glowe-font-serif);
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 500;
-  color: var(--glowe-ink);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
-.glowe-newsletter-desc {
+.glowe-newsletter-plate p {
   font-size: 0.9rem;
   color: var(--glowe-ink-muted);
-  max-width: 520px;
+  max-width: 500px;
   margin: 0 auto 2rem;
-  line-height: 1.6;
 }
 
-.glowe-newsletter-form {
-  display: flex;
-  gap: 0.5rem;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.glowe-newsletter-input {
-  flex-grow: 1;
-  background-color: var(--glowe-white);
-  border: 1px solid var(--glowe-border);
-  padding: 0.85rem 1.25rem;
-  border-radius: 4px;
-  font-size: 0.825rem;
-  font-family: inherit;
-  outline: none;
-}
-
-.glowe-newsletter-input:focus {
-  border-color: var(--glowe-terracotta);
-}
-
-.glowe-btn-subscribe {
-  background-color: var(--glowe-ink);
-  color: var(--glowe-white);
-  border: none;
-  padding: 0.85rem 1.6rem;
-  border-radius: 4px;
-  font-size: 0.775rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  white-space: nowrap;
-}
-
-.glowe-btn-subscribe:hover {
-  background-color: var(--glowe-terracotta);
-}
-
-.glowe-subscribe-success {
-  color: var(--glowe-olive);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-top: 1rem;
-}
-
-.glowe-footer {
+.glowe-editorial-footer {
   background-color: var(--glowe-ink);
   color: var(--glowe-porcelain);
-  padding: 4.5rem 2rem 2.5rem;
+  padding: 5rem 2rem 3rem;
 }
 
-.glowe-footer-inner {
+.glowe-footer-inner-colophon {
   max-width: 1440px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.5fr repeat(3, 1fr);
   gap: 3.5rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
 }
 
-.glowe-footer-brand h3 {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.85rem;
-  letter-spacing: 0.12em;
-  margin-bottom: 0.75rem;
-}
-
-.glowe-footer-brand p {
-  font-size: 0.85rem;
-  color: rgba(248, 243, 237, 0.65);
-  line-height: 1.65;
-  max-width: 320px;
-}
-
-.glowe-footer-col h4 {
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--glowe-blush);
-  font-weight: 700;
-  margin-bottom: 1.25rem;
-}
-
-.glowe-footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.glowe-footer-col a {
-  color: rgba(248, 243, 237, 0.7);
-  text-decoration: none;
-  font-size: 0.8rem;
-  transition: color 0.2s ease;
-}
-
-.glowe-footer-col a:hover {
-  color: var(--glowe-porcelain);
-}
-
-.glowe-footer-bottom {
+.glowe-colophon-bottom {
   max-width: 1440px;
   margin: 0 auto;
   padding-top: 2rem;
@@ -2025,198 +1765,49 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.72rem;
-  color: rgba(248, 243, 237, 0.5);
+  font-family: var(--glowe-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: rgba(247, 243, 237, 0.5);
 }
 
 /* ============================================================================
-   11. SHOPPING BAG DRAWER
+   11. SLIDE-OUT SHOPPING BAG DRAWER & PRODUCT MODAL
    ============================================================================ */
-.glowe-drawer-backdrop {
+.glowe-drawer-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(38, 35, 31, 0.45);
+  background-color: rgba(37, 35, 31, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 999;
+  z-index: 1000;
 }
 
-.glowe-bag-drawer {
+.glowe-editorial-drawer {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 420px;
+  width: 440px;
   max-width: 100vw;
   background-color: var(--glowe-porcelain);
   border-left: 1px solid var(--glowe-border);
-  z-index: 1000;
+  z-index: 1001;
   display: flex;
   flex-direction: column;
-  box-shadow: -10px 0 30px rgba(38, 35, 31, 0.15);
-  animation: gloweSlideLeft 0.35s var(--glowe-ease-editorial) forwards;
+  box-shadow: -12px 0 36px rgba(37, 35, 31, 0.18);
+  animation: gloweDrawerIn 0.35s var(--glowe-ease-editorial) forwards;
 }
 
-@keyframes gloweSlideLeft {
+@keyframes gloweDrawerIn {
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
 }
 
-.glowe-drawer-header {
-  padding: 1.5rem 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--glowe-border);
-}
-
-.glowe-drawer-header h3 {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-}
-
-.glowe-drawer-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--glowe-ink-muted);
-  line-height: 1;
-}
-
-.glowe-drawer-body {
-  padding: 1.5rem 1.75rem;
-  overflow-y: auto;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.glowe-empty-bag {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 1rem;
-  text-align: center;
-  color: var(--glowe-ink-muted);
-}
-
-.glowe-cart-item {
-  display: grid;
-  grid-template-columns: 68px 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  background-color: var(--glowe-white);
-  padding: 0.85rem;
-  border-radius: 6px;
-  border: 1px solid var(--glowe-border);
-}
-
-.glowe-cart-thumb {
-  width: 68px;
-  height: 68px;
-  border-radius: 4px;
-  object-fit: cover;
-}
-
-.glowe-cart-details h4 {
-  font-family: var(--glowe-font-serif);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-  margin-bottom: 0.2rem;
-}
-
-.glowe-cart-details span {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--glowe-terracotta);
-}
-
-.glowe-qty-stepper {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-top: 0.4rem;
-}
-
-.glowe-qty-stepper button {
-  width: 22px;
-  height: 22px;
-  border-radius: 3px;
-  background-color: var(--glowe-porcelain);
-  border: 1px solid var(--glowe-border);
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.glowe-cart-remove-btn {
-  background: none;
-  border: none;
-  color: var(--glowe-ink-subtle);
-  cursor: pointer;
-  font-size: 1.1rem;
-}
-
-.glowe-drawer-footer {
-  padding: 1.5rem 1.75rem;
-  border-top: 1px solid var(--glowe-border);
-  background-color: var(--glowe-white);
-}
-
-.glowe-subtotal-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-}
-
-.glowe-subtotal-val {
-  font-family: var(--glowe-font-serif);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-}
-
-.glowe-btn-checkout {
-  width: 100%;
-  background-color: var(--glowe-ink);
-  color: var(--glowe-white);
-  border: none;
-  padding: 0.95rem;
-  border-radius: 4px;
-  font-size: 0.825rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.glowe-btn-checkout:hover {
-  background-color: var(--glowe-terracotta);
-}
-
-.glowe-demo-note {
-  font-size: 0.68rem;
-  color: var(--glowe-ink-subtle);
-  text-align: center;
-  margin-top: 0.65rem;
-  font-style: italic;
-}
-
-/* ============================================================================
-   12. PRODUCT DETAIL MODAL
-   ============================================================================ */
-.glowe-detail-modal-root {
+.glowe-modal-glass-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(38, 35, 31, 0.55);
-  backdrop-filter: blur(6px);
+  background-color: rgba(37, 35, 31, 0.6);
+  backdrop-filter: blur(8px);
   z-index: 1050;
   display: flex;
   align-items: center;
@@ -2224,10 +1815,10 @@
   padding: 1.5rem;
 }
 
-.glowe-modal-card {
+.glowe-editorial-modal {
   background-color: var(--glowe-porcelain);
-  border-radius: 12px;
-  max-width: 900px;
+  border-radius: 4px;
+  max-width: 920px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
@@ -2238,100 +1829,8 @@
   border: 1px solid var(--glowe-border);
 }
 
-.glowe-modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.25rem;
-  background: var(--glowe-white);
-  border: 1px solid var(--glowe-border);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 1.25rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  color: var(--glowe-ink);
-}
-
-.glowe-modal-img-col {
-  background-color: #EFE8E1;
-  position: relative;
-}
-
-.glowe-modal-img {
-  width: 100%;
-  height: 100%;
-  min-height: 420px;
-  object-fit: cover;
-  display: block;
-}
-
-.glowe-modal-info-col {
-  padding: 2.75rem 2.25rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.glowe-modal-category {
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--glowe-olive);
-  font-weight: 700;
-  margin-bottom: 0.35rem;
-}
-
-.glowe-modal-title {
-  font-family: var(--glowe-font-serif);
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--glowe-ink);
-  line-height: 1.15;
-  margin-bottom: 0.75rem;
-}
-
-.glowe-modal-price {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--glowe-terracotta);
-  margin-bottom: 1.25rem;
-}
-
-.glowe-modal-desc {
-  font-size: 0.9rem;
-  color: var(--glowe-ink-muted);
-  line-height: 1.65;
-  margin-bottom: 1.5rem;
-}
-
-.glowe-modal-bullets {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--glowe-ink);
-}
-
-.glowe-modal-bullets li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.glowe-modal-bullets li::before {
-  content: '•';
-  color: var(--glowe-terracotta);
-  font-weight: bold;
-}
-
 /* ============================================================================
-   13. GALLERY ROW COMPACT PREVIEW (GlowePreview.jsx)
+   12. CARD PREVIEW FOR SHOWCASE GALLERY (GlowePreview.jsx)
    ============================================================================ */
 .glowe-card-preview-root {
   background-color: var(--glowe-porcelain);
@@ -2345,314 +1844,320 @@
   font-family: var(--glowe-font-sans);
 }
 
-.preview-top-glowe-bar {
+.preview-glowe-masthead-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.65rem 1rem;
   border-bottom: 1px solid var(--glowe-border);
-  background-color: var(--glowe-blush-soft);
+  background-color: var(--glowe-porcelain-warm);
 }
 
-.preview-glowe-wordmark {
+.preview-masthead-title {
   font-family: var(--glowe-font-serif);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
 }
 
-.preview-glowe-nav {
-  display: flex;
-  gap: 0.75rem;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--glowe-ink-muted);
-}
-
-.preview-glowe-bag {
-  background-color: var(--glowe-white);
-  border: 1px solid var(--glowe-border);
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
-  font-size: 0.62rem;
-  font-weight: 600;
-  color: var(--glowe-terracotta);
-}
-
-.preview-glowe-hero-grid {
+.preview-canvas-overlap {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   flex-grow: 1;
   overflow: hidden;
+  background-color: #EFE9DF;
+  position: relative;
 }
 
-.preview-glowe-copy {
+.preview-canvas-copy {
   padding: 1.25rem 1rem 1rem 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 2;
 }
 
-.preview-glowe-tag {
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--glowe-olive);
-  font-weight: 700;
-  margin-bottom: 0.35rem;
-}
-
-.preview-glowe-title {
+.preview-canvas-headline {
   font-family: var(--glowe-font-serif);
-  font-size: 1.35rem;
-  line-height: 1.1;
+  font-size: 1.45rem;
+  line-height: 1.05;
   font-weight: 600;
   margin-bottom: 0.45rem;
 }
 
-.preview-glowe-desc {
-  font-size: 0.68rem;
-  color: var(--glowe-ink-muted);
-  line-height: 1.45;
-  margin-bottom: 0.75rem;
-}
-
-.preview-glowe-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.preview-glowe-pill {
-  background-color: var(--glowe-ink);
-  color: var(--glowe-porcelain);
-  font-size: 0.62rem;
-  font-weight: 600;
-  padding: 0.35rem 0.7rem;
-  border-radius: 3px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.preview-glowe-price {
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--glowe-terracotta);
-}
-
-.preview-glowe-thumb {
+.preview-canvas-thumb {
   position: relative;
   overflow: hidden;
-  background-color: #EAE1D8;
 }
 
-.preview-glowe-img {
+.preview-canvas-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-.preview-bottom-glowe-strip {
+.preview-bottom-editorial-strip {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.4rem 1rem;
+  padding: 0.45rem 1rem;
   border-top: 1px solid var(--glowe-border);
+  font-family: var(--glowe-font-mono);
   font-size: 0.58rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--glowe-ink-subtle);
+  color: var(--glowe-olive);
   background-color: var(--glowe-white);
 }
 
 /* ============================================================================
-   14. RESPONSIVE MEDIA QUERIES (TABLET & MOBILE)
+   13. VERHOST VIEWER CONTAINER RESPONSIVE OVERRIDES (Tablet 768px & Mobile 390px)
    ============================================================================ */
-@media (max-width: 1024px) {
-  .glowe-hero-grid {
-    grid-template-columns: 1fr 1.2fr;
-    gap: 2rem;
-  }
-  .glowe-hero-vertical-index {
-    display: none;
-  }
-  .glowe-asym-product-layout {
-    grid-template-columns: 1fr 1fr;
-  }
-  .glowe-flagship-card {
-    grid-row: auto;
-    grid-column: span 2;
-  }
-  .glowe-tiles-grid,
-  .glowe-ingredient-grid,
-  .glowe-timeline-track {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .glowe-timeline-track::before {
-    display: none;
-  }
-  .glowe-story-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .glowe-footer-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .glowe-header-inner {
-    padding: 0.85rem 1.25rem;
-  }
-  .glowe-nav-links,
-  .glowe-search-bar {
-    display: none;
-  }
-  .glowe-mobile-toggle {
-    display: block;
-  }
-  .glowe-hero-section {
-    padding: 2rem 1.25rem 3rem;
-  }
-  .glowe-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .glowe-hero-headline {
-    font-size: 2.5rem;
-  }
-  .glowe-concerns-grid,
-  .glowe-routines-grid {
-    grid-template-columns: 1fr;
-  }
-  .glowe-asym-product-layout {
-    grid-template-columns: 1fr;
-  }
-  .glowe-flagship-card {
-    grid-column: span 1;
-  }
-  .glowe-texture-grid {
-    grid-template-columns: 1fr;
-  }
-  .glowe-newsletter-form {
-    flex-direction: column;
-  }
-  .glowe-modal-card {
-    grid-template-columns: 1fr;
-    max-height: 85vh;
-  }
-  .glowe-modal-img {
-    min-height: 240px;
-    height: 240px;
-  }
-}
-
-/* ============================================================================
-   15. VERHOST VIEWER CONTAINER RESPONSIVE OVERRIDES (Tablet 768px & Mobile 390px)
-   ============================================================================ */
-.viewer-container-frame[style*="390px"] .glowe-hero-vertical-index,
-.viewer-container-frame[style*="768px"] .glowe-hero-vertical-index {
-  display: none !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-top-announcement {
-  flex-direction: column !important;
-  gap: 0.35rem !important;
-  text-align: center !important;
-  font-size: 0.62rem !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-announcement-pills {
-  flex-direction: column !important;
-  gap: 0.25rem !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-nav-links,
-.viewer-container-frame[style*="390px"] .glowe-search-bar {
-  display: none !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-mobile-toggle {
-  display: block !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-hero-section {
-  padding: 2rem 1.25rem 3rem !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-hero-grid,
-.viewer-container-frame[style*="768px"] .glowe-hero-grid {
-  grid-template-columns: 1fr !important;
-  gap: 2rem !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-hero-headline {
-  font-size: 2.35rem !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-hero-ctas {
-  flex-direction: column !important;
+.viewer-container-frame[style*="390px"] .glowe-store-root {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
   width: 100% !important;
 }
 
-.viewer-container-frame[style*="390px"] .glowe-btn-primary,
-.viewer-container-frame[style*="390px"] .glowe-btn-secondary {
+.viewer-container-frame[style*="390px"] .glowe-announcement-wire,
+.viewer-container-frame[style*="390px"] .glowe-masthead-meta-left,
+.viewer-container-frame[style*="390px"] .glowe-canvas-edge-index,
+.viewer-container-frame[style*="768px"] .glowe-canvas-edge-index {
+  display: none !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-masthead-main {
+  grid-template-columns: auto 1fr auto !important;
+  padding: 0.85rem 1rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-masthead-logo {
+  font-size: 1.75rem !important;
+  letter-spacing: 0.16em !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-masthead-subline {
+  font-size: 0.52rem !important;
+  letter-spacing: 0.18em !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-category-index-bar {
+  padding: 0.45rem 1rem !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  width: 100% !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-category-index-bar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-index-links {
+  gap: 1.15rem !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  white-space: nowrap !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-index-cta-pill {
+  display: none !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-campaign-canvas-hero {
+  padding: 1rem 1rem 2rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-canvas-frame {
+  padding: 1.5rem 1rem 2rem !important;
+  min-height: auto !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-canvas-hero-photo-wrapper {
+  position: static !important;
+  width: 100% !important;
+  height: 220px !important;
+  margin: 1.25rem 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-canvas-typography-stage {
+  padding-left: 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-hero-colossal-title {
+  font-size: 2.2rem !important;
+  line-height: 1.0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-canvas-annotation {
+  position: static !important;
+  margin-top: 0.5rem !important;
+  width: 100% !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-canvas-bottom-bar {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1rem !important;
+  padding-left: 0 !important;
+  margin-top: 2rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-concern-ticker-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  padding: 0.85rem 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-ticker-track {
+  padding: 0 1rem !important;
+  gap: 1.25rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-ticker-label {
+  font-size: 0.85rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-wall-top-bar {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.4rem !important;
+  padding: 0 1rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-product-wall-section {
+  padding: 2.5rem 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-wall-mosaic-grid,
+.viewer-container-frame[style*="390px"] .glowe-rail-grid,
+.viewer-container-frame[style*="390px"] .glowe-explorer-stage-layout,
+.viewer-container-frame[style*="390px"] .glowe-builder-rail-layout,
+.viewer-container-frame[style*="390px"] .glowe-builder-tiles-2x2,
+.viewer-container-frame[style*="390px"] .glowe-builder-pacing-grid,
+.viewer-container-frame[style*="390px"] .glowe-vertical-timeline-stack,
+.viewer-container-frame[style*="390px"] .glowe-texture-mosaic,
+.viewer-container-frame[style*="390px"] .glowe-story-editorial-grid,
+.viewer-container-frame[style*="390px"] .glowe-footer-inner-colophon {
+  grid-template-columns: 1fr !important;
+  padding: 0 1rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-ingredient-explorer-section {
+  padding: 3rem 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-builder-section {
+  padding: 3rem 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-circadian-section {
+  padding: 3rem 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-textures-section {
+  padding: 3rem 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-story-section {
+  padding: 3rem 0 !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-footer-colophon {
+  padding: 3rem 0 1.5rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-wall-secondary-card {
+  grid-template-columns: 1fr !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-vertical-timeline-stack::before {
+  display: none !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-editorial-drawer {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-editorial-modal {
+  grid-template-columns: 1fr !important;
+  margin: 1rem !important;
+  max-height: 85vh !important;
+}
+
+/* Tablet Overrides */
+.viewer-container-frame[style*="768px"] .glowe-store-root {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+.viewer-container-frame[style*="768px"] .glowe-category-index-bar {
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+
+.viewer-container-frame[style*="768px"] .glowe-wall-mosaic-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.viewer-container-frame[style*="768px"] .glowe-explorer-stage-layout {
+  grid-template-columns: 1fr !important;
+}
+
+.viewer-container-frame[style*="768px"] .glowe-vertical-timeline-stack {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.viewer-container-frame[style*="768px"] .glowe-story-editorial-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-circadian-top {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 1.25rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-circadian-toggle {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-circadian-btn {
+  text-align: center !important;
+  padding: 0.5rem 0.5rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-wall-rail-header,
+.viewer-container-frame[style*="390px"] .glowe-suite-top-bar {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.75rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-progress-nav-bar {
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+  align-items: stretch !important;
+}
+
+.viewer-container-frame[style*="390px"] .glowe-progress-nav-bar button {
   width: 100% !important;
   justify-content: center !important;
 }
 
-.viewer-container-frame[style*="390px"] .glowe-hero-metrics {
+.viewer-container-frame[style*="390px"] .glowe-newsletter-box {
   flex-direction: column !important;
-  gap: 1rem !important;
+  width: 100% !important;
 }
 
-.viewer-container-frame[style*="390px"] .glowe-ingredient-pin {
-  position: static !important;
-  margin-top: 0.5rem !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-concerns-grid,
-.viewer-container-frame[style*="390px"] .glowe-routines-grid,
-.viewer-container-frame[style*="390px"] .glowe-tiles-grid,
-.viewer-container-frame[style*="390px"] .glowe-asym-product-layout,
-.viewer-container-frame[style*="390px"] .glowe-ingredient-grid,
-.viewer-container-frame[style*="390px"] .glowe-timeline-track,
-.viewer-container-frame[style*="390px"] .glowe-texture-grid,
-.viewer-container-frame[style*="390px"] .glowe-story-grid,
-.viewer-container-frame[style*="390px"] .glowe-footer-inner {
-  grid-template-columns: 1fr !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-timeline-track::before {
-  display: none !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-flagship-card {
-  grid-column: span 1 !important;
-}
-
-.viewer-container-frame[style*="390px"] .glowe-newsletter-form {
-  flex-direction: column !important;
-}
-
-.viewer-container-frame[style*="768px"] .glowe-tiles-grid,
-.viewer-container-frame[style*="768px"] .glowe-ingredient-grid,
-.viewer-container-frame[style*="768px"] .glowe-timeline-track {
-  grid-template-columns: repeat(2, 1fr) !important;
-}
-
-.viewer-container-frame[style*="768px"] .glowe-asym-product-layout {
-  grid-template-columns: 1fr 1fr !important;
-}
-
-.viewer-container-frame[style*="768px"] .glowe-flagship-card {
-  grid-column: span 2 !important;
-  grid-row: auto !important;
-}
-
-.viewer-container-frame[style*="768px"] .glowe-story-grid {
-  grid-template-columns: 1fr !important;
+.viewer-container-frame[style*="390px"] .glowe-newsletter-input,
+.viewer-container-frame[style*="390px"] .glowe-newsletter-btn {
+  width: 100% !important;
 }

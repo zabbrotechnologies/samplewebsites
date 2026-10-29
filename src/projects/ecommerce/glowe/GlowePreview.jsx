@@ -4,48 +4,58 @@ import './glowe.css';
 export default function GlowePreview({ isExpanded = false }) {
   return (
     <div className={`glowe-card-preview-root ${isExpanded ? 'is-expanded-card' : 'is-compact-card'}`}>
-      {/* Top Header Strip */}
-      <div className="preview-top-glowe-bar">
-        <span className="preview-glowe-wordmark">GLOWÉ</span>
-        <div className="preview-glowe-nav">
-          <span>RITUALS</span>
-          <span>BOTANICALS</span>
-          <span>FINDER</span>
-        </div>
-        <span className="preview-glowe-bag">Bag (1 • $68)</span>
+      {/* Top Editorial Masthead Bar */}
+      <div className="preview-glowe-masthead-bar">
+        <span style={{ fontFamily: 'var(--glowe-font-mono)', fontSize: '0.6rem', letterSpacing: '0.12em', color: 'var(--glowe-olive)' }}>
+          VOL. 04 / LAB
+        </span>
+        <span className="preview-masthead-title">GLOWÉ</span>
+        <span style={{ fontFamily: 'var(--glowe-font-mono)', fontSize: '0.6rem', letterSpacing: '0.08em', color: 'var(--glowe-terracotta)' }}>
+          BAG (1)
+        </span>
       </div>
 
-      {/* Hero Body Grid */}
-      <div className="preview-glowe-hero-grid">
-        <div className="preview-glowe-copy">
-          <span className="preview-glowe-tag">BOTANICAL SCIENCE / 2026</span>
-          <h4 className="preview-glowe-title">
+      {/* Art-Directed Campaign Overlap Canvas */}
+      <div className="preview-canvas-overlap">
+        <div className="preview-canvas-copy">
+          <span style={{ fontFamily: 'var(--glowe-font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', color: 'var(--glowe-terracotta)', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+            ● Botanical Formulation
+          </span>
+          <h4 className="preview-canvas-headline">
             Pure Care.<br />
-            Real Results.
+            <span style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--glowe-terracotta)' }}>Real Results.</span>
           </h4>
-          <p className="preview-glowe-desc">
-            Ceramide barrier repair and bio-compatible botanical actives.
+          <p style={{ fontSize: '0.68rem', lineHeight: 1.35, color: '#5C564E', margin: '0.25rem 0 0.65rem' }}>
+            Cold-fermented multi-weight hyaluronic acid and biomimetic ceramides.
           </p>
-          <div className="preview-glowe-actions">
-            <span className="preview-glowe-pill">Explore Ritual ↗</span>
-            <span className="preview-glowe-price">$68 USD</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ backgroundColor: 'var(--glowe-ink)', color: '#fff', fontSize: '0.58rem', fontWeight: 600, padding: '0.3rem 0.65rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+              Explore Ritual &rarr;
+            </span>
+            <span style={{ fontFamily: 'var(--glowe-font-mono)', fontSize: '0.68rem', fontWeight: 600, color: 'var(--glowe-terracotta)' }}>
+              $68
+            </span>
           </div>
         </div>
 
-        <div className="preview-glowe-thumb">
+        <div className="preview-canvas-thumb">
           <img
             src="/projects/glowe/hero-skincare.jpg"
             alt="GLOWÉ botanical skincare"
-            className="preview-glowe-img"
+            className="preview-canvas-img"
           />
+          <div style={{ position: 'absolute', bottom: '0.5rem', right: '0.5rem', background: 'rgba(247, 243, 237, 0.92)', padding: '0.2rem 0.4rem', border: '1px solid rgba(0,0,0,0.06)', fontFamily: 'var(--glowe-font-mono)', fontSize: '0.5rem', letterSpacing: '0.06em' }}>
+            [01] CERAMIDE NP
+          </div>
         </div>
       </div>
 
-      {/* Bottom Features Strip */}
-      <div className="preview-bottom-glowe-strip">
-        <span>CERAMIDE COMPLEX</span>
-        <span>CLEAN FORMULATIONS</span>
-        <span>SKIN RITUAL FINDER</span>
+      {/* Horizontal Editorial Strip */}
+      <div className="preview-bottom-editorial-strip">
+        <span>01 HYDRATION</span>
+        <span>02 BARRIER</span>
+        <span>03 TONE</span>
+        <span>04 CLEANSING</span>
       </div>
     </div>
   );
