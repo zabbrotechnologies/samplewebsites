@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ProjectMockup from './ProjectMockup';
 import LumoraLivingStore from '../projects/ecommerce/lumora-living/LumoraLivingStore';
+import ChronixStore from '../projects/ecommerce/chronix/ChronixStore';
+import GloweStore from '../projects/ecommerce/glowe/GloweStore';
 
 export default function ProjectViewer({ project, projects, onClose, onNavigateProject }) {
   const [viewportMode, setViewportMode] = useState('desktop'); // desktop | tablet | mobile
@@ -187,6 +189,44 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
                 <div className="prototype-specs-drawer lumora-specs-drawer">
                   <div className="spec-item">
                     <span className="spec-label">CLIENT / PRACTICE</span>
+                    <span className="spec-val">{project.client}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">YEAR</span>
+                    <span className="spec-val">{project.year}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">DELIVERABLES</span>
+                    <span className="spec-val">{project.deliverables?.join(', ')}</span>
+                  </div>
+                </div>
+              </div>
+            ) : project.id === 'chronix' ? (
+              /* CHRONIX: Full Interactive Watch Website Experience */
+              <div className="viewer-store-scroll-container">
+                <ChronixStore />
+                <div className="prototype-specs-drawer chronix-specs-drawer">
+                  <div className="spec-item">
+                    <span className="spec-label">CLIENT / HOROLOGY</span>
+                    <span className="spec-val">{project.client}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">YEAR</span>
+                    <span className="spec-val">{project.year}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">DELIVERABLES</span>
+                    <span className="spec-val">{project.deliverables?.join(', ')}</span>
+                  </div>
+                </div>
+              </div>
+            ) : project.id === 'glowe' ? (
+              /* GLOWÉ: Full Interactive Botanical Skincare Website Experience */
+              <div className="viewer-store-scroll-container">
+                <GloweStore />
+                <div className="prototype-specs-drawer glowe-specs-drawer">
+                  <div className="spec-item">
+                    <span className="spec-label">CLIENT / BOTANICAL LAB</span>
                     <span className="spec-val">{project.client}</span>
                   </div>
                   <div className="spec-item">
