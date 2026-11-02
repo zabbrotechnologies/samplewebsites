@@ -17,6 +17,40 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const isPushedRef = useRef(false);
 
+  // Handle browser Back / Forward navigation (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      if (selectedProject) {
+        // User pressed browser Back button while project was open:
+        // Close modal smoothly and stay on the showcase homepage!
+        isPushedRef.current = false;
+        setSelectedProject(null);
+      } else if (window.location.hash.startsWith('#project-')) {
+        // User navigated forward to open project
+        const hashId = window.location.hash.replace('#project-', '');
+        const matching = projects.find((p) => p.id === hashId);
+        if (matching) {
+          isPushedRef.current = true;
+          setSelectedProject(matching);
+        }
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [selectedProject]);
+
+  // Initial load check for hash (e.g. reload or bookmark)
+  useEffect(() => {
+    if (window.location.hash.startsWith('#project-')) {
+      const hashId = window.location.hash.replace('#project-', '');
+      const matching = projects.find((p) => p.id === hashId);
+      if (matching) {
+        setSelectedProject(matching);
+      }
+    }
+  }, []);
+
   // Check for standalone view in query parameters (?view=...)
   const searchParams = new URLSearchParams(window.location.search);
   const standaloneId = searchParams.get('view');
@@ -58,40 +92,6 @@ export default function App() {
       );
     }
   }
-
-  // Handle browser Back / Forward navigation (popstate)
-  useEffect(() => {
-    const handlePopState = () => {
-      if (selectedProject) {
-        // User pressed browser Back button while project was open:
-        // Close modal smoothly and stay on the showcase homepage!
-        isPushedRef.current = false;
-        setSelectedProject(null);
-      } else if (window.location.hash.startsWith('#project-')) {
-        // User navigated forward to open project
-        const hashId = window.location.hash.replace('#project-', '');
-        const matching = projects.find((p) => p.id === hashId);
-        if (matching) {
-          isPushedRef.current = true;
-          setSelectedProject(matching);
-        }
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, [selectedProject]);
-
-  // Initial load check for hash (e.g. reload or bookmark)
-  useEffect(() => {
-    if (window.location.hash.startsWith('#project-')) {
-      const hashId = window.location.hash.replace('#project-', '');
-      const matching = projects.find((p) => p.id === hashId);
-      if (matching) {
-        setSelectedProject(matching);
-      }
-    }
-  }, []);
 
   const handleSelectProject = (project) => {
     setSelectedProject(project);

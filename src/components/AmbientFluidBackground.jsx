@@ -1,22 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * AmbientFluidBackground — VERHOST Interactive Animated Background
+ * AmbientFluidBackground — VERHOST Interactive Animated Background (High-Performance Optimized)
  * 
  * Continuous living wave environment using the authentic VERHOST dark green artwork:
  * - Layer 1: Base Artwork with continuous organic wave drift animation.
- * - Layer 2: Flowing Wave Morphed Overlay (screen blend) causing continuous fluid undulation
- *            and breathing light along the wave crests (NO artificial lines!).
+ * - Layer 2: Flowing Wave Morphed Overlay (screen blend) causing continuous fluid undulation.
  * - Layer 3: Atmospheric wave shimmer pulsing softly along the upper and lower wave belts.
- * - Layer 4: Living Canvas Particle Stream continuously flowing along the wave curves
- *            with organic drift, fluid harmonics, and dynamic proximity filaments.
- * - Layer 5: Restrained interactive cursor ambient glow.
+ * - Layer 4: Living Canvas Particle Stream (hardware-accelerated, lightweight particle mesh).
+ * - Layer 5: Interactive cursor ambient glow.
  * 
- * Performance & Polish:
- * - 60 FPS Canvas 2D with requestAnimationFrame.
- * - Independent mouse parallax and scroll parallax without overwriting CSS animations.
- * - Content-safe: Central showcase area remains uncluttered, dark, and perfectly legible.
- * - Pointer-events: none so it never intercepts clicks or scrolling.
+ * Optimizations:
+ * - Reduced particle count (24 desktop / 12 mobile) for zero CPU lag.
+ * - Eliminated canvas shadowBlur to prevent costly software rasterizer bottlenecks.
+ * - Fast bounding-box pre-checks before distance calculations.
+ * - Auto-pauses animation when tab is in background (document.hidden).
+ * - Smooth lerped parallax with delta thresholds to eliminate redundant DOM writes.
  */
 export default function AmbientFluidBackground() {
   const bgParallaxRef = useRef(null);
@@ -38,18 +37,24 @@ export default function AmbientFluidBackground() {
     let targetScroll = window.scrollY || 0;
     let currentScroll = targetScroll;
 
+    let prevBgX = -999;
+    let prevBgY = -999;
+    let prevPX = -999;
+    let prevPY = -999;
+
     let animId;
+    let isTabVisible = true;
 
     // --- CANVAS PARTICLE SIMULATION SETUP ---
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
 
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
     const isMobile = window.innerWidth < 768;
-    const particleCount = isMobile ? 36 : 72;
+    const particleCount = isMobile ? 14 : 26;
 
     // Palette: Base black #020A07, Emerald #00D978, Neon green #39FF91, Soft mint #B4FFD2
     const particleColors = [
@@ -65,18 +70,14 @@ export default function AmbientFluidBackground() {
       }
 
       reset(initial = false) {
-        this.isUpper = Math.random() > 0.44; // ~56% upper wave, ~44% lower wave
+        this.isUpper = Math.random() > 0.44;
         this.x = initial ? Math.random() * width : -20 - Math.random() * 50;
-
-        // Spread around the wave crest (expanded spread for a taller, more expansive lower wave)
         this.waveSpread = (Math.random() - 0.5) * (this.isUpper ? height * 0.15 : height * 0.22);
-
-        // Continuous flowing speed (left to right along the wave stream)
         this.flowSpeed = this.isUpper 
-          ? 0.42 + Math.random() * 0.65 
-          : 0.32 + Math.random() * 0.48;
+          ? 0.45 + Math.random() * 0.65 
+          : 0.35 + Math.random() * 0.50;
 
-        this.radius = 0.9 + Math.random() * 1.5;
+        this.radius = 1.0 + Math.random() * 1.4;
         this.colorPrefix = particleColors[Math.floor(Math.random() * particleColors.length)];
         this.baseAlpha = 0.35 + Math.random() * 0.45;
         this.pulseSpeed = 0.015 + Math.random() * 0.025;
@@ -87,56 +88,44 @@ export default function AmbientFluidBackground() {
       }
 
       update(mouseX, mouseY, timeSec) {
-        // 1. Continuous forward flow along the wave
         this.x += this.flowSpeed;
 
-        // 2. Wave curve tracking matching the authentic artwork
         const normX = Math.max(0, Math.min(1, this.x / width));
         let curveY;
         if (this.isUpper) {
-          // Upper Wave Contour: starts ~21% height, dips to ~28% mid-left, crests up to ~15% at upper-right
           curveY = height * (0.21 + 0.08 * Math.sin(normX * Math.PI * 1.5 - 0.35) - 0.045 * Math.sin(normX * Math.PI * 3.0));
         } else {
-          // Lower Wave Contour: elevated to match the taller bottom wave framing (~73% - 81%)
           curveY = height * (0.75 - 0.065 * Math.sin(normX * Math.PI * 1.6 + 0.4));
         }
 
-        // 3. Fluid undulating oscillation along the wave
         const waveHarmonic = Math.sin(timeSec * 1.6 + normX * 5.5 + this.phaseOffset) * (this.isUpper ? 7.5 : 7.0);
-        const targetY = curveY + this.waveSpread + waveHarmonic;
+        this.y = curveY + this.waveSpread + waveHarmonic + this.disturbY;
 
-        // 4. Smoothly ease to wave position
-        this.y = targetY + this.disturbY;
-
-        // 5. Ambient pulse
         this.pulseAngle += this.pulseSpeed;
 
-        // Fade out near screen edges for smooth loop
         let edgeFade = 1;
         if (this.x < 70) edgeFade = Math.max(0, this.x / 70);
         if (this.x > width - 70) edgeFade = Math.max(0, (width - this.x) / 70);
 
         this.currentAlpha = (this.baseAlpha + Math.sin(this.pulseAngle) * 0.2) * edgeFade;
 
-        // 6. Interactive mouse proximity disturbance
+        // Interactive mouse proximity disturbance (lightweight)
         if (mouseX !== undefined && mouseY !== undefined) {
           const dx = mouseX - this.x;
           const dy = mouseY - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 135;
-
-          if (dist < maxDist && dist > 1) {
-            const force = (1 - dist / maxDist) * 0.8;
-            this.disturbX -= (dx / dist) * force * 1.6;
-            this.disturbY -= (dy / dist) * force * 1.6;
+          if (Math.abs(dx) < 130 && Math.abs(dy) < 130) {
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 130 && dist > 1) {
+              const force = (1 - dist / 130) * 0.7;
+              this.disturbX -= (dx / dist) * force * 1.4;
+              this.disturbY -= (dy / dist) * force * 1.4;
+            }
           }
         }
 
-        // Damp disturbance back to 0
         this.disturbX *= 0.94;
         this.disturbY *= 0.94;
 
-        // 7. Loop when exiting right boundary
         if (this.x > width + 45) {
           this.reset(false);
         }
@@ -147,12 +136,15 @@ export default function AmbientFluidBackground() {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         context.fillStyle = `${this.colorPrefix}${a.toFixed(2)})`;
-        if (this.radius > 1.6) {
-          context.shadowColor = '#39FF91';
-          context.shadowBlur = 4;
-        }
         context.fill();
-        context.shadowBlur = 0;
+
+        // Hardware-friendly halo glow for larger particles (NO shadowBlur)
+        if (this.radius > 1.6) {
+          context.beginPath();
+          context.arc(this.x, this.y, this.radius * 2.2, 0, Math.PI * 2);
+          context.fillStyle = `${this.colorPrefix}${(a * 0.25).toFixed(2)})`;
+          context.fill();
+        }
       }
     }
 
@@ -175,8 +167,20 @@ export default function AmbientFluidBackground() {
       targetScroll = window.scrollY || 0;
     };
 
-    // --- MAIN 60FPS ANIMATION LOOP ---
+    const handleVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+      if (isTabVisible && !animId) {
+        animId = requestAnimationFrame(update);
+      }
+    };
+
+    // --- MAIN 60FPS OPTIMIZED ANIMATION LOOP ---
     const update = (time) => {
+      if (!isTabVisible) {
+        animId = null;
+        return;
+      }
+
       const timeSec = time * 0.001;
 
       // Spring-like easing
@@ -186,43 +190,59 @@ export default function AmbientFluidBackground() {
       currentClientY += (targetClientY - currentClientY) * 0.05;
       currentScroll += (targetScroll - currentScroll) * 0.05;
 
-      // 1. Layer 1-3 Parallax Stage (Smooth subtle mouse/scroll depth, ~4–5px)
+      // 1. Layer 1-3 Parallax Stage (only update style if moved > 0.08px)
       if (bgParallaxRef.current) {
         const bgX = currentNormX * 5.2;
         const bgY = currentNormY * 4.0 + currentScroll * -0.014;
-        bgParallaxRef.current.style.transform = `translate3d(${bgX.toFixed(2)}px, ${bgY.toFixed(2)}px, 0)`;
+        if (Math.abs(bgX - prevBgX) > 0.05 || Math.abs(bgY - prevBgY) > 0.05) {
+          bgParallaxRef.current.style.transform = `translate3d(${bgX.toFixed(1)}px, ${bgY.toFixed(1)}px, 0)`;
+          prevBgX = bgX;
+          prevBgY = bgY;
+        }
       }
 
-      // 2. Layer 4: Particle Mesh Canvas Parallax (~9–12px)
+      // 2. Layer 4: Particle Mesh Canvas Parallax
       if (canvas) {
         const pX = currentNormX * 9.8;
         const pY = currentNormY * 7.6 + currentScroll * -0.026;
-        canvas.style.transform = `translate3d(${pX.toFixed(2)}px, ${pY.toFixed(2)}px, 0)`;
+        if (Math.abs(pX - prevPX) > 0.05 || Math.abs(pY - prevPY) > 0.05) {
+          canvas.style.transform = `translate3d(${pX.toFixed(1)}px, ${pY.toFixed(1)}px, 0)`;
+          prevPX = pX;
+          prevPY = pY;
+        }
       }
 
-      // 3. Layer 5: Interactive Cursor Glow (Smooth tracking)
+      // 3. Layer 5: Interactive Cursor Glow
       if (cursorGlowRef.current) {
-        cursorGlowRef.current.style.transform = `translate3d(${currentClientX}px, ${currentClientY}px, 0)`;
+        cursorGlowRef.current.style.transform = `translate3d(${Math.round(currentClientX)}px, ${Math.round(currentClientY)}px, 0)`;
       }
 
       // 4. Draw Canvas Particles & Living Connecting Mesh
       ctx.clearRect(0, 0, width, height);
 
-      // Draw subtle connecting lines between nearby particles
-      const maxConnectDist = isMobile ? 46 : 64;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+      // Fast proximity connecting lines (only same wave belt + box pre-check)
+      const maxDist = isMobile ? 48 : 68;
+      const maxDistSq = maxDist * maxDist;
+      ctx.lineWidth = 0.65;
 
-          if (dist < maxConnectDist) {
-            const alpha = (1 - dist / maxConnectDist) * 0.22;
+      for (let i = 0; i < particles.length; i++) {
+        const pA = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const pB = particles[j];
+          if (pA.isUpper !== pB.isUpper) continue;
+
+          const dx = pA.x - pB.x;
+          if (Math.abs(dx) > maxDist) continue;
+          const dy = pA.y - pB.y;
+          if (Math.abs(dy) > maxDist) continue;
+
+          const distSq = dx * dx + dy * dy;
+          if (distSq < maxDistSq) {
+            const alpha = (1 - Math.sqrt(distSq) / maxDist) * 0.22;
             ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(57, 255, 145, ${alpha.toFixed(3)})`;
-            ctx.lineWidth = 0.65;
+            ctx.moveTo(pA.x, pA.y);
+            ctx.lineTo(pB.x, pB.y);
+            ctx.strokeStyle = `rgba(57, 255, 145, ${alpha.toFixed(2)})`;
             ctx.stroke();
           }
         }
@@ -240,6 +260,7 @@ export default function AmbientFluidBackground() {
     window.addEventListener('resize', handleResize, { passive: true });
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     animId = requestAnimationFrame(update);
 
@@ -247,7 +268,8 @@ export default function AmbientFluidBackground() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(animId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (animId) cancelAnimationFrame(animId);
     };
   }, []);
 

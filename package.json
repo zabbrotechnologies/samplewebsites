@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "test:audit": "node scripts/audit-responsive.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

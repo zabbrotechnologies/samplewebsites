@@ -976,7 +976,7 @@ export default function AtelierStudio() {
                 Dossier Received
               </h3>
               <p style={{ color: 'var(--atelier-graphite-muted)', maxWidth: '540px', margin: '1rem auto 2rem', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                Thank you, <strong>{enquiryData.name}</strong>. Your project dossier has been registered in our studio queue under reference <strong>ATL-REQ-{Math.floor(1000 + Math.random() * 9000)}</strong>. A partner will review your site constraints and initiate direct contact within 48 hours.
+                Thank you, <strong>{enquiryData.name}</strong>. Your project dossier has been registered in our studio queue under reference <strong>ATL-REQ-8421</strong>. A partner will review your site constraints and initiate direct contact within 48 hours.
               </p>
               <div style={{ display: 'inline-block', backgroundColor: 'var(--atelier-paper-light)', border: '1px solid var(--atelier-line)', padding: '1rem 1.5rem', borderRadius: '2px', fontFamily: 'var(--atelier-font-mono)', fontSize: '0.72rem', color: 'var(--atelier-graphite-muted)' }}>
                 VERHOST Architectural Prototype &bull; No live commercial backend connected.

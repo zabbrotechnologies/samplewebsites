@@ -1350,7 +1350,7 @@ export default function GloweStore() {
         </div>
 
         <div className="glowe-colophon-bottom">
-          <span>&copy; {new Date().getFullYear()} GLOWÉ BOTANICAL LABORATOIRE. DEMO PROJECT FOR VERHOST SHOWCASE.</span>
+          <span>&copy; 2026 GLOWÉ BOTANICAL LABORATOIRE. DEMO PROJECT FOR VERHOST SHOWCASE.</span>
           <span>PARIS &bull; KYOTO &bull; DERMATOLOGICAL ARCHIVE</span>
         </div>
       </footer>

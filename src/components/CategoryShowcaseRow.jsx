@@ -8,40 +8,42 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
   const [scaleState, setScaleState] = useState({ scale: 1, height: 'auto' });
 
   useEffect(() => {
-    if (!containerRef.current || !boundsRef.current) return;
+    if (!containerRef.current) return;
 
+    let rafId = null;
     const calculateScale = () => {
-      if (!containerRef.current || !boundsRef.current) return;
-      const containerWidth = containerRef.current.clientWidth;
-      const padding = containerWidth < 768 ? 20 : 40;
-      const availableWidth = Math.max(containerWidth - padding, 260);
-      const BASE_WIDTH = 1200;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!containerRef.current || !boundsRef.current) return;
+        const containerWidth = containerRef.current.clientWidth;
+        const padding = containerWidth < 768 ? 20 : 40;
+        const availableWidth = Math.max(containerWidth - padding, 260);
+        const BASE_WIDTH = 1200;
 
-      if (availableWidth < BASE_WIDTH) {
-        const s = availableWidth / BASE_WIDTH;
-        const unscaledHeight = boundsRef.current.offsetHeight || boundsRef.current.scrollHeight || 480;
-        setScaleState({
-          scale: s,
-          height: `${Math.ceil(unscaledHeight * s)}px`
-        });
-      } else {
-        setScaleState({ scale: 1, height: 'auto' });
-      }
+        if (availableWidth < BASE_WIDTH) {
+          const s = availableWidth / BASE_WIDTH;
+          const unscaledHeight = boundsRef.current.offsetHeight || boundsRef.current.scrollHeight || 480;
+          setScaleState({
+            scale: s,
+            height: `${Math.ceil(unscaledHeight * s)}px`
+          });
+        } else {
+          setScaleState({ scale: 1, height: 'auto' });
+        }
+      });
     };
 
     calculateScale();
     const ro = new ResizeObserver(calculateScale);
     ro.observe(containerRef.current);
-    if (boundsRef.current) {
-      ro.observe(boundsRef.current);
-    }
-    window.addEventListener('resize', calculateScale);
+    window.addEventListener('resize', calculateScale, { passive: true });
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       ro.disconnect();
       window.removeEventListener('resize', calculateScale);
     };
-  }, [projects, activeIndex]);
+  }, []);
 
   if (!projects || projects.length === 0) return null;
 
@@ -62,6 +64,8 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
           src={proj.thumbnailImg} 
           alt={proj.title}
           className="thumbnail-mini-img"
+          loading="lazy"
+          decoding="async"
           onError={(e) => {
             e.currentTarget.style.display = 'none';
           }}
@@ -183,6 +187,7 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
                         src={activeProject.coverImg || activeProject.thumbnailImg} 
                         alt={activeProject.title}
                         className="perspective-cover-full-img"
+                        decoding="async"
                       />
                     ) : (
                       <ProjectMockup project={activeProject} isExpanded={false} />
