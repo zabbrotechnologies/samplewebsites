@@ -44,7 +44,7 @@ export default function AtelierPreview({ isExpanded = false }) {
             alt="ATELIER architecture"
             className="preview-atelier-img"
           />
-          <div style={{ position: 'absolute', bottom: '0.5rem', right: '0.5rem', background: 'rgba(240, 238, 231, 0.95)', padding: '0.2rem 0.45rem', border: '1px solid var(--atelier-line)', fontFamily: 'var(--atelier-font-mono)', fontSize: '0.5rem', letterSpacing: '0.06em', color: 'var(--atelier-blueprint)' }}>
+          <div style={{ position: 'absolute', bottom: '0.5rem', right: '0.5rem', background: 'rgba(244, 242, 246, 0.95)', padding: '0.2rem 0.45rem', border: '1px solid var(--atelier-line)', fontFamily: 'var(--atelier-font-mono)', fontSize: '0.5rem', letterSpacing: '0.06em', color: 'var(--atelier-blueprint)' }}>
             CAD: PLAN 1:100
           </div>
         </div>

@@ -20,16 +20,16 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: '3rem', fontFamily: 'monospace', background: '#FAFAF8', minHeight: '100vh', color: '#111111' }}>
-          <h2 style={{ color: '#E53E3E', marginBottom: '1rem' }}>VERHOST UI Diagnostic Error</h2>
-          <pre style={{ background: '#FFFFFF', border: '1px solid #E6E6E2', padding: '1.5rem', borderRadius: '8px', overflow: 'auto' }}>
+        <div style={{ padding: '3rem', fontFamily: 'monospace', background: '#050907', minHeight: '100vh', color: '#F4F6F3' }}>
+          <h2 style={{ color: '#9BFF9B', marginBottom: '1rem' }}>VERHOST UI Diagnostic Error</h2>
+          <pre style={{ background: '#07140F', border: '1px solid #20392B', color: '#F4F6F3', padding: '1.5rem', borderRadius: '8px', overflow: 'auto' }}>
             {this.state.error?.toString()}
             {'\n'}
             {this.state.error?.stack}
           </pre>
           <button
             onClick={() => window.location.reload()}
-            style={{ marginTop: '1.5rem', padding: '0.75rem 1.5rem', background: '#111111', color: '#FFF', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+            style={{ marginTop: '1.5rem', padding: '0.75rem 1.5rem', background: '#9BFF9B', color: '#050907', fontWeight: 'bold', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
           >
             Reload Application
           </button>

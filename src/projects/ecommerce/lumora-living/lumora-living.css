@@ -1796,24 +1796,66 @@
   }
 
   .hero-headline {
-    font-size: 2.15rem;
+    font-size: clamp(1.75rem, 7vw, 2.15rem);
+    word-break: break-word;
   }
 
   .hero-lead {
     font-size: 0.88rem;
+    line-height: 1.55;
+    word-break: break-word;
+    max-width: 100%;
   }
 
   .hero-photo-container {
-    height: 280px;
+    height: 320px;
   }
 
   .hero-floating-card {
-    display: none;
+    display: flex;
+    left: 0.65rem;
+    right: 0.65rem;
+    bottom: 0.65rem;
+    padding: 0.65rem 0.85rem;
+    gap: 0.75rem;
+  }
+
+  .floating-card-thumb {
+    width: 44px;
+    height: 44px;
+  }
+
+  .floating-card-title {
+    font-size: 0.78rem;
+  }
+
+  .floating-card-price {
+    font-size: 0.75rem;
   }
 
   .hero-pillars {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+
+  .pillar-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.85rem;
+    border-bottom: 1px solid rgba(28, 25, 23, 0.08);
+    padding-bottom: 0.45rem;
+  }
+
+  .pillar-title {
+    font-size: 0.82rem;
+  }
+
+  .pillar-desc {
+    font-size: 0.72rem;
+  }
+
+  .pillar-sub {
+    font-size: 0.68rem;
   }
 
   .hero-cta-group {
@@ -1944,6 +1986,34 @@
   }
 }
 
+/* Extra Small Phones (<= 360px) */
+@media (max-width: 360px) {
+  .hero-pillars {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .hero-headline {
+    font-size: 1.75rem;
+  }
+
+  .hero-photo-container {
+    height: 260px;
+  }
+
+  .hero-floating-card {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 0.65rem;
+  }
+
+  .lumora-header-actions .header-action-btn:first-child {
+    display: none;
+  }
+}
+
 /* Specific styling when contained inside VERHOST viewer viewport modes */
 .viewer-container-frame[style*="390px"] .lumora-nav-links,
 .viewer-container-frame[style*="390px"] .lumora-search-wrapper {
@@ -1956,6 +2026,50 @@
 
 .viewer-container-frame[style*="390px"] .lumora-hero-grid {
   grid-template-columns: 1fr !important;
+}
+
+.viewer-container-frame[style*="390px"] .hero-headline {
+  font-size: clamp(1.75rem, 7vw, 2.15rem) !important;
+  word-break: break-word !important;
+}
+
+.viewer-container-frame[style*="390px"] .hero-lead {
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  word-break: break-word !important;
+  max-width: 100% !important;
+}
+
+.viewer-container-frame[style*="390px"] .hero-pillars {
+  grid-template-columns: 1fr !important;
+  gap: 0.75rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .pillar-item {
+  flex-direction: row !important;
+  align-items: baseline !important;
+  gap: 0.85rem !important;
+  border-bottom: 1px solid rgba(28, 25, 23, 0.08) !important;
+  padding-bottom: 0.45rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .pillar-title {
+  font-size: 0.82rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .pillar-desc {
+  font-size: 0.72rem !important;
+}
+
+.viewer-container-frame[style*="390px"] .hero-cta-group {
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+.viewer-container-frame[style*="390px"] .btn-hero-primary,
+.viewer-container-frame[style*="390px"] .btn-hero-secondary {
+  justify-content: center !important;
+  width: 100% !important;
 }
 
 .viewer-container-frame[style*="390px"] .categories-grid {

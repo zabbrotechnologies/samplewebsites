@@ -4,11 +4,30 @@ import LumoraLivingStore from '../projects/ecommerce/lumora-living/LumoraLivingS
 import ChronixStore from '../projects/ecommerce/chronix/ChronixStore';
 import GloweStore from '../projects/ecommerce/glowe/GloweStore';
 import AtelierStudio from '../projects/business/atelier/AtelierStudio';
+import VerdantSystems from '../projects/business/verdant/VerdantSystems';
 
 export default function ProjectViewer({ project, projects, onClose, onNavigateProject }) {
   const [viewportMode, setViewportMode] = useState('desktop'); // desktop | tablet | mobile
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+
+  // Lock outer document scrolling completely while viewer modal is mounted
+  useEffect(() => {
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.classList.add('verhost-modal-open');
+    document.documentElement.classList.add('verhost-modal-open');
+
+    return () => {
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.classList.remove('verhost-modal-open');
+      document.documentElement.classList.remove('verhost-modal-open');
+    };
+  }, []);
 
   // Keyboard navigation & Escape to close
   useEffect(() => {
@@ -50,9 +69,8 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
   };
 
   const openInNewTab = () => {
-    if (project.demoUrl) {
-      window.open(project.demoUrl, '_blank', 'noopener,noreferrer');
-    }
+    const targetUrl = project.demoUrl || `/?view=${project.id}`;
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
   // Viewport width styling
@@ -130,16 +148,15 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
               →
             </button>
 
-            {project.demoUrl && (
-              <button
-                type="button"
-                className="viewer-action-btn"
-                onClick={openInNewTab}
-                title="Open Live Website in New Tab"
-              >
-                ↗
-              </button>
-            )}
+            <button
+              type="button"
+              className="viewer-action-btn"
+              onClick={openInNewTab}
+              title="Open Live Website in New Tab"
+              aria-label="Open Live Website in New Tab"
+            >
+              ↗
+            </button>
 
             <button
               type="button"
@@ -167,25 +184,9 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
             className="viewer-container-frame"
             style={{ width: getViewportWidth() }}
           >
-            {project.demoUrl ? (
-              <div className="viewer-iframe-wrapper">
-                {!iframeLoaded && (
-                  <div className="viewer-loading-skeleton">
-                    <div className="loading-spinner" />
-                    <span>Loading Live Website Experience...</span>
-                  </div>
-                )}
-                <iframe
-                  src={project.demoUrl}
-                  title={project.title}
-                  className="viewer-live-iframe"
-                  onLoad={() => setIframeLoaded(true)}
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                />
-              </div>
-            ) : project.id === 'lumora-living' ? (
+            {project.id === 'lumora-living' ? (
               /* LUMORA LIVING: Full Interactive Website Experience */
-              <div className="viewer-store-scroll-container">
+              <div key={project.id} className="viewer-store-scroll-container">
                 <LumoraLivingStore />
                 <div className="prototype-specs-drawer lumora-specs-drawer">
                   <div className="spec-item">
@@ -204,7 +205,7 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
               </div>
             ) : project.id === 'chronix' ? (
               /* CHRONIX: Full Interactive Watch Website Experience */
-              <div className="viewer-store-scroll-container">
+              <div key={project.id} className="viewer-store-scroll-container">
                 <ChronixStore />
                 <div className="prototype-specs-drawer chronix-specs-drawer">
                   <div className="spec-item">
@@ -223,7 +224,7 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
               </div>
             ) : project.id === 'glowe' ? (
               /* GLOWÉ: Full Interactive Botanical Skincare Website Experience */
-              <div className="viewer-store-scroll-container">
+              <div key={project.id} className="viewer-store-scroll-container">
                 <GloweStore />
                 <div className="prototype-specs-drawer glowe-specs-drawer">
                   <div className="spec-item">
@@ -242,7 +243,7 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
               </div>
             ) : project.id === 'atelier' ? (
               /* ATELIER: Full Interactive Architecture Studio Website Experience */
-              <div className="viewer-store-scroll-container">
+              <div key={project.id} className="viewer-store-scroll-container">
                 <AtelierStudio />
                 <div className="prototype-specs-drawer atelier-specs-drawer">
                   <div className="spec-item">
@@ -259,9 +260,44 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
                   </div>
                 </div>
               </div>
+            ) : project.id === 'verdant-systems' ? (
+              /* VERDANT SYSTEMS: Full Interactive Climate Technology Website Experience */
+              <div key={project.id} className="viewer-store-scroll-container">
+                <VerdantSystems />
+                <div className="prototype-specs-drawer verdant-specs-drawer">
+                  <div className="spec-item">
+                    <span className="spec-label">CLIENT / ENTERPRISE</span>
+                    <span className="spec-val">{project.client}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">YEAR</span>
+                    <span className="spec-val">{project.year}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">DELIVERABLES</span>
+                    <span className="spec-val">{project.deliverables?.join(', ')}</span>
+                  </div>
+                </div>
+              </div>
+            ) : project.demoUrl ? (
+              <div className="viewer-iframe-wrapper">
+                {!iframeLoaded && (
+                  <div className="viewer-loading-skeleton">
+                    <div className="loading-spinner" />
+                    <span>Loading Live Website Experience...</span>
+                  </div>
+                )}
+                <iframe
+                  src={project.demoUrl}
+                  title={project.title}
+                  className="viewer-live-iframe"
+                  onLoad={() => setIframeLoaded(true)}
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                />
+              </div>
             ) : (
               /* Fallback for projects with prototypes pending live build */
-              <div className="viewer-prototype-wrapper">
+              <div key={project.id} className="viewer-prototype-wrapper">
                 <div className="prototype-status-banner">
                   <span className="pulse-green-dot" />
                   <span>Interactive High-Fidelity Prototype • Live Website Integration Coming Soon</span>

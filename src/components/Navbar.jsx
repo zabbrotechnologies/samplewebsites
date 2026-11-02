@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Navbar() {
+  const [activeTab, setActiveTab] = useState('Work');
+
   const scrollToExplore = () => {
     const el = document.getElementById('works-gallery-start');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleNavClick = (tabName) => {
+    setActiveTab(tabName);
+    scrollToExplore();
   };
 
   return (
@@ -16,26 +23,46 @@ export default function Navbar() {
           <a href="/" className="verhost-logo-text">VERHOST</a>
         </div>
 
-        {/* Center: Understated links */}
+        {/* Center: Clean links with active indicator */}
         <nav className="nav-editorial-links">
-          <a href="#works-gallery-start" className="editorial-link active">WORK</a>
-          <a href="#about" className="editorial-link" onClick={(e) => { e.preventDefault(); scrollToExplore(); }}>ABOUT</a>
-          <a href="#contact" className="editorial-link" onClick={(e) => { e.preventDefault(); scrollToExplore(); }}>CONTACT</a>
+          {['Work', 'About', 'Services', 'Insights', 'Contact'].map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              className={`editorial-link ${activeTab === tab ? 'active' : ''}`}
+              onClick={() => handleNavClick(tab)}
+            >
+              {tab}
+              {activeTab === tab && <span className="active-nav-line" />}
+            </button>
+          ))}
         </nav>
 
-        {/* Right: Start a Project with green accent */}
+        {/* Right: CTA Pill & Circular Menu Icon */}
         <div className="nav-cta-part">
-          <span className="green-accent-dash">—</span>
-          <a 
-            href="#contact" 
-            className="start-project-link"
-            onClick={(e) => {
-              e.preventDefault();
+          <button 
+            type="button"
+            className="start-project-pill-btn"
+            onClick={() => {
               alert('VERHOST Studio Inquiry: Connecting you with our design leads.');
             }}
           >
-            START A PROJECT <span className="cta-arrow">↗</span>
-          </a>
+            <span>START A PROJECT</span>
+            <span className="cta-arrow-icon">↗</span>
+          </button>
+
+          <button 
+            type="button" 
+            className="nav-hamburger-circle-btn" 
+            aria-label="Toggle Menu"
+            onClick={scrollToExplore}
+          >
+            <div className="hamburger-icon-lines">
+              <span />
+              <span />
+              <span />
+            </div>
+          </button>
         </div>
       </div>
     </header>

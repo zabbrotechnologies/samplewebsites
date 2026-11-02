@@ -6,9 +6,24 @@ import ChronixPreview from '../projects/ecommerce/chronix/ChronixPreview';
 import FreshMarketPreview from '../projects/ecommerce/fresh-market/FreshMarketPreview';
 import GlowePreview from '../projects/ecommerce/glowe/GlowePreview';
 import AtelierPreview from '../projects/business/atelier/AtelierPreview';
+import VerdantPreview from '../projects/business/verdant/VerdantPreview';
+import NexoraPreview from '../projects/business/nexora/NexoraPreview';
+import SolvixPreview from '../projects/business/solvix/SolvixPreview';
+import CreativioPreview from '../projects/landing/creativio/CreativioPreview';
+import SynthoraPreview from '../projects/landing/synthora/SynthoraPreview';
+import DevflowPreview from '../projects/landing/devflow/DevflowPreview';
+import SpacenPreview from '../projects/landing/spacen/SpacenPreview';
+import ListitPreview from '../projects/portfolio/listit/ListitPreview';
+import ArchoraPreview from '../projects/portfolio/archora/ArchoraPreview';
+import MarcusVancePreview from '../projects/portfolio/marcus-vance/MarcusVancePreview';
+import NordicTimberPreview from '../projects/portfolio/nordic-timber/NordicTimberPreview';
+import PrismaticPreview from '../projects/creative/prismatic/PrismaticPreview';
+import OffgridPreview from '../projects/creative/offgrid/OffgridPreview';
+import Museum01Preview from '../projects/creative/museum01/Museum01Preview';
+import SonoraPreview from '../projects/creative/sonora/SonoraPreview';
 
 export default function ProjectMockup({ project, isExpanded = false }) {
-  // Delegate E-Commerce projects to their independent modules
+  // Delegate E-Commerce and Business projects to their independent modules
   if (project.id === 'maxywalk') {
     return <MaxywalkPreview isExpanded={isExpanded} />;
   }
@@ -26,6 +41,51 @@ export default function ProjectMockup({ project, isExpanded = false }) {
   }
   if (project.id === 'atelier') {
     return <AtelierPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'verdant-systems') {
+    return <VerdantPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'nexora') {
+    return <NexoraPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'solvix') {
+    return <SolvixPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'creativio') {
+    return <CreativioPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'synthora') {
+    return <SynthoraPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'devflow') {
+    return <DevflowPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'spacen') {
+    return <SpacenPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'listit') {
+    return <ListitPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'archora' || project.id === 'designer-port') {
+    return <ArchoraPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'marcus-vance' || project.id === 'photo-journal') {
+    return <MarcusVancePreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'nordic-timber' || project.id === 'arch-archive') {
+    return <NordicTimberPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'prismatic' || project.id === 'aura-atelier') {
+    return <PrismaticPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'offgrid' || project.id === 'motion-lab') {
+    return <OffgridPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'museum-01' || project.id === 'monolith-ui') {
+    return <Museum01Preview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'sonora') {
+    return <SonoraPreview isExpanded={isExpanded} />;
   }
   if (project.id === 'fresh-market') {
     return <FreshMarketPreview isExpanded={isExpanded} />;

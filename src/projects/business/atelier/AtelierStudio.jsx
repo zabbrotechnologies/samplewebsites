@@ -499,7 +499,7 @@ export default function AtelierStudio() {
                         y={room.y}
                         width={room.w}
                         height={room.h}
-                        fill="rgba(38, 62, 82, 0.05)"
+                        fill="rgba(76, 81, 27, 0.08)"
                         stroke="var(--atelier-blueprint)"
                         strokeWidth="1.2"
                       />

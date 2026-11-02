@@ -1,54 +1,75 @@
 import React from 'react';
+import { projects } from '../data/projects';
 
 export default function Hero() {
-  const handleScrollDown = () => {
-    const el = document.getElementById('works-gallery-start');
+  const scrollToSection = (sectionSlug) => {
+    const el = document.getElementById(`section-${sectionSlug}`) || document.getElementById('works-gallery-start');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  const categories = [
+    { label: 'E-COMMERCE', slug: 'ecommerce' },
+    { label: 'BUSINESS', slug: 'business' },
+    { label: 'LANDING PAGES', slug: 'landing' },
+    { label: 'PORTFOLIO', slug: 'portfolio' },
+    { label: 'CREATIVE', slug: 'creative' },
+    { label: 'AND MORE', slug: 'ecommerce' },
+  ];
+
+  const totalProjectsCount = String(projects.length).padStart(2, '0');
+
   return (
     <section className="verhost-editorial-hero">
       <div className="hero-inner-bounds">
-        {/* Top Eyebrow */}
+        {/* Top Eyebrow Tag */}
         <div className="hero-top-eyebrow">
           <span className="eyebrow-text">DIGITAL WORKS</span>
-          <span className="eyebrow-divider" />
+          <span className="eyebrow-dash">——</span>
         </div>
 
-        {/* Hero Main Content: Left Giant Title, Right Live Experiences Block */}
-        <div className="hero-columns-grid">
-          {/* Left Column */}
-          <div className="hero-title-area">
-            <h1 className="hero-display-heading">
-              <span className="heading-row">WE BUILD</span>
-              <span className="heading-row">DIGITAL EXPERIENCES.</span>
+        {/* 3-Zone Architecture */}
+        <div className="hero-grid-3zone">
+          {/* Zone 1: Monumental Display Headline */}
+          <div className="hero-headline-zone">
+            <h1 className="hero-monumental-heading">
+              <span className="hero-line">TECHNOLOGY</span>
+              <span className="hero-line">SHOULD SOLVE</span>
+              <span className="hero-line hero-line-accent">REAL PROBLEMS.</span>
             </h1>
-            <p className="hero-curated-lead">
-              A curated collection of websites, interfaces and digital experiences created across different industries.
+          </div>
+
+          {/* Zone 2: Curated Description */}
+          <div className="hero-statement-zone">
+            <p className="hero-curated-paragraph">
+              VERHOST combines sovereign software engineering, algorithmic intelligence and refined art direction to build practical digital systems for modern enterprises.
             </p>
           </div>
 
-          {/* Right Column: Live Experiences & Scroll Indicator (Matching reference) */}
-          <div className="hero-experiences-area">
-            <div className="selected-projects-badge">
-              <span className="emerald-bullet">●</span>
-              <span className="badge-caption">SELECTED PROJECTS</span>
+          {/* Zone 3: Categories & Live Stat Counter */}
+          <div className="hero-stat-zone">
+            <div className="hero-category-list">
+              {categories.map((cat, i) => (
+                <button
+                  key={`${cat.slug}-${i}`}
+                  type="button"
+                  className="hero-category-item"
+                  onClick={() => scrollToSection(cat.slug)}
+                >
+                  {cat.label}
+                </button>
+              ))}
             </div>
 
-            <div className="live-counter-unit">
-              <span className="counter-digit">20</span>
-              <div className="counter-captions">
-                <span className="captions-line">PORTFOLIO</span>
-                <span className="captions-line">PROJECTS</span>
+            <div className="hero-stat-divider" />
+
+            <div className="hero-live-counter-block">
+              <span className="hero-counter-number">{totalProjectsCount}</span>
+              <div className="hero-counter-labels">
+                <span>LIVE</span>
+                <span>EXPERIENCES</span>
               </div>
-            </div>
-
-            {/* Scroll Indicator */}
-            <div className="hero-scroll-trigger" onClick={handleScrollDown} role="button" tabIndex={0}>
-              <span className="scroll-circle-icon">↓</span>
-              <span className="scroll-caption">SCROLL TO EXPLORE</span>
             </div>
           </div>
         </div>

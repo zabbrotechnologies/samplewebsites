@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectRow from './ProjectRow';
+import CategoryShowcaseRow from './CategoryShowcaseRow';
 import { SECTIONS } from '../data/projects';
 
 export default function ProjectShowcase({ projects, onSelectProject }) {
@@ -9,11 +9,11 @@ export default function ProjectShowcase({ projects, onSelectProject }) {
   };
 
   return (
-    <div className="verhost-gallery-container">
+    <div className="verhost-editorial-gallery">
       {SECTIONS.map((section) => {
         const sectionProjects = getSectionProjects(section.slug);
         return (
-          <ProjectRow
+          <CategoryShowcaseRow
             key={section.slug}
             section={section}
             projects={sectionProjects}
