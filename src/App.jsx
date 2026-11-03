@@ -131,7 +131,7 @@ export default function App() {
         {/* Editorial Typography Hero */}
         <Hero />
 
-        {/* Main 21-Project Gallery Across 5 Sections */}
+        {/* Main 22-Project Gallery Across 5 Sections */}
         <main id="works-gallery-start">
           <ProjectShowcase
             projects={projects}

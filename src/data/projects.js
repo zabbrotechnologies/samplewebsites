@@ -20,7 +20,7 @@ export const SECTIONS = [
     headingLine2: 'WEBSITES',
     description: 'Professional and strategic websites for modern companies and teams.',
     tags: ['BUSINESS', 'CORPORATE', 'UI/UX'],
-    count: '04 PROJECTS',
+    count: '05 PROJECTS',
   },
   {
     number: '03',
@@ -252,11 +252,36 @@ export const projects = [
       mockupType: 'vivid-gradient'
     }
   },
+  {
+    id: 'new-generation-tuners',
+    number: '09',
+    title: "NEW GENERATION TUNER'S",
+    subtitle: 'Automotive Detailing & Performance Atelier',
+    category: 'BUSINESS',
+    sectionSlug: 'business',
+    year: '2026',
+    client: "New Generation Tuner's",
+    description: "Dindigul's premier automotive performance atelier specializing in precision paint defect correction, 9H+ SiO₂ ceramic coatings, self-healing PPF, and vehicle diagnostics.",
+    deliverables: ['Precision Paint Correction', '9H+ SiO₂ Ceramic Coating', 'Self-Healing PPF', 'Ultrasonic Subsurface Gauging', 'Vehicle Diagnostics'],
+    demoUrl: 'https://newgenerationtuner.vercel.app',
+    featured: true,
+    thumbnailImg: '/covers/new-generation-tuners.jpg',
+    coverImg: '/covers/new-generation-tuners.jpg',
+    theme: {
+      mode: 'dark',
+      bg: '#0A0A0C',
+      accent: '#E11D48',
+      brand: "NEW GENERATION TUNER'S",
+      headline: 'UNCOMPROMISING SURFACE FINISH.',
+      sub: "We do not just wash cars — we engineer optical perfection. Multi-stage paint defect levelling, 9H+ SiO₂ ceramic coatings, and self-healing PPF tailored to your vehicle's physical clear coat.",
+      mockupType: 'automotive'
+    }
+  },
 
   // SECTION 03: LANDING
   {
     id: 'synthora',
-    number: '09',
+    number: '10',
     title: 'SYNTHORA',
     subtitle: 'Neural Synthetics',
     category: 'LANDING',
@@ -281,7 +306,7 @@ export const projects = [
   },
   {
     id: 'creativio',
-    number: '10',
+    number: '11',
     title: 'CREATIVIO',
     subtitle: 'Converting Digital Experiences',
     category: 'LANDING',
@@ -306,7 +331,7 @@ export const projects = [
   },
   {
     id: 'devflow',
-    number: '11',
+    number: '12',
     title: 'DEVFLOW',
     subtitle: 'Design. Develop. Deliver.',
     category: 'LANDING',
@@ -331,7 +356,7 @@ export const projects = [
   },
   {
     id: 'spacen',
-    number: '12',
+    number: '13',
     title: 'SPACEN',
     subtitle: 'Explore Beyond Earth',
     category: 'LANDING',
@@ -358,7 +383,7 @@ export const projects = [
   // SECTION 04: PORTFOLIO
   {
     id: 'nordic-timber',
-    number: '13',
+    number: '14',
     title: 'NORDIC TIMBER',
     subtitle: 'Timber Heritage Survey',
     category: 'PORTFOLIO',
@@ -383,7 +408,7 @@ export const projects = [
   },
   {
     id: 'marcus-vance',
-    number: '14',
+    number: '15',
     title: 'MARCUS VANCE',
     subtitle: 'Monolithic Architectural Portfolio',
     category: 'PORTFOLIO',
@@ -408,7 +433,7 @@ export const projects = [
   },
   {
     id: 'archora',
-    number: '15',
+    number: '16',
     title: 'ARCHORA STUDIO',
     subtitle: 'Spaces That Belong',
     category: 'PORTFOLIO',
@@ -433,7 +458,7 @@ export const projects = [
   },
   {
     id: 'listit',
-    number: '16',
+    number: '17',
     title: 'LISTIT ARCHIVE',
     subtitle: 'Anime Discovery Platform',
     category: 'PORTFOLIO',
@@ -460,7 +485,7 @@ export const projects = [
   // SECTION 05: CREATIVE
   {
     id: 'prismatic',
-    number: '17',
+    number: '18',
     title: 'PRISMATIC',
     subtitle: '3D Optical Visual Lab',
     category: 'CREATIVE',
@@ -485,7 +510,7 @@ export const projects = [
   },
   {
     id: 'offgrid',
-    number: '18',
+    number: '19',
     title: 'OFFGRID',
     subtitle: 'Controlled Chaos & Print Lab',
     category: 'CREATIVE',
@@ -510,7 +535,7 @@ export const projects = [
   },
   {
     id: 'museum-01',
-    number: '19',
+    number: '20',
     title: 'MUSEUM 01',
     subtitle: 'Art Beyond The Physical',
     category: 'CREATIVE',
@@ -535,7 +560,7 @@ export const projects = [
   },
   {
     id: 'primeturf',
-    number: '20',
+    number: '21',
     title: 'PRIMETURF ARENA',
     subtitle: 'Sports Arena & Pitch Matrix',
     category: 'CREATIVE',
@@ -558,7 +583,7 @@ export const projects = [
   },
   {
     id: 'sonora',
-    number: '21',
+    number: '22',
     title: 'SONORA',
     subtitle: 'Feel The Frequency',
     category: 'CREATIVE',

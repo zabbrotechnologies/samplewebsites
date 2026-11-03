@@ -196,6 +196,20 @@ function renderCategoryGraphic(type, accent, isLight) {
           <polygon points="140,75 115,90 115,120 140,105" fill="#6EE7B7" />
         </svg>
       );
+    case 'automotive':
+      return (
+        <svg viewBox="0 0 200 130" className="mockup-svg-graphic" fill="none">
+          <rect x="20" y="15" width="160" height="100" rx="6" fill="#0D0E12" stroke="#26262B" strokeWidth="1.5" />
+          <circle cx="125" cy="65" r="34" fill="#18181F" stroke="#E11D48" strokeWidth="2" />
+          <circle cx="115" cy="55" r="9" fill="#FFFFFF" opacity="0.85" filter="drop-shadow(0 0 6px #FFFFFF)" />
+          <circle cx="138" cy="55" r="9" fill="#FFFFFF" opacity="0.85" filter="drop-shadow(0 0 6px #FFFFFF)" />
+          <circle cx="115" cy="78" r="9" fill="#FFFFFF" opacity="0.85" filter="drop-shadow(0 0 6px #FFFFFF)" />
+          <circle cx="138" cy="78" r="9" fill="#FFFFFF" opacity="0.85" filter="drop-shadow(0 0 6px #FFFFFF)" />
+          <path d="M35 45 H75" stroke="#E11D48" strokeWidth="2.5" strokeLinecap="round" />
+          <rect x="35" y="60" width="45" height="6" rx="3" fill="#3F3F46" />
+          <rect x="35" y="74" width="30" height="6" rx="3" fill="#27272A" />
+        </svg>
+      );
     default:
       return (
         <svg viewBox="0 0 200 130" className="mockup-svg-graphic" fill="none">
