@@ -920,6 +920,14 @@ body {
   gap: 0.4rem;
   width: 100%;
   box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.selector-thumbnails-stack::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .thumbnail-nav-item {
@@ -1545,17 +1553,36 @@ body.verhost-modal-open {
     flex-direction: row;
     gap: 0.75rem;
     overflow-x: auto;
+    overflow-y: hidden;
     width: 100%;
     padding: 0.25rem 0.1rem 0.5rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    touch-action: pan-x;
+    cursor: grab;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .selector-thumbnails-stack:active {
+    cursor: grabbing;
+  }
+
+  .selector-thumbnails-stack::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .thumbnail-nav-item {
     flex: 0 0 190px;
     min-width: 190px;
     scroll-snap-align: start;
+  }
+
+  /* Tablet mode viewer: hide Desktop selection button, keeping Tablet and Mobile */
+  .device-btn-desktop {
+    display: none !important;
   }
 }
 
@@ -1691,25 +1718,37 @@ body.verhost-modal-open {
   }
 
   .perspective-mockup-wrapper {
-    perspective: 1200px;
-    perspective-origin: center center;
-    padding: 0;
+    perspective: 950px;
+    perspective-origin: 38% 50%;
+    padding: 6px 0;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
   }
 
   .perspective-device-frame {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 16 / 10;
-    min-height: 200px;
-    max-height: 320px;
-    border-radius: 8px;
-    transform: rotateY(-3deg) rotateX(1.5deg);
+    width: 93%;
+    max-width: 93%;
+    aspect-ratio: 2.1 / 1;
+    min-height: 195px;
+    max-height: 310px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(155, 255, 155, 0.28);
+    background-color: var(--bg-deep-forest);
     box-shadow: 
-      0 12px 28px -4px rgba(0, 0, 0, 0.85),
-      0 0 20px -4px rgba(155, 255, 155, 0.1);
+      -10px 18px 42px -6px rgba(0, 0, 0, 0.85),
+      0 0 30px -6px rgba(155, 255, 155, 0.14);
+    transform: rotateY(-13.5deg) scale(0.965);
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    transition: transform 400ms ease, box-shadow 400ms ease, border-color 400ms ease;
     box-sizing: border-box;
+  }
+
+  .perspective-mockup-wrapper:hover .perspective-device-frame {
+    transform: rotateY(-10.5deg) translateY(-2px) scale(0.98);
   }
 
   .perspective-cover-full-img {
@@ -1760,11 +1799,24 @@ body.verhost-modal-open {
     overflow-x: auto;
     overflow-y: hidden;
     width: 100%;
-    padding: 0.2rem 0.1rem 0.65rem;
+    padding: 0.2rem 0.1rem 0.5rem;
     box-sizing: border-box;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    touch-action: pan-x;
+    cursor: grab;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .selector-thumbnails-stack:active {
+    cursor: grabbing;
+  }
+
+  .selector-thumbnails-stack::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .thumbnail-nav-item {
@@ -1832,22 +1884,10 @@ body.verhost-modal-open {
     display: none;
   }
 
-  .viewer-toolbar-center {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    padding-top: 0.25rem;
-    border-top: 1px solid var(--border-hairline);
-  }
-
+  /* Mobile viewer toolbar: completely hide device switcher as requested */
+  .viewer-toolbar-center,
   .device-switcher-pill {
-    padding: 0.15rem;
-    gap: 0.15rem;
-  }
-
-  .device-btn {
-    padding: 0.25rem 0.6rem;
-    font-size: 0.68rem;
+    display: none !important;
   }
 
   .viewer-toolbar-right {
@@ -1879,11 +1919,15 @@ body.verhost-modal-open {
     padding: 1.75rem 0.85rem;
   }
 
+  /* Retain authentic 3D rectangle preview on small screens without overflow */
   .perspective-device-frame {
-    transform: none; /* Flat and crisp for maximum screen utilization on small phones */
-    aspect-ratio: 16 / 10;
-    min-height: 180px;
-    max-height: 260px;
+    width: 92%;
+    max-width: 92%;
+    aspect-ratio: 2.05 / 1;
+    min-height: 175px;
+    max-height: 250px;
+    transform: rotateY(-12deg) scale(0.96);
+    transform-style: preserve-3d;
   }
 
   .thumbnail-nav-item {
@@ -1906,6 +1950,16 @@ body.verhost-modal-open {
 @media (max-width: 360px) {
   .hero-monumental-heading {
     font-size: 1.85rem !important;
+  }
+
+  .perspective-device-frame {
+    width: 90%;
+    max-width: 90%;
+    aspect-ratio: 2 / 1;
+    min-height: 160px;
+    max-height: 220px;
+    transform: rotateY(-11deg) scale(0.95);
+    transform-style: preserve-3d;
   }
 
   .hero-curated-paragraph {

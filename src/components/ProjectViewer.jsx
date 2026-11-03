@@ -7,7 +7,13 @@ import AtelierStudio from '../projects/business/atelier/AtelierStudio';
 import VerdantSystems from '../projects/business/verdant/VerdantSystems';
 
 export default function ProjectViewer({ project, projects, onClose, onNavigateProject }) {
-  const [viewportMode, setViewportMode] = useState('desktop'); // desktop | tablet | mobile
+  const [viewportMode, setViewportMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 768) return 'mobile';
+      if (window.innerWidth < 1024) return 'tablet';
+    }
+    return 'desktop';
+  });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
@@ -104,7 +110,7 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
             <div className="device-switcher-pill" role="radiogroup" aria-label="Viewport Size">
               <button
                 type="button"
-                className={`device-btn ${viewportMode === 'desktop' ? 'active' : ''}`}
+                className={`device-btn device-btn-desktop ${viewportMode === 'desktop' ? 'active' : ''}`}
                 onClick={() => setViewportMode('desktop')}
                 title="Desktop View (100%)"
               >
@@ -112,7 +118,7 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
               </button>
               <button
                 type="button"
-                className={`device-btn ${viewportMode === 'tablet' ? 'active' : ''}`}
+                className={`device-btn device-btn-tablet ${viewportMode === 'tablet' ? 'active' : ''}`}
                 onClick={() => setViewportMode('tablet')}
                 title="Tablet View (768px)"
               >
@@ -120,7 +126,7 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
               </button>
               <button
                 type="button"
-                className={`device-btn ${viewportMode === 'mobile' ? 'active' : ''}`}
+                className={`device-btn device-btn-mobile ${viewportMode === 'mobile' ? 'active' : ''}`}
                 onClick={() => setViewportMode('mobile')}
                 title="Mobile View (390px)"
               >

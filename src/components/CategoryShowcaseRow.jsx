@@ -5,6 +5,11 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
   const thumbRefs = useRef([]);
+  const stackRef = useRef(null);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const hasMovedRef = useRef(false);
 
   // Keep active thumbnail centered in mobile scroll view
   useEffect(() => {
@@ -13,6 +18,29 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
       el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
   }, [activeIndex]);
+
+  const handleMouseDown = (e) => {
+    if (!stackRef.current) return;
+    isDraggingRef.current = true;
+    hasMovedRef.current = false;
+    startXRef.current = e.pageX - stackRef.current.offsetLeft;
+    scrollLeftRef.current = stackRef.current.scrollLeft;
+  };
+
+  const handleMouseLeaveOrUp = () => {
+    isDraggingRef.current = false;
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDraggingRef.current || !stackRef.current) return;
+    const x = e.pageX - stackRef.current.offsetLeft;
+    const dist = Math.abs(x - startXRef.current);
+    if (dist > 5) {
+      hasMovedRef.current = true;
+    }
+    const walk = (x - startXRef.current) * 1.5;
+    stackRef.current.scrollLeft = scrollLeftRef.current - walk;
+  };
 
   if (!projects || projects.length === 0) return null;
 
@@ -212,7 +240,14 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
             </div>
 
             {/* Stack / Carousel of Thumbnails */}
-            <div className="selector-thumbnails-stack">
+            <div 
+              ref={stackRef}
+              className="selector-thumbnails-stack"
+              onMouseDown={handleMouseDown}
+              onMouseLeave={handleMouseLeaveOrUp}
+              onMouseUp={handleMouseLeaveOrUp}
+              onMouseMove={handleMouseMove}
+            >
               {projects.map((proj, idx) => {
                 const isActive = idx === activeIndex;
                 return (
@@ -221,7 +256,11 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
                     ref={(el) => (thumbRefs.current[idx] = el)}
                     type="button"
                     className={`thumbnail-nav-item ${isActive ? 'is-active-thumb' : ''}`}
-                    onClick={() => setActiveIndex(idx)}
+                    onClick={() => {
+                      if (!hasMovedRef.current) {
+                        setActiveIndex(idx);
+                      }
+                    }}
                     title={`Select ${proj.title}`}
                   >
                     <div className="thumb-item-text">
