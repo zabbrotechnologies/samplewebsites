@@ -74,8 +74,8 @@ body {
 .verhost-ambient-background-system {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
@@ -578,20 +578,6 @@ body {
   width: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
-}
-
-.showcase-scale-viewport {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
-  overflow: visible;
-  transition: height 150ms ease;
-}
-
-.mobile-tablet-actions-block {
-  display: none !important;
 }
 
 /* Desktop Grid: Precision 3-Column Architecture */
@@ -1475,10 +1461,10 @@ body.verhost-modal-open {
 }
 
 /* ----------------------------------------------------------------------------
- * 6. RESPONSIVE BREAKPOINTS (Precision Engineered)
+ * 6. RESPONSIVE BREAKPOINTS (Precision Engineered & Regression Protected)
  * ------------------------------------------------------------------------- */
 
-/* Laptop: 1024px to 1439px */
+/* Laptop: 1024px to 1439px (Preserves 3-column desktop composition) */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .row-columns-grid {
     grid-template-columns: minmax(0, 27fr) minmax(0, 56fr) minmax(0, 17fr);
@@ -1496,7 +1482,7 @@ body.verhost-modal-open {
   }
 }
 
-/* Tablet: 768px to 1023px */
+/* Tablet: 768px to 1023px (Natural Vertical Flow with Tablet Proportions) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero-grid-3zone {
     grid-template-columns: 1fr;
@@ -1512,11 +1498,68 @@ body.verhost-modal-open {
   }
 
   .category-showcase-row {
-    padding: 2.5rem 1rem;
+    padding: 2.75rem 1.5rem;
+    height: auto;
+  }
+
+  .row-columns-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .col-category-info {
+    width: 100%;
+  }
+
+  .category-lead-desc {
+    max-width: 600px;
+    font-size: 0.92rem;
+  }
+
+  .col-center-preview {
+    width: 100%;
+  }
+
+  .perspective-mockup-wrapper {
+    perspective: 1200px;
+    padding: 0;
+  }
+
+  .perspective-device-frame {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+    min-height: 340px;
+    max-height: 440px;
+    transform: rotateY(-4deg) rotateX(2deg);
+  }
+
+  .col-right-selector {
+    width: 100%;
+  }
+
+  .selector-thumbnails-stack {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    overflow-x: auto;
+    width: 100%;
+    padding: 0.25rem 0.1rem 0.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .thumbnail-nav-item {
+    flex: 0 0 190px;
+    min-width: 190px;
+    scroll-snap-align: start;
   }
 }
 
-/* Mobile: below 768px */
+/* Mobile: below 768px (Clean Natural Flow, Zero Scale Hack, Zero Overflow) */
 @media (max-width: 767px) {
   .nav-inner-bounds {
     padding: 0.85rem 1.15rem;
@@ -1527,21 +1570,220 @@ body.verhost-modal-open {
   }
 
   .verhost-editorial-hero {
-    padding: 3rem 1.15rem 2rem;
+    padding: 2.75rem 1.15rem 1.75rem;
   }
 
   .hero-grid-3zone {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    width: 100%;
+  }
+
+  .hero-monumental-heading {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    line-height: 1.05;
+  }
+
+  .hero-curated-paragraph {
+    max-width: 100%;
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 
   .hero-stat-zone {
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 1.25rem;
+    padding-top: 0.25rem;
   }
 
+  .hero-category-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    max-width: 220px;
+  }
+
+  .hero-stat-divider {
+    display: none;
+  }
+
+  .hero-live-counter-block {
+    text-align: right;
+  }
+
+  .hero-counter-number {
+    font-size: 3rem;
+  }
+
+  /* Category Showcase Rows: Natural Content Height, No Dead Space */
   .category-showcase-row {
-    padding: 1.75rem 0.5rem;
+    padding: 2rem 1.15rem;
+    height: auto;
+    contain-intrinsic-size: auto;
+  }
+
+  .row-inner-bounds {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Ordered Mobile Stack: Info -> Preview -> Selector */
+  .row-columns-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* 1. Category Info */
+  .col-category-info {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .category-eyebrow-line {
+    font-size: 0.72rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .category-display-heading {
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+    line-height: 1.08;
+    margin-bottom: 0.65rem;
+  }
+
+  .category-lead-desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    max-width: 100%;
+    margin-bottom: 1.25rem;
+    color: #C2CFC8;
+  }
+
+  .category-cta-group {
+    margin-bottom: 1rem;
+    gap: 0.65rem;
+  }
+
+  .circular-arrow-cta-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .view-projects-pill-btn {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.72rem;
+  }
+
+  .category-tags-bottom {
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* 2. Main Website Preview: Prominent, Centered, High-Clarity */
+  .col-center-preview {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .perspective-mockup-wrapper {
+    perspective: 1200px;
+    perspective-origin: center center;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .perspective-device-frame {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+    min-height: 200px;
+    max-height: 320px;
+    border-radius: 8px;
+    transform: rotateY(-3deg) rotateX(1.5deg);
+    box-shadow: 
+      0 12px 28px -4px rgba(0, 0, 0, 0.85),
+      0 0 20px -4px rgba(155, 255, 155, 0.1);
+    box-sizing: border-box;
+  }
+
+  .perspective-cover-full-img {
+    border-radius: 7px;
+  }
+
+  .mockup-meta-strip {
+    margin-top: 0.65rem;
+    padding: 0 0.1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .meta-project-title {
+    font-size: 0.92rem;
+    max-width: 200px;
+  }
+
+  .meta-project-subtitle {
+    font-size: 0.74rem;
+    max-width: 210px;
+  }
+
+  .meta-right-year {
+    font-size: 0.82rem;
+  }
+
+  /* 3. Project Selector: Native Horizontal Touch Carousel */
+  .col-right-selector {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .selector-top-header {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .selector-counter-label {
+    font-size: 0.78rem;
+  }
+
+  .selector-thumbnails-stack {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    padding: 0.2rem 0.1rem 0.65rem;
+    box-sizing: border-box;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .thumbnail-nav-item {
+    flex: 0 0 165px;
+    min-width: 165px;
+    max-width: 180px;
+    height: 46px;
+    padding: 0.25rem 0.45rem 0.25rem 0.55rem;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+  }
+
+  .thumb-item-title {
+    font-size: 0.7rem;
+  }
+
+  .thumb-item-preview-box {
+    width: 44px;
+    height: 30px;
   }
 
   .fluid-light-pool {
@@ -1631,7 +1873,36 @@ body.verhost-modal-open {
   }
 }
 
-/* Extra Small Mobile (<= 360px) */
+/* Extra Small Mobile (<= 414px and <= 360px) */
+@media (max-width: 414px) {
+  .category-showcase-row {
+    padding: 1.75rem 0.85rem;
+  }
+
+  .perspective-device-frame {
+    transform: none; /* Flat and crisp for maximum screen utilization on small phones */
+    aspect-ratio: 16 / 10;
+    min-height: 180px;
+    max-height: 260px;
+  }
+
+  .thumbnail-nav-item {
+    flex: 0 0 150px;
+    min-width: 150px;
+    height: 44px;
+  }
+
+  .meta-project-title {
+    max-width: 160px;
+    font-size: 0.88rem;
+  }
+
+  .meta-project-subtitle {
+    max-width: 160px;
+    font-size: 0.72rem;
+  }
+}
+
 @media (max-width: 360px) {
   .hero-monumental-heading {
     font-size: 1.85rem !important;
@@ -1642,8 +1913,8 @@ body.verhost-modal-open {
   }
 
   .thumbnail-nav-item {
-    flex: 0 0 130px;
-    min-width: 130px;
+    flex: 0 0 138px;
+    min-width: 138px;
   }
 
   .nav-inner-bounds {
@@ -1651,11 +1922,11 @@ body.verhost-modal-open {
   }
 
   .verhost-editorial-hero {
-    padding: 2.5rem 0.85rem 1.5rem;
+    padding: 2.25rem 0.85rem 1.5rem;
   }
 
   .category-showcase-row {
-    padding: 2rem 0.85rem;
+    padding: 1.5rem 0.75rem;
   }
 
   .viewer-project-title {

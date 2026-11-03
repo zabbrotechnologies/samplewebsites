@@ -33,5 +33,7 @@ scripts/
 sync_*.ps1
 listit-*.txt
 public/projects/**/*.txt
+public/test-screenshots/
+
 
 
