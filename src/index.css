@@ -1630,7 +1630,8 @@ body.verhost-modal-open {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
-    max-width: 220px;
+    max-width: 100%;
+    width: 100%;
   }
 
   .hero-stat-divider {
@@ -1764,12 +1765,12 @@ body.verhost-modal-open {
 
   .meta-project-title {
     font-size: 0.92rem;
-    max-width: 200px;
+    max-width: 100%;
   }
 
   .meta-project-subtitle {
     font-size: 0.74rem;
-    max-width: 210px;
+    max-width: 100%;
   }
 
   .meta-right-year {
@@ -1937,12 +1938,12 @@ body.verhost-modal-open {
   }
 
   .meta-project-title {
-    max-width: 160px;
+    max-width: 100%;
     font-size: 0.88rem;
   }
 
   .meta-project-subtitle {
-    max-width: 160px;
+    max-width: 100%;
     font-size: 0.72rem;
   }
 }

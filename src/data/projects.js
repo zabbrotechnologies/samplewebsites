@@ -51,6 +51,16 @@ export const SECTIONS = [
     description: 'Bold and experimental websites for brands, creators and agencies.',
     tags: ['CREATIVE', 'PORTFOLIO', 'INTERACTIVE'],
     count: '05 PROJECTS',
+  },
+  {
+    number: '06',
+    category: 'INTERIOR DESIGN',
+    slug: 'interior',
+    headingLine1: 'INTERIOR',
+    headingLine2: 'DESIGNING',
+    description: 'Distinctive spatial aesthetics, luxury architectural environments, and refined interior concepts.',
+    tags: ['INTERIOR', 'SPATIAL', 'ARCHITECTURE'],
+    count: '05 PROJECTS',
   }
 ];
 
@@ -604,6 +614,132 @@ export const projects = [
       headline: 'FEEL THE FREQUENCY.',
       sub: 'An independent space exploring the relationship between sound, movement and visual expression.',
       mockupType: 'sonora'
+    }
+  },
+  // SECTION 06: INTERIOR DESIGNING
+  {
+    id: 'intrio',
+    number: '23',
+    title: 'INTRIO',
+    subtitle: 'Interior & Architecture Studio',
+    category: 'INTERIOR DESIGN',
+    sectionSlug: 'interior',
+    year: '2026',
+    client: 'Intrio Studio',
+    description: 'Award-winning interior architecture studio crafting timeless residential sanctuaries and commercial spaces.',
+    deliverables: ['Spatial Planning', 'Interior Architecture', 'Lighting Design', 'Custom Furniture'],
+    demoUrl: 'https://madebydesignesia.com/themes/intrio/?storefront=envato-elements',
+    featured: true,
+    thumbnailImg: '/covers/intrio.png',
+    coverImg: '/covers/intrio.png',
+    theme: {
+      mode: 'dark',
+      bg: '#141414',
+      accent: '#D4AF37',
+      brand: 'INTRIO',
+      headline: 'Timeless Interior Architecture',
+      sub: 'Crafting bespoke spaces that reflect balance, elegance, and modern living.',
+      mockupType: 'architecture'
+    }
+  },
+  {
+    id: 'datum-interior',
+    number: '24',
+    title: 'DATUM INTERIOR',
+    subtitle: 'Architecture & Interior Studio, Lisbon',
+    category: 'INTERIOR DESIGN',
+    sectionSlug: 'interior',
+    year: '2026',
+    client: 'Datum Lisbon Studio',
+    description: 'Lisbon-based architecture and interior studio emphasizing organic materials, balanced volumes, and sculptural minimalism.',
+    deliverables: ['Architectural Direction', 'Interior Styling', 'Bespoke Joinery', 'Material Curation'],
+    demoUrl: 'https://datuminterior.framer.website/',
+    featured: true,
+    thumbnailImg: '/covers/datum-interior.png',
+    coverImg: '/covers/datum-interior.png',
+    theme: {
+      mode: 'light',
+      bg: '#F5F2EB',
+      accent: '#8C7355',
+      brand: 'DATUM',
+      headline: 'Sculptural Minimalist Interiors',
+      sub: 'Balancing raw natural textures with refined contemporary spatial design.',
+      mockupType: 'architecture'
+    }
+  },
+  {
+    id: 'choroo',
+    number: '25',
+    title: 'CHOROO',
+    subtitle: 'Artisanal Furniture & Interior Atelier',
+    category: 'INTERIOR DESIGN',
+    sectionSlug: 'interior',
+    year: '2026',
+    client: 'Choroo Atelier',
+    description: 'Refined interior design and collectible furniture studio creating warm, inviting spaces with Scandinavian and Japanese aesthetics.',
+    deliverables: ['Interior Architecture', 'Collectible Furniture', 'Acoustic Balance', 'Curated Decor'],
+    demoUrl: 'https://choroo.webflow.io/',
+    featured: true,
+    thumbnailImg: '/covers/choroo.png',
+    coverImg: '/covers/choroo.png',
+    theme: {
+      mode: 'light',
+      bg: '#F9F8F5',
+      accent: '#A67C52',
+      brand: 'CHOROO',
+      headline: 'Warm Minimalist Interiors',
+      sub: 'Elevated interior living blending organic warmth and quiet luxury.',
+      mockupType: 'architecture'
+    }
+  },
+  {
+    id: 'eliras',
+    number: '26',
+    title: 'ELIRAS',
+    subtitle: 'Bespoke Living & Interior Studio',
+    category: 'INTERIOR DESIGN',
+    sectionSlug: 'interior',
+    year: '2026',
+    client: 'Eliras Spatial Living',
+    description: 'Contemporary interior design studio offering full-service residential renovation, spatial staging, and custom lighting installations.',
+    deliverables: ['Full-Home Renovations', 'Spatial Staging', 'Atmospheric Lighting', 'Fine Finishes'],
+    demoUrl: 'https://eliras.webflow.io/',
+    featured: true,
+    thumbnailImg: '/covers/eliras.png',
+    coverImg: '/covers/eliras.png',
+    theme: {
+      mode: 'dark',
+      bg: '#181A1B',
+      accent: '#C5A880',
+      brand: 'ELIRAS',
+      headline: 'Bespoke Spatial Elegance',
+      sub: 'Transforming architectural spaces with precision craft and intentional materiality.',
+      mockupType: 'architecture'
+    }
+  },
+  {
+    id: 'prime-axis',
+    number: '27',
+    title: 'PRIME AXIS',
+    subtitle: 'Modern Interior & Spatial Architecture',
+    category: 'INTERIOR DESIGN',
+    sectionSlug: 'interior',
+    year: '2026',
+    client: 'Prime Axis Architecture',
+    description: 'Forward-thinking interior architectural firm specializing in modern high-end residences, penthouse styling, and boutique commercial environments.',
+    deliverables: ['Penthouse Architecture', 'Commercial Staging', 'Smart Home Integration', 'Sustainable Materials'],
+    demoUrl: 'https://primeaxiso.webflow.io/',
+    featured: true,
+    thumbnailImg: '/covers/prime-axis.png',
+    coverImg: '/covers/prime-axis.png',
+    theme: {
+      mode: 'light',
+      bg: '#F2EFEB',
+      accent: '#6E7058',
+      brand: 'PRIME AXIS',
+      headline: 'Modern Architecture & Living',
+      sub: 'Designing visionary environments for discerning homeowners and visionary developers.',
+      mockupType: 'architecture'
     }
   }
 ];

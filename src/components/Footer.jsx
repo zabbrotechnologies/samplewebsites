@@ -23,6 +23,7 @@ export default function Footer() {
             <a href="#section-landing">03 —— LANDING PAGES</a>
             <a href="#section-portfolio">04 —— PORTFOLIO</a>
             <a href="#section-creative">05 —— CREATIVE</a>
+            <a href="#section-interior">06 —— INTERIOR DESIGN</a>
           </div>
 
           <div className="footer-contact-column">

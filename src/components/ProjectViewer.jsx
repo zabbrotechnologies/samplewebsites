@@ -17,6 +17,29 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
+  const currentIndex = projects.findIndex((p) => p.id === project.id);
+
+  const handlePrev = () => {
+    const prevIdx = (currentIndex - 1 + projects.length) % projects.length;
+    onNavigateProject(projects[prevIdx]);
+    setIframeLoaded(false);
+  };
+
+  const handleNext = () => {
+    const nextIdx = (currentIndex + 1) % projects.length;
+    onNavigateProject(projects[nextIdx]);
+    setIframeLoaded(false);
+  };
+
+  // Synchronize fullscreen state with browser changes
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
   // Lock outer document scrolling completely while viewer modal is mounted
   useEffect(() => {
     const originalBodyOverflow = document.body.style.overflow;
@@ -48,21 +71,7 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [project, projects]);
-
-  const currentIndex = projects.findIndex((p) => p.id === project.id);
-
-  const handlePrev = () => {
-    const prevIdx = (currentIndex - 1 + projects.length) % projects.length;
-    onNavigateProject(projects[prevIdx]);
-    setIframeLoaded(false);
-  };
-
-  const handleNext = () => {
-    const nextIdx = (currentIndex + 1) % projects.length;
-    onNavigateProject(projects[nextIdx]);
-    setIframeLoaded(false);
-  };
+  }, [project, projects, onClose]);
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -166,11 +175,12 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
 
             <button
               type="button"
-              className="viewer-action-btn"
+              className={`viewer-action-btn ${isFullscreen ? 'active-fullscreen' : ''}`}
               onClick={toggleFullscreen}
-              title="Toggle Fullscreen"
+              title={isFullscreen ? 'Exit Fullscreen' : 'Toggle Fullscreen'}
+              aria-label={isFullscreen ? 'Exit Fullscreen' : 'Toggle Fullscreen'}
             >
-              ⛶
+              {isFullscreen ? '✕' : '⛶'}
             </button>
 
             <button
@@ -287,19 +297,124 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
               </div>
             ) : project.demoUrl ? (
               <div className="viewer-iframe-wrapper">
-                {!iframeLoaded && (
-                  <div className="viewer-loading-skeleton">
-                    <div className="loading-spinner" />
-                    <span>Loading Live Website Experience...</span>
+                {project.demoUrl.startsWith('http') && (
+                  <div className="viewer-external-banner" style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '8px',
+                    padding: '8px 16px',
+                    background: 'rgba(11, 21, 15, 0.95)',
+                    borderBottom: '1px solid rgba(155, 255, 155, 0.2)',
+                    fontSize: '0.8rem',
+                    color: '#E0E0E0',
+                    zIndex: 20
+                  }}>
+                    <span>Viewing live experience: <strong style={{ color: '#FFF' }}>{project.title}</strong></span>
+                    <button
+                      type="button"
+                      onClick={openInNewTab}
+                      style={{
+                        background: '#9BFF9B',
+                        color: '#050907',
+                        border: 'none',
+                        borderRadius: '999px',
+                        padding: '5px 14px',
+                        fontWeight: '600',
+                        fontSize: '0.75rem',
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                      }}
+                    >
+                      <span>Open Full Site in New Tab</span>
+                      <span>↗</span>
+                    </button>
                   </div>
                 )}
-                <iframe
-                  src={project.demoUrl}
-                  title={project.title}
-                  className="viewer-live-iframe"
-                  onLoad={() => setIframeLoaded(true)}
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                />
+                {project.demoUrl.includes('webflow.io') ? (
+                  <div className="viewer-webflow-preview" style={{
+                    width: '100%',
+                    height: 'calc(100% - 45px)',
+                    overflowY: 'auto',
+                    background: '#090B09',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    position: 'relative'
+                  }}>
+                    <div style={{
+                      width: '100%',
+                      maxWidth: '1200px',
+                      padding: '20px 16px',
+                      boxSizing: 'border-box'
+                    }}>
+                      <div style={{
+                        background: 'rgba(155, 255, 155, 0.05)',
+                        border: '1px solid rgba(155, 255, 155, 0.2)',
+                        borderRadius: '12px',
+                        padding: '16px 20px',
+                        marginBottom: '20px',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '12px'
+                      }}>
+                        <div>
+                          <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#FFF' }}>{project.title}</h3>
+                          <p style={{ margin: '4px 0 0', fontSize: '0.82rem', color: '#9CA3AF' }}>{project.description}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={openInNewTab}
+                          style={{
+                            background: '#9BFF9B',
+                            color: '#050907',
+                            border: 'none',
+                            borderRadius: '8px',
+                            padding: '10px 20px',
+                            fontWeight: '700',
+                            fontSize: '0.85rem',
+                            cursor: 'pointer',
+                            whiteSpace: 'nowrap'
+                          }}
+                        >
+                          Launch Live Website ↗
+                        </button>
+                      </div>
+                      <div style={{
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)'
+                      }}>
+                        <img
+                          src={project.coverImg || project.thumbnailImg}
+                          alt={project.title}
+                          style={{ width: '100%', display: 'block' }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {!iframeLoaded && (
+                      <div className="viewer-loading-skeleton">
+                        <div className="loading-spinner" />
+                        <span>Loading Live Website Experience...</span>
+                      </div>
+                    )}
+                    <iframe
+                      src={project.demoUrl}
+                      title={project.title}
+                      className="viewer-live-iframe"
+                      onLoad={() => setIframeLoaded(true)}
+                    />
+                  </>
+                )}
               </div>
             ) : (
               /* Fallback for projects with prototypes pending live build */

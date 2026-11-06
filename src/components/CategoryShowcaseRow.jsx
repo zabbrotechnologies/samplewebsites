@@ -42,6 +42,14 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
     stackRef.current.scrollLeft = scrollLeftRef.current - walk;
   };
 
+  const handleTouchStart = () => {
+    hasMovedRef.current = false;
+  };
+
+  const handleTouchMove = () => {
+    hasMovedRef.current = true;
+  };
+
   if (!projects || projects.length === 0) return null;
 
   const activeProject = projects[activeIndex] || projects[0];
@@ -247,6 +255,8 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
               onMouseLeave={handleMouseLeaveOrUp}
               onMouseUp={handleMouseLeaveOrUp}
               onMouseMove={handleMouseMove}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
             >
               {projects.map((proj, idx) => {
                 const isActive = idx === activeIndex;

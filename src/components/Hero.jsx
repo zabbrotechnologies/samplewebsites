@@ -15,7 +15,7 @@ export default function Hero() {
     { label: 'LANDING PAGES', slug: 'landing' },
     { label: 'PORTFOLIO', slug: 'portfolio' },
     { label: 'CREATIVE', slug: 'creative' },
-    { label: 'AND MORE', slug: 'ecommerce' },
+    { label: 'INTERIOR DESIGN', slug: 'interior' },
   ];
 
   const totalProjectsCount = String(projects.length).padStart(2, '0');

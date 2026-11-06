@@ -29,7 +29,8 @@ dist-ssr
 cover_files.json
 cover image/
 tests/
-scripts/
+scripts/*
+!scripts/test-comprehensive.mjs
 sync_*.ps1
 listit-*.txt
 public/projects/**/*.txt
