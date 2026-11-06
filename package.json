@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "oxlint",
     "test": "node scripts/test-comprehensive.mjs",
-    "test:responsive": "node scripts/test-comprehensive.mjs",
+    "test:responsive": "node scripts/test-responsive.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,5 +1,5 @@
 // Centralized Project Configuration for VERHOST Digital Works Showcase
-// 21 Projects structured across 5 distinct sections
+// 27 Projects structured across 6 distinct sections
 
 export const SECTIONS = [
   {
@@ -56,8 +56,8 @@ export const SECTIONS = [
     number: '06',
     category: 'INTERIOR DESIGN',
     slug: 'interior',
-    headingLine1: 'INTERIOR',
-    headingLine2: 'DESIGNING',
+    headingLine1: 'INTERIOR DESIGN',
+    headingLine2: 'WEBSITES',
     description: 'Distinctive spatial aesthetics, luxury architectural environments, and refined interior concepts.',
     tags: ['INTERIOR', 'SPATIAL', 'ARCHITECTURE'],
     count: '05 PROJECTS',
@@ -616,7 +616,7 @@ export const projects = [
       mockupType: 'sonora'
     }
   },
-  // SECTION 06: INTERIOR DESIGNING
+  // SECTION 06: INTERIOR DESIGN WEBSITES
   {
     id: 'intrio',
     number: '23',

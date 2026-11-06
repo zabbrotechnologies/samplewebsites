@@ -397,6 +397,20 @@ export default function ProjectViewer({ project, projects, onClose, onNavigatePr
                           style={{ width: '100%', display: 'block' }}
                         />
                       </div>
+                      <div className="prototype-specs-drawer" style={{ marginTop: '24px' }}>
+                        <div className="spec-item">
+                          <span className="spec-label">CLIENT / ARCHIVE</span>
+                          <span className="spec-val">{project.client}</span>
+                        </div>
+                        <div className="spec-item">
+                          <span className="spec-label">YEAR</span>
+                          <span className="spec-val">{project.year}</span>
+                        </div>
+                        <div className="spec-item">
+                          <span className="spec-label">DELIVERABLES</span>
+                          <span className="spec-val">{project.deliverables?.join(', ')}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ) : (
