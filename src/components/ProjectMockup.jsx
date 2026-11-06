@@ -21,6 +21,13 @@ import PrismaticPreview from '../projects/creative/prismatic/PrismaticPreview';
 import OffgridPreview from '../projects/creative/offgrid/OffgridPreview';
 import Museum01Preview from '../projects/creative/museum01/Museum01Preview';
 import SonoraPreview from '../projects/creative/sonora/SonoraPreview';
+import InnovistDesignPreview from '../projects/interior/innovist-design/InnovistDesignPreview';
+import InnovistArchitecturePreview from '../projects/interior/innovist-architecture/InnovistArchitecturePreview';
+import IntrioPreview from '../projects/interior/intrio/IntrioPreview';
+import DatumPreview from '../projects/interior/datum/DatumPreview';
+import ChorooPreview from '../projects/interior/choroo/ChorooPreview';
+import ElirasPreview from '../projects/interior/eliras/ElirasPreview';
+import PrimeAxisPreview from '../projects/interior/prime-axis/PrimeAxisPreview';
 
 export default function ProjectMockup({ project, isExpanded = false }) {
   // Delegate E-Commerce and Business projects to their independent modules
@@ -89,6 +96,27 @@ export default function ProjectMockup({ project, isExpanded = false }) {
   }
   if (project.id === 'fresh-market') {
     return <FreshMarketPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'innovist-design') {
+    return <InnovistDesignPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'innovist-architecture') {
+    return <InnovistArchitecturePreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'intrio') {
+    return <IntrioPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'datum-interior') {
+    return <DatumPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'choroo') {
+    return <ChorooPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'eliras') {
+    return <ElirasPreview isExpanded={isExpanded} />;
+  }
+  if (project.id === 'prime-axis') {
+    return <PrimeAxisPreview isExpanded={isExpanded} />;
   }
 
   // Preserved rendering for other categories (Business, Landing, Portfolio, Creative)

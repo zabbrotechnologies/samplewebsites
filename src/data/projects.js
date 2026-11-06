@@ -1,5 +1,5 @@
 // Centralized Project Configuration for VERHOST Digital Works Showcase
-// 27 Projects structured across 6 distinct sections
+// 29 Projects structured across 6 distinct sections
 
 export const SECTIONS = [
   {
@@ -60,7 +60,7 @@ export const SECTIONS = [
     headingLine2: 'WEBSITES',
     description: 'Distinctive spatial aesthetics, luxury architectural environments, and refined interior concepts.',
     tags: ['INTERIOR', 'SPATIAL', 'ARCHITECTURE'],
-    count: '05 PROJECTS',
+    count: '07 PROJECTS',
   }
 ];
 
@@ -618,8 +618,60 @@ export const projects = [
   },
   // SECTION 06: INTERIOR DESIGN WEBSITES
   {
-    id: 'intrio',
+    id: 'innovist-design',
     number: '23',
+    title: 'INNOVIST DESIGN',
+    subtitle: 'Interior Architecture & Luxury Craft',
+    category: 'INTERIOR DESIGN',
+    sectionSlug: 'interior',
+    year: '2026',
+    client: 'Innovist Design Studio',
+    description: 'We transform spaces into timeless experiences through thoughtful design, refined materials and exceptional craftsmanship.',
+    deliverables: ['Interior Architecture', 'Luxury Craft', 'Spatial Design', 'Bespoke Furnishings'],
+    demoUrl: '/projects/innovist-design/index.html',
+    liveUrl: 'https://innovistinteriorsample1.vercel.app/',
+    featured: true,
+    thumbnailImg: '/covers/innovist-design.jpg',
+    coverImg: '/covers/innovist-design.jpg',
+    theme: {
+      mode: 'dark',
+      bg: '#0D0907',
+      accent: '#E8C59A',
+      brand: 'INNOVIST',
+      headline: 'Spaces That Speak Beyond Design.',
+      sub: 'Thoughtful design, refined materials and exceptional craftsmanship.',
+      mockupType: 'architecture'
+    }
+  },
+  {
+    id: 'innovist-architecture',
+    number: '24',
+    title: 'INNOVIST ARCHITECTURE',
+    subtitle: 'Thoughtful Design. Meaningful Living.',
+    category: 'INTERIOR DESIGN',
+    sectionSlug: 'interior',
+    year: '2026',
+    client: 'Innovist Interior Architecture, Bengaluru & Mumbai',
+    description: 'We shape thoughtful interiors around your lifestyle, your stories and the moments that make a space feel like home.',
+    deliverables: ['Architectural Interiors', 'Residential Styling', 'Material Curation', 'Spatial Flow'],
+    demoUrl: '/projects/innovist-architecture/index.html',
+    liveUrl: 'https://innovistinteriorsample2.vercel.app/',
+    featured: true,
+    thumbnailImg: '/covers/innovist-architecture.jpg',
+    coverImg: '/covers/innovist-architecture.jpg',
+    theme: {
+      mode: 'light',
+      bg: '#F5F2EC',
+      accent: '#A8482A',
+      brand: 'INNOVIST',
+      headline: 'Spaces that feel like you.',
+      sub: 'Shaping thoughtful interiors around your lifestyle and stories.',
+      mockupType: 'architecture'
+    }
+  },
+  {
+    id: 'intrio',
+    number: '25',
     title: 'INTRIO',
     subtitle: 'Interior & Architecture Studio',
     category: 'INTERIOR DESIGN',
@@ -645,7 +697,7 @@ export const projects = [
   },
   {
     id: 'datum-interior',
-    number: '24',
+    number: '26',
     title: 'DATUM INTERIOR',
     subtitle: 'Architecture & Interior Studio, Lisbon',
     category: 'INTERIOR DESIGN',
@@ -671,7 +723,7 @@ export const projects = [
   },
   {
     id: 'choroo',
-    number: '25',
+    number: '27',
     title: 'CHOROO',
     subtitle: 'Artisanal Furniture & Interior Atelier',
     category: 'INTERIOR DESIGN',
@@ -697,7 +749,7 @@ export const projects = [
   },
   {
     id: 'eliras',
-    number: '26',
+    number: '28',
     title: 'ELIRAS',
     subtitle: 'Bespoke Living & Interior Studio',
     category: 'INTERIOR DESIGN',
@@ -723,7 +775,7 @@ export const projects = [
   },
   {
     id: 'prime-axis',
-    number: '27',
+    number: '29',
     title: 'PRIME AXIS',
     subtitle: 'Modern Interior & Spatial Architecture',
     category: 'INTERIOR DESIGN',
