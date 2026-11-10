@@ -40,6 +40,16 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [selectedProject]);
 
+  // Ensure fresh initial load starts cleanly at the top hero section when no hash is specified
+  useEffect(() => {
+    if (!window.location.hash && !window.location.search) {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   // Initial load check for hash (e.g. reload or bookmark)
   useEffect(() => {
     if (window.location.hash.startsWith('#project-')) {

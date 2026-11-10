@@ -10,12 +10,19 @@ export default function CategoryShowcaseRow({ section, projects, onSelectProject
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
   const hasMovedRef = useRef(false);
+  const isFirstRenderRef = useRef(true);
 
-  // Keep active thumbnail centered in mobile scroll view
+  // Keep active thumbnail centered in horizontal scroll view without ever scrolling the page vertically
   useEffect(() => {
+    if (isFirstRenderRef.current) {
+      isFirstRenderRef.current = false;
+      return;
+    }
+    const container = stackRef.current;
     const el = thumbRefs.current[activeIndex];
-    if (el && typeof el.scrollIntoView === 'function') {
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    if (container && el && container.scrollWidth > container.clientWidth) {
+      const targetLeft = el.offsetLeft - (container.clientWidth / 2) + (el.offsetWidth / 2);
+      container.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
     }
   }, [activeIndex]);
 
